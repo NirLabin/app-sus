@@ -9,6 +9,8 @@ export const noteService = {
   getById,
   addNote,
   updateNoteColor,
+  pin,
+  updateNote,
 };
 _createNotes();
 
@@ -25,17 +27,26 @@ function remove(noteId) {
   return storageService.remove(NOTE_KEY, noteId);
 }
 
+function pin(note) {
+  note.isPinned = !note.isPinned;
+  console.log(note);
+}
+
 function getById(noteId) {
   return storageService.get(NOTE_KEY, noteId);
 }
 
-function addNote(txt) {
-  const newNote = _createNote(txt, '#A0C4FF');
+function addNote(txt, data) {
+  const newNote = _createNote(txt, '#A0C4FF', data);
   return storageService.post(NOTE_KEY, newNote);
 }
 
 function updateNoteColor(color) {
   return storageService.put(NOTE_KEY, color);
+}
+
+function updateNote(note) {
+  return storageService.put(NOTE_KEY, note);
 }
 
 async function _createNotes() {
@@ -50,13 +61,14 @@ async function _createNotes() {
   return notes;
 }
 
-function _createNote(txt = '', bgc, type = 'note-txt') {
+function _createNote(txt = '', bgc, type = 'note-txt', data = '') {
   return {
     id: utilService.makeId(),
     isPinned: false,
     todos: [],
     type,
     txt,
+    data,
     style: {
       bgc,
     },
