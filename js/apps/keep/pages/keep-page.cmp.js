@@ -25,8 +25,8 @@ export default {
     loadNotes() {
       noteService.query().then((notes) => (this.notes = notes));
     },
-    addNewNote(txt) {
-      noteService.addNote(txt).then(() => this.loadNotes());
+    addNewNote(txt, data) {
+      noteService.addNote(txt, data).then(() => this.loadNotes());
     },
     deleteNote(id) {
       noteService.remove(id);

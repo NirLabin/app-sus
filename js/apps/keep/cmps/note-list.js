@@ -10,7 +10,7 @@ export default {
         {{note.txt}} 
         <div class="actions">
              <button class="btn" @click="remove(note.id)">🗑</button>
-             <note-colors></note-colors>
+             <!-- <note-colors></note-colors> -->
          </div>
       </li> 
     </ul>
