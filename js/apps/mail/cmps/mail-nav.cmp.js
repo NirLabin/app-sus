@@ -1,10 +1,8 @@
-import newMail from '../cmps/new-mail.cmp.js';
-
 export default {
 	props: ['activePage'],
 	template: `
         <div class="mail-nav flex column">
-            <new-mail @send="sendMail"/>
+            <button class="btn" @click="compose"> +Compose</button>
             <button class="btn btn-mail-nav" :class="navActive('inbox')" @click="navClicked('inbox')">Inbox</button> 
             <button class="btn btn-mail-nav" :class="navActive('sent')" @click="navClicked('sent')">Sent</button> 
             <button class="btn btn-mail-nav" :class="navActive('trash')" @click="navClicked('trash')">Trash</button>
@@ -24,8 +22,9 @@ export default {
 		navActive(btnName) {
 			return { active: btnName === this.activePage };
 		},
+		compose() {
+			this.$emit('compose');
+		},
 	},
-	components: {
-		newMail,
-	},
+	components: {},
 };

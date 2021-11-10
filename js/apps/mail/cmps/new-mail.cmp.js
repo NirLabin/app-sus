@@ -1,8 +1,7 @@
 export default {
 	template: `
         <div class="new-mail">
-            <button class="btn" @click="toggleNewMsg"> + New mail</button>
-            <div v-if="showNewMail" class='email-compose flex column'>
+            <div class='email-compose flex column'>
                 <header class="email-compose-header flex space-between">
                     <h4>New message</h4>
                     <div class="control-btns">
@@ -39,7 +38,7 @@ export default {
 			this.toggleNewMsg();
 		},
 		toggleNewMsg() {
-			this.showNewMail = !this.showNewMail;
+			this.$emit('close');
 			this.toEmail = this.subject = this.messageTxt = '';
 		},
 	},

@@ -5,26 +5,29 @@ import mailList from '../cmps/mail-list.cmp.js';
 import mailNav from '../cmps/mail-nav.cmp.js';
 import mailDetails from '../cmps/email-details.cmp.js';
 import mailFilter from '../cmps/mail-filter.cmp.js';
+import newMail from '../cmps/new-mail.cmp.js';
 
 export default {
 	template: `
         <section class="mail-app app-main flex column space-between main-layout">
             <mail-filter @filtered="setFilter" @sorted="setSort"/>
 			<div class="mail-app-body flex ">
-				<mail-nav :activePage="page" @send="sendEmail" @change="changePage"/>
-				<mail-details v-if="curMail" :mail="curMail" @back="showList" @remove="deleteMail"/>
+				<mail-nav :activePage="page" @change="changePage" @compose="compose"/>
+				<mail-details v-if="curMail" :mail="curMail" @back="showList" @remove="deleteMail" @replay="replay"/>
 				<mail-list v-else :mails="mailsToShow2" @open="openMail" @remove="deleteMail" @starred="starredMail"/>
 			</div>
+            <new-mail v-if="showCompose" @send="sendEmail" @close="showCompose=!showCompose"/>
+
         </section>
     `,
 	data() {
 		return {
 			mails: null,
+			curMail: null,
 			searchStr: '',
-			filterBy: null,
 			sortBy: 'all',
 			page: 'inbox',
-			curMail: null,
+			showCompose: false,
 		};
 	},
 	created() {
@@ -35,10 +38,14 @@ export default {
 	},
 
 	methods: {
+		compose() {
+			this.showCompose = !this.showCompose;
+		},
 		showList() {
 			this.curMail = null;
 		},
 		changePage(page) {
+			this.curMail = null;
 			this.page = page;
 		},
 
@@ -60,8 +67,9 @@ export default {
 					);
 				});
 		},
-
+		replay(mailId) {},
 		deleteMail(id) {
+			this.curMail = null;
 			mailService
 				.getById(id)
 				.then((mail) => {
@@ -122,18 +130,6 @@ export default {
 		},
 	},
 	computed: {
-		mailsToShow() {
-			if (!this.filterBy && this.sortBy === 'all') return this.mails;
-			const searchStr = this.filterBy.toLowerCase();
-			const isRead = this.sortBy === 'unread' ? false : true;
-			const mailsToShow = this.mails.filter((mail) => {
-				return (
-					mail.subject.toLowerCase().includes(searchStr) &&
-					mail.isOpen === isRead
-				);
-			});
-			return mailsToShow;
-		},
 		mailsToShow2() {
 			if (!this.mails || !this.mails.length) return this.mails;
 			let curEmailsPage;
@@ -153,5 +149,6 @@ export default {
 		mailFilter,
 		mailNav,
 		mailDetails,
+		newMail,
 	},
 };

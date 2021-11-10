@@ -11,7 +11,8 @@ export default {
                         <button class='btn' @click="starred(mail.id)">
 							<ion-icon :name="starType(mail.isStarred)" :class="{starred:mail.isStarred}"></ion-icon></button>
                     </div>
-                    <mail-preview :mail='mail' @click.native="openMail(mail)"/>
+                    <mail-preview :mail='mail' @click.native="openMail(mail)" @open="openMail(mail)"/>
+					
                 </li>
             </ul>
             <div v-else><p>There is no emails to show</p></div>   
@@ -24,7 +25,6 @@ export default {
 			return 'star-outline';
 		},
 		starred(mailId) {
-			console.log(mailId);
 			this.$emit('starred', mailId);
 		},
 		openMail(mail) {

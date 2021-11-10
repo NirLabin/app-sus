@@ -3,8 +3,10 @@ export default {
 	template: `
         <div class="email-details">
             <div class="email-details-header">
-                <button class="btn" @click="back"><ion-icon name="arrow-back-outline"></ion-icon></button>
-                <button class="btn" @click="remove(mail.id)"><ion-icon name="trash-outline"></ion-icon></button>
+                <button class="btn" @click="back"><ion-icon name="arrow-back-outline"/></button>
+                <button class="btn" @click="replay"><ion-icon name="arrow-undo-sharp"/></button>
+                <button class="btn" @click="save"><ion-icon name="paper-plane"/></button>
+                <button class="btn" @click="remove(mail.id)"><ion-icon name="trash-outline"/></button>
             </div>
             <h3>{{mail.subject}}</h3>
             <p>{{mail.from}}</p>
@@ -22,6 +24,13 @@ export default {
 		},
 		remove(mailId) {
 			this.$emit('remove', mailId);
+		},
+		replay() {
+			this.$emit('replay', this.mail.id);
+		},
+		save() {
+			console.log('save email to notes');
+			// this.$emit('save', this.mail.id);
 		},
 	},
 	components: {},

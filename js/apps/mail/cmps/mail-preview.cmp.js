@@ -3,18 +3,26 @@ import { utilService } from '../../../services/util.service.js';
 export default {
 	props: ['mail'],
 	template: `
-        <div class="mail-preview flex align-center">
-			<span class="mail-from">{{mail.from}}</span>
-			<div class="flex align-center mail-body">
+        <div class="mail-preview " @mouseover="" @mouseleave="">
+			<div class="mail-preview-header">
+				<span class="mail-from">{{mail.from}}</span>
+				<span class="mail-date">{{getTimeForDisplay}}</span>
+			</div>
+			<div class=" mail-body">
 				<span>{{mail.subject}} - </span>
 				<p class="mail-body-txt">{{getBodyForDisplay}}</p>		
 			</div>
-			<span class="mail-date">{{getTimeForDisplay}}</span>
+			<!-- <div v-if="showHover">
+				<button @click="toggleShowState">
+						<ion-icon :name="envelopType"></ion-icon>
+				</button>
+			</div> -->
         </div>
     `,
 	data() {
 		return {
 			wordLimit: 100,
+			// showHover: false,
 		};
 	},
 	created() {},
@@ -29,6 +37,16 @@ export default {
 			return utilService.limitedText(this.mail.body, this.wordLimit);
 		},
 	},
-	methods: {},
+	methods: {
+		envelopType() {
+			return `mail${this.mail.isOpen ? '-open' : ''}-outline`;
+		},
+		toggleShowState() {
+			this.$emit('open', this.mail);
+		},
+		toggleHoverState() {
+			this.showHover = !this.showHover;
+		},
+	},
 	components: {},
 };
