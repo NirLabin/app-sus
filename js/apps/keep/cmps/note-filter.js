@@ -1,7 +1,7 @@
 export default {
   template: `
-      <section class="note-filter">
-        <input type="search" v-model="str" @input="filter" placeholder="Search...">
+      <section>
+        <input class="note-filter" type="search" v-model="str" @input="filter" placeholder="Search...">
       </section>
       `,
 
