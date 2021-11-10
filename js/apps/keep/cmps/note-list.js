@@ -1,3 +1,5 @@
+import noteColors from '../cmps/note-colors.js';
+
 export default {
   props: ['notes'],
   template: `
@@ -7,9 +9,8 @@ export default {
         backgroundColor : note.style.bgc}">
         {{note.txt}} 
         <div class="actions">
-             <button class="btn" @click="remove(mail.id)">
-                 <ion-icon name="trash-outline"></ion-icon>
-              </button>
+             <button class="btn" @click="remove(note.id)">🗑</button>
+             <note-colors></note-colors>
          </div>
       </li> 
     </ul>
@@ -18,4 +19,18 @@ export default {
     </div>
   </section>
   `,
+
+  data() {
+    return {};
+  },
+  methods: {
+    remove(noteId) {
+      console.log(noteId);
+      this.$emit('remove', noteId);
+    },
+  },
+
+  components: {
+    noteColors,
+  },
 };

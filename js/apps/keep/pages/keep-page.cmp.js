@@ -8,7 +8,7 @@ export default {
         <section class="keep-app">
               <note-filter type="search" id="filter-keeps"></note-filter>
               <note-add type="text" @newNote="addNewNote"></note-add>
-              <note-list :notes="notesToShow"></note-list>
+              <note-list :notes="notesToShow" @remove="deleteNote"></note-list>
         </section>
 
     `,
@@ -25,8 +25,22 @@ export default {
     loadNotes() {
       noteService.query().then((notes) => (this.notes = notes));
     },
-    addNewNote() {
-      keepService.addNote().then(() => this.loadNotes());
+    addNewNote(txt) {
+      noteService.addNote(txt).then(() => this.loadNotes());
+    },
+    deleteNote(id) {
+      noteService.remove(id);
+    },
+
+    changeNoteColor(id, color) {
+      keepService
+        .getById(id)
+        .then((note) => {
+          note.color = color;
+          console.log(note);
+          keepService.updateNoteColor(color);
+        })
+        .then(() => this.loadNotes());
     },
   },
   computed: {

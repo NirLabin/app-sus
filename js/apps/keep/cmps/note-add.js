@@ -2,7 +2,7 @@ export default {
   template: `
      <section>
          <div class="box-note-add">
-             <input class="note-add" v-model="noteTxt"  placeholder="Add note" @input="addNewNote">
+             <input class="note-add" v-model="noteTxt"  placeholder="Add note" >
               <button @click="addNewNote">➕</button>
         </div>
     </section>
@@ -16,7 +16,8 @@ export default {
   methods: {
     addNewNote() {
       let txt = this.noteTxt;
-      this.$emit('addNewNote', txt);
+      this.$emit('newNote', txt);
+      this.noteTxt = '';
     },
   },
 };

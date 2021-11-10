@@ -2,8 +2,14 @@ import { utilService } from '../../../services/util.service.js';
 import { storageService } from '../../../services/async.storage.service.js';
 
 const NOTE_KEY = 'notes';
-export const noteService = { query, remove, save, getById, addNote };
-let notes;
+export const noteService = {
+  query,
+  remove,
+  save,
+  getById,
+  addNote,
+  updateNoteColor,
+};
 _createNotes();
 
 function query() {
@@ -23,13 +29,17 @@ function getById(noteId) {
   return storageService.get(NOTE_KEY, noteId);
 }
 
-function addNote() {
-  const newNote = _createNote('New note', '#A0C4FF');
-  notes.push(newNote);
+function addNote(txt) {
+  const newNote = _createNote(txt, '#A0C4FF');
+  return storageService.post(NOTE_KEY, newNote);
+}
+
+function updateNoteColor(color) {
+  return storageService.put(NOTE_KEY, color);
 }
 
 async function _createNotes() {
-  notes = await storageService.query(NOTE_KEY);
+  let notes = await storageService.query(NOTE_KEY);
   if (!notes || !notes.length) {
     notes = [
       _createNote('Hay', '#9BF6FF'),
