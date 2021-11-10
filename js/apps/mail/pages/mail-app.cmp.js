@@ -34,7 +34,12 @@ export default {
 					eventBus.$emit(utilService.createMsg('Starred successfully'));
 					this.loadMails();
 				})
-				.catch((err) => {});
+				.catch((err) => {
+					eventBus.$emit(
+						'showMsg',
+						utilService.createMsg('Error. Please try later', 'error')
+					);
+				});
 		},
 		deleteMail(id) {
 			mailService
