@@ -4,7 +4,7 @@ import { storageService } from '../../../services/async.storage.service.js';
 const MAIL_KEY = 'mails';
 const loggedinUser = {
 	email: 'user@appsus.com',
-	fullname: 'Mahatma Appsus',
+	fullName: 'Efrat Zuri',
 };
 
 export const mailService = (function () {
@@ -12,8 +12,8 @@ export const mailService = (function () {
 		query() {
 			return storageService.query(MAIL_KEY);
 		},
-
 		sendEmail(email) {
+			// const{}=email
 			const newMail = _createMail(loggedinUser.email, ...email);
 			return storageService.post(MAIL_KEY, newMail);
 		},
@@ -31,15 +31,28 @@ export const mailService = (function () {
 			return storageService.get(MAIL_KEY, mailId);
 		},
 		getInbox(mails) {
-			return mails.filter((mail) => mail.from !== loggedinUser.email);
+			return mails.filter(
+				(mail) => mail.from !== loggedinUser.email && !mail?.isDeleted
+			);
 		},
-		getInbox(mails) {
-			return mails.filter((mail) => mail.from === loggedinUser.email);
+		getSent(mails) {
+			return mails.filter(
+				(mail) => mail.from === loggedinUser.email && !mail?.isDeleted
+			);
+		},
+		getDeleted(mails) {
+			return mails.filter((mail) => mail?.isDeleted);
 		},
 	};
 })();
 
-function _createMail(from = '', subject = '', body = '', date = new Date()) {
+function _createMail(
+	from = '',
+	subject = '',
+	body = '',
+	date = new Date(),
+	to = loggedinUser.email
+) {
 	return {
 		id: utilService.makeId(),
 		isOpen: false,
@@ -48,6 +61,7 @@ function _createMail(from = '', subject = '', body = '', date = new Date()) {
 		from,
 		subject,
 		body,
+		to,
 	};
 }
 

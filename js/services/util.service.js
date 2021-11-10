@@ -12,7 +12,9 @@ export const utilService = (function () {
 			return Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
 		},
 		getTime(time) {
-			return `${time.getHours()}:${time.getMinutes()}`;
+			return `${this.padNum(time.getHours())}:${this.padNum(
+				time.getMinutes()
+			)}`;
 		},
 		// Random integer
 		randomInt(max, min = 0) {
@@ -49,6 +51,7 @@ export const utilService = (function () {
 		},
 
 		limitedText(txt, wordLimit = 100) {
+			console.log(txt);
 			if (txt.length <= wordLimit) return txt;
 			let txtLimited = txt.slice(0, wordLimit);
 			if (txt.charAt(wordLimit) === ' ') return txt.slice(0, wordLimit);
@@ -101,9 +104,15 @@ export const utilService = (function () {
 		createMsg(txt, type = 'success') {
 			return { txt, type };
 		},
-		months:
-			'January, February, March, April, May, June, July, August, September, October, November, December'.split(
-				', '
-			),
+		padNum(num, length = 2, padStr = 0) {
+			return `${num}`.padStart(length, padStr);
+		},
+		// months:
+		// 	'January, February, March, April, May, June, July, August, September, October, November, December'.split(
+		// 		', '
+		// 	),
+		months: 'Jan, Fab, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec'.split(
+			', '
+		),
 	};
 })();

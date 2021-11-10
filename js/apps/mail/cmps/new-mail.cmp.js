@@ -1,9 +1,9 @@
 export default {
 	template: `
         <div class="new-mail">
-            <button class="btn btn-white" to="/mail/edit" @click="newMail"> + New mail</button>
-            <div v-if="showNewMail" class='modal flex column'>
-                <header class="flex space-between">
+            <button class="btn" @click="newMail"> + New mail</button>
+            <div v-if="showNewMail" class='email-compose flex column'>
+                <header class="email-compose-header flex space-between">
                     <h4>New message</h4>
                     <div class="control-btns">
                         <button class="btn" @click="toggleNewMsg">X</button>
@@ -12,7 +12,7 @@ export default {
                 <form action="" class="flex column">
                     <div class="flex">
                         <label for="email">To</label>
-                        <input type="email" v-model="email">
+                        <input type="email" v-model="toEmail">
                     </div>
                     <div class="flex">
                         <label for="text">Subject</label>
@@ -27,15 +27,15 @@ export default {
 	data() {
 		return {
 			showNewMail: false,
-			email: '',
+			toEmail: '',
 			subject: '',
 			messageTxt: '',
 		};
 	},
 	methods: {
 		send() {
-			const { email, subject, messageTxt } = this;
-			this.$emit('send', { email, subject, messageTxt });
+			const { toEmail, subject, messageTxt } = this;
+			this.$emit('send', { toEmail, subject, messageTxt });
 			this.toggleNewMsg();
 		},
 		toggleNewMsg() {
