@@ -15,9 +15,6 @@ export default {
          </div>
       </li> 
     </ul>
-    <div v-else>
-      <p>No Notes</p>
-    </div>
   </section>
   `,
 
