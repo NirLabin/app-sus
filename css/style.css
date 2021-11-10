@@ -1,0 +1,15 @@
+.container {
+}
+
+.app-header {
+	padding: 10px 20px;
+}
+
+nav {
+	font-size: 18px;
+}
+
+a.active {
+	--link-clr: var(--nav-clr);
+	--link-hover-clr: #0f365d;
+}

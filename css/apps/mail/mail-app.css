@@ -1,0 +1,36 @@
+.mail-app {
+	height: 100%;
+}
+
+.input-search {
+	border-radius: 20px;
+	width: 100%;
+	padding: 10px 15px;
+}
+
+.mail-list > * {
+	cursor: pointer;
+	font-size: 18px;
+	padding: 10px 15px;
+	border-radius: 3px;
+	transition: all 0.3s ease-out;
+}
+
+.mail-list > *:hover {
+	box-shadow: inset 0px 0px 8px 3px rgba(0, 0, 0, 0.15);
+}
+
+.new-mail .modal {
+	min-width: 500px;
+	font-size: 20px;
+	color: var(--txt-clr);
+	gap: 10px;
+}
+.new-mail form {
+	gap: 10px;
+}
+
+.new-mail .modal input,
+.new-mail .modal textarea {
+	border: none;
+}
