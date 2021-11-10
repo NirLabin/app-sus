@@ -1,0 +1,13 @@
+.note-list {
+  padding: 20px;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 250px);
+  gap: 20px;
+}
+
+.note-filter {
+  border-radius: 20px;
+  width: 100%;
+  padding: 10px 15px;
+}
