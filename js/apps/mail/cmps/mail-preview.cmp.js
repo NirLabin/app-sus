@@ -4,9 +4,12 @@ export default {
 	props: ['mail'],
 	template: `
         <div class="mail-preview flex align-center space-between">
-            <span>{{mail.from}}</span>
-            <span>{{mail.subject}}</span>
-            <span>{{getTimeForDisplay}}</span>
+			<router-link to="/"  exact>
+			<span>{{mail.from}}</span>
+			<span>{{mail.subject}}</span>
+			<span>{{getTimeForDisplay}}</span>
+		</router-link> 
+			
         </div>
     `,
 	data() {

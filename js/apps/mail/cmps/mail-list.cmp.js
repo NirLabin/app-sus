@@ -18,9 +18,9 @@ export default {
             <div v-else><p>There is no emails to show</p></div>   
         </section>
     `,
+	created() {},
 	methods: {
 		starred(mailId) {
-			console.log('this mail starred');
 			this.$emit('starred', mailId);
 		},
 		openMail(mail) {

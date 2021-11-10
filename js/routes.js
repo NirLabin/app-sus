@@ -15,10 +15,6 @@ const routes = [
 		path: '/mail',
 		component: mailApp,
 	},
-	// {
-	//     path: '/mail/edit/:mailId?',
-	//     component: mailEdit
-	// },
 ];
 
 export const router = new VueRouter({ routes });
