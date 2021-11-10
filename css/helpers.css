@@ -1,45 +1,39 @@
 /* flex */
 
 .flex {
-  display: flex;
+	display: flex;
 }
 
 .flex.align-center {
-  align-items: center;
+	align-items: center;
 }
 
 .flex.space-between {
-  justify-content: space-between;
+	justify-content: space-between;
 }
 
 .flex.column {
-  flex-direction: column;
+	flex-direction: column;
 }
 
 .flex.gap {
-  gap: 10px;
+	gap: 10px;
 }
 
 /* grid */
 
 .grid {
-  display: grid;
+	display: grid;
 }
 
 /* List helper */
 
 .clean-list {
-  list-style: none;
+	list-style: none;
 }
 
 /* Text helper */
 
 .uppercase {
-  text-transform: uppercase;
-}
-
-/*  */
-.open {
-  font-weight: 700;
-  color: #111;
+	text-transform: uppercase;
 }

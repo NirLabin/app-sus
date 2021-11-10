@@ -100,7 +100,7 @@ a:active,
 /* Layout */
 
 .main-layout {
-	width: 860px;
+	width: 960px;
 	margin: 0 auto;
 }
 
@@ -109,15 +109,9 @@ a:active,
 .modal {
 	position: absolute;
 	background-color: #f9f7fc;
-	padding: 10px 20px;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	padding: 10px 20px;
 	border-radius: 10px;
-	box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
-}
-.modal header {
-	background-color: #333;
-	color: #fff;
+	box-shadow: 0 16px 32px rgba(100, 82, 82, 0.3);
 }
