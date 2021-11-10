@@ -8,7 +8,8 @@ export default {
         <section class="keep-app">
               <note-filter type="search" id="filter-keeps"></note-filter>
               <note-add type="text" @newNote="addNewNote"></note-add>
-              <note-list :notes="notesToShow" @remove="deleteNote"></note-list>
+              <note-list :notes="pinnedNotes" @remove="deleteNote" @pin="pinNote"></note-list>
+              <note-list :notes="unPinnedNotes" @remove="deleteNote" @pin="pinNote"></note-list>
         </section>
 
     `,
@@ -16,6 +17,8 @@ export default {
   data() {
     return {
       notes: null,
+      pinnedNotes: [],
+      unPinnedNotes: [],
     };
   },
   created() {
@@ -23,13 +26,27 @@ export default {
   },
   methods: {
     loadNotes() {
-      noteService.query().then((notes) => (this.notes = notes));
+      noteService.query().then((notes) => {
+        this.notes = notes;
+        this.unPinnedNotes = notes.filter((note) => !note.isPinned);
+        this.pinnedNotes = notes.filter((note) => note.isPinned);
+      });
     },
     addNewNote(txt, data) {
       noteService.addNote(txt, data).then(() => this.loadNotes());
     },
     deleteNote(id) {
       noteService.remove(id);
+    },
+
+    pinNote(note) {
+      noteService
+        .getById(note.id)
+        .then((note) => {
+          note.isPinned = !note.isPinned;
+          noteService.updateNote(note);
+        })
+        .then(() => this.loadNotes());
     },
 
     changeNoteColor(id, color) {

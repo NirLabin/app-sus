@@ -10,6 +10,7 @@ export default {
         {{note.txt}} 
         <div class="actions">
              <button class="btn" @click="remove(note.id)">🗑</button>
+             <button class="btn" @click="pinNote(note)">📌</button>
              <!-- <note-colors></note-colors> -->
          </div>
       </li> 
@@ -21,12 +22,17 @@ export default {
   `,
 
   data() {
-    return {};
+    return {
+      pinNotes: null,
+    };
   },
   methods: {
     remove(noteId) {
       console.log(noteId);
       this.$emit('remove', noteId);
+    },
+    pinNote(note) {
+      this.$emit('pin', note);
     },
   },
 

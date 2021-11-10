@@ -9,6 +9,8 @@ export const noteService = {
   getById,
   addNote,
   updateNoteColor,
+  pin,
+  updateNote,
 };
 _createNotes();
 
@@ -25,6 +27,11 @@ function remove(noteId) {
   return storageService.remove(NOTE_KEY, noteId);
 }
 
+function pin(note) {
+  note.isPinned = !note.isPinned;
+  console.log(note);
+}
+
 function getById(noteId) {
   return storageService.get(NOTE_KEY, noteId);
 }
@@ -36,6 +43,10 @@ function addNote(txt, data) {
 
 function updateNoteColor(color) {
   return storageService.put(NOTE_KEY, color);
+}
+
+function updateNote(note) {
+  return storageService.put(NOTE_KEY, note);
 }
 
 async function _createNotes() {
