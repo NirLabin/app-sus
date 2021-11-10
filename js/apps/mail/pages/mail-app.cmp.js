@@ -17,7 +17,6 @@ export default {
 				<mail-list v-else :mails="mailsToShow2" @open="openMail" @remove="deleteMail" @starred="starredMail"/>
 			</div>
             <new-mail v-if="showCompose" @send="sendEmail" @close="showCompose=!showCompose"/>
-
         </section>
     `,
 	data() {
