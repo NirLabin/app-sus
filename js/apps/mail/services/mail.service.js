@@ -13,8 +13,13 @@ export const mailService = (function () {
 			return storageService.query(MAIL_KEY);
 		},
 		sendEmail(email) {
-			// const{}=email
-			const newMail = _createMail(loggedinUser.email, ...email);
+			const { subject, toEmail, messageTxt } = email;
+			const newMail = _createMail(
+				loggedinUser.email,
+				subject,
+				messageTxt,
+				toEmail
+			);
 			return storageService.post(MAIL_KEY, newMail);
 		},
 
@@ -50,8 +55,8 @@ function _createMail(
 	from = '',
 	subject = '',
 	body = '',
-	date = new Date(),
-	to = loggedinUser.email
+	to = loggedinUser.email,
+	date = new Date()
 ) {
 	return {
 		id: utilService.makeId(),

@@ -10,9 +10,9 @@ export default {
 	template: `
         <section class="mail-app app-main flex column space-between main-layout">
             <mail-filter @filtered="setFilter" @sorted="setSort"/>
-			<div class="flex">
-				<mail-nav @send="sendEmail" @change="changePage"/>
-				<mail-details v-if="curMail" :mail="curMail"/>
+			<div class="mail-app-body flex ">
+				<mail-nav :activePage="page" @send="sendEmail" @change="changePage"/>
+				<mail-details v-if="curMail" :mail="curMail" @back="showList" @remove="deleteMail"/>
 				<mail-list v-else :mails="mailsToShow2" @open="openMail" @remove="deleteMail" @starred="starredMail"/>
 			</div>
         </section>
@@ -35,6 +35,9 @@ export default {
 	},
 
 	methods: {
+		showList() {
+			this.curMail = null;
+		},
 		changePage(page) {
 			this.page = page;
 		},
@@ -44,7 +47,7 @@ export default {
 				.getById(mailId)
 				.then((mail) => {
 					mail.isStarred = !mail.isStarred;
-					mailService.save(mail);
+					return mailService.save(mail);
 				})
 				.then(() => {
 					eventBus.$emit(utilService.createMsg('Starred successfully'));
@@ -63,7 +66,7 @@ export default {
 				.getById(id)
 				.then((mail) => {
 					mail.isDeleted = true;
-					mailService.save(mail);
+					return mailService.save(mail);
 				})
 				.then(() => {
 					const msg = {
