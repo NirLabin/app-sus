@@ -2,6 +2,7 @@ import { utilService } from '../../../services/util.service.js';
 import { storageService } from '../../../services/async.storage.service.js';
 
 const NOTE_KEY = 'notes';
+const DIFF_CLR = '#A0C4FF';
 export const noteService = {
   query,
   remove,
@@ -36,8 +37,8 @@ function getById(noteId) {
   return storageService.get(NOTE_KEY, noteId);
 }
 
-function addNote(txt, data) {
-  const newNote = _createNote(txt, '#A0C4FF', data);
+function addNote(txt, type, clr = DIFF_CLR) {
+  const newNote = _createNote(txt, type, clr);
   return storageService.post(NOTE_KEY, newNote);
 }
 
@@ -53,7 +54,7 @@ async function _createNotes() {
   let notes = await storageService.query(NOTE_KEY);
   if (!notes || !notes.length) {
     notes = [
-      _createNote('Hay', '#9BF6FF'),
+      _createNote('Hey', '#9BF6FF'),
       _createNote('Hey everybody welcome to keep app', '#CAFFBF'),
     ];
     notes = await storageService.postMany(NOTE_KEY, notes);
@@ -61,7 +62,7 @@ async function _createNotes() {
   return notes;
 }
 
-function _createNote(txt = '', bgc, type = 'note-txt', data = '') {
+function _createNote(txt = '', type = 'text', bgc, data = '') {
   return {
     id: utilService.makeId(),
     isPinned: false,

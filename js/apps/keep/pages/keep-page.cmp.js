@@ -7,7 +7,7 @@ export default {
   template: `
         <section class="keep-app">
               <note-filter type="search" id="filter-keeps"></note-filter>
-              <note-add type="text" @newNote="addNewNote"></note-add>
+              <note-add type="text" @add="addNewNote"></note-add>
               <note-list :notes="pinnedNotes" @remove="deleteNote" @pin="pinNote"></note-list>
               <note-list :notes="unPinnedNotes" @remove="deleteNote" @pin="pinNote"></note-list>
         </section>
@@ -32,8 +32,9 @@ export default {
         this.pinnedNotes = notes.filter((note) => note.isPinned);
       });
     },
-    addNewNote(txt, data) {
-      noteService.addNote(txt, data).then(() => this.loadNotes());
+    addNewNote(data) {
+      const { noteTxt, noteType } = data;
+      noteService.addNote(noteTxt, noteType).then(() => this.loadNotes());
     },
     deleteNote(id) {
       noteService.remove(id);

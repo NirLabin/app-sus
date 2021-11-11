@@ -9,10 +9,12 @@ export default {
         backgroundColor : note.style.bgc}">
         {{note.txt}} 
         <div class="actions">
-             <button class="btn" @click="remove(note.id)">🗑</button>
-             <button class="btn" @click="pinNote(note)">📌</button>
-             <!-- <note-colors></note-colors> -->
+          <button class="btn" @click="remove(note.id)">🗑</button>
+          <button class="btn" @click="pinNote(note)">📌</button>
+          <note-colors></note-colors>
+          <input type="checkbox" v-if="note.type === 'todo' ">
          </div>
+         <h4>{{note.type}}</h4>
       </li> 
     </ul>
   </section>
