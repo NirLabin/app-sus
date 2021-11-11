@@ -13,8 +13,8 @@ export default {
           <button class="btn" @click="pinNote(note)">📌</button>
           <note-colors @color="changeColor" :note="note"></note-colors>
           <input type="checkbox" v-if="note.type === 'todo' ">
-         </div>
-         <h4>{{note.type}}</h4>
+        </div>
+      <h4>{{note.type}}</h4>
       </li> 
     </ul>
   </section>

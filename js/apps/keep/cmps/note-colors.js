@@ -26,7 +26,6 @@ export default {
 		pick(color) {
 			const newData = { color, note: this.note };
 			this.$emit('color', newData);
-			// this.$emit('color', colors[idx]);
 		},
 	},
 };
