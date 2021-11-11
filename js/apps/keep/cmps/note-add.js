@@ -7,7 +7,7 @@ export default {
          <div class="box-note-add">
             <note-type @type="setTypeNote"></note-type>
             <input v-if="noteType !== 'todo' " class="note-add" v-model="noteTxt"  placeholder="Add note" >
-            <textarea v-if="noteType === 'todo'"name="todo-note" id="note-todo" cols="20" rows="5" placeholder="Add todo list" v-model="noteTxt"></textarea>
+            <textarea v-if="noteType === 'todo'"name="todo-note" id="note-todo" cols="50" rows="3" placeholder="Add todo list" v-model="noteTxt"></textarea>
             <button class="btn" @click="addNewNote">➕</button>
             <note-img v-if="noteType === 'img'"></note-img>
         </div>
