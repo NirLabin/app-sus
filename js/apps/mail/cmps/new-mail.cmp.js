@@ -1,4 +1,5 @@
 export default {
+	props: ['composeData'],
 	template: `
         <div class="new-mail">
             <div class='email-compose flex column'>
@@ -30,6 +31,10 @@ export default {
 			subject: '',
 			messageTxt: '',
 		};
+	},
+	created() {
+		this.to = this.composeData.to;
+		this.to = this.composeData.to;
 	},
 	methods: {
 		send() {

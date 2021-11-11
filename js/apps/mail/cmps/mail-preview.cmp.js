@@ -4,14 +4,10 @@ export default {
 	props: ['mail'],
 	template: `
         <div class="mail-preview " @mouseover="" @mouseleave="">
-			<div class="mail-preview-header">
 				<span class="mail-from">{{mail.from}}</span>
 				<span class="mail-date">{{getTimeForDisplay}}</span>
-			</div>
-			<div class=" mail-body">
-				<span>{{mail.subject}} - </span>
+				<span class="mail-subject">{{mail.subject}} - </span>
 				<p class="mail-body-txt">{{getBodyForDisplay}}</p>		
-			</div>
 			<!-- <div v-if="showHover">
 				<button @click="toggleShowState">
 						<ion-icon :name="envelopType"></ion-icon>
