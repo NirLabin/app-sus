@@ -10,7 +10,7 @@ export default {
             <button class="btn" @click="addNewNote" ><ion-icon name="add-outline"></ion-icon></button>
             <note-img v-if="noteType === 'img'" @addImg="addImg"></note-img>
 			<div class="actions flex gap align-center">
-				<button class="btn active">Tx</button>
+				<button class="btn ">Tx</button>
 				<button class="btn" @click="todo"><ion-icon name="list-outline"></ion-icon></button>
 				<button class="btn" @click="setTypeNote('img')"><ion-icon name="image-outline"></ion-icon></button>
 			</div>
