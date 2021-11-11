@@ -6,11 +6,11 @@ import { noteService } from '../services/keep.service.js';
 export default {
 	template: `
         <section class="keep-app">
-              <note-filter @filter="setFilter" type="search" id="filter-keeps"></note-filter>
-              <note-add type="text" @add="addNewNote"></note-add>
-              <note-list :notes="filterdNotes"></note-list>
-              <note-list  v-if="!filterdNotes.length" :notes="pinnedNotes" @remove="deleteNote" @pin="pinNote" @color="changeColor" @duplicate="onDuplicateNote"  @send="sendEmail"></note-list>
-              <note-list v-if="!filterdNotes.length" :notes="unPinnedNotes" @remove="deleteNote" @pin="pinNote" @color="changeColor" @duplicate="onDuplicateNote" @send="sendEmail"></note-list>
+              <note-filter @filter="setFilter" type="search" id="filter-keeps"/>
+              <note-add type="text" @add="addNewNote"/>
+              <note-list :notes="filteredNotes"/>
+              <note-list  v-if="!filteredNotes.length" :notes="pinnedNotes" @remove="deleteNote" @pin="pinNote" @color="changeColor" @duplicate="onDuplicateNote"  @todo="changeTodo"/>
+              <note-list v-if="!filteredNotes.length" :notes="unPinnedNotes" @remove="deleteNote" @pin="pinNote" @color="changeColor" @duplicate="onDuplicateNote" @todo="changeTodo"/>
         </section>
 
     `,
@@ -19,7 +19,7 @@ export default {
 			notes: null,
 			pinnedNotes: [],
 			unPinnedNotes: [],
-			filterdNotes: [],
+			filteredNotes: [],
 			searchStr: '',
 		};
 	},
@@ -27,8 +27,12 @@ export default {
 		this.loadNotes();
 	},
 	methods: {
-		sendEmail(note) {
-			// this.
+		changeTodo(data) {
+			data.todo.isDone = !data.todo.isDone;
+			noteService
+				.save(data.note)
+				.then((note) => this.loadNotes())
+				.catch((err) => console.log(err));
 		},
 		loadNotes() {
 			noteService.query().then((notes) => {
@@ -62,8 +66,8 @@ export default {
 
 		setFilter(str) {
 			this.filter = str;
-			this.filterdNotes = this.notesToShow();
-			if (!this.filter) this.filterdNotes = [];
+			this.filteredNotes = this.notesToShow();
+			if (!this.filter) this.filteredNotes = [];
 		},
 
 		notesToShow() {
@@ -71,7 +75,7 @@ export default {
 			const notes = this.notes.filter((note) => {
 				let str = note.txt.toLowerCase().includes(searchStr);
 				if (!str) return;
-				this.filterdNotes.push(note);
+				this.filteredNotes.push(note);
 			});
 
 			return notes;

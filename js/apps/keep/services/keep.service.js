@@ -17,6 +17,7 @@ export const noteService = {
 	updateNoteColor,
 	pin,
 	updateNote,
+	getEmptyNote,
 };
 _createNotes();
 
@@ -43,7 +44,11 @@ function getById(noteId) {
 }
 
 function addNote(txt, type, clr = DEAF_CLR) {
-	const newNote = _createNote(txt, type, clr);
+	const newNote = _createNote(clr, txt, type);
+	if (type === 'todo') {
+		newNote.todos.push({ isDone: false, txt: txt });
+		newNote.txt = '';
+	}
 	return storageService.post(NOTE_KEY, newNote);
 }
 
@@ -55,19 +60,33 @@ function updateNote(note) {
 	return storageService.put(NOTE_KEY, note);
 }
 
+function getEmptyNote() {
+	return {
+		id: utilService.makeId(),
+		isPinned: false,
+		todos: [],
+		type,
+		txt,
+		data,
+		style: {
+			bgc,
+		},
+	};
+}
+
 async function _createNotes() {
 	let notes = await storageService.query(NOTE_KEY);
 	if (!notes || !notes.length) {
 		notes = [
-			_createNote('Hey', '#9BF6FF'),
-			_createNote('Hey everybody welcome to keep app', '#CAFFBF'),
+			_createNote('#9BF6FF', 'Hey'),
+			_createNote('#CAFFBF', 'Hey everybody welcome to keep app'),
 		];
 		notes = await storageService.postMany(NOTE_KEY, notes);
 	}
 	return notes;
 }
 
-function _createNote(txt = '', type = 'text', bgc, data = '') {
+function _createNote(bgc, txt = '', type = 'text', data = '') {
 	return {
 		id: utilService.makeId(),
 		isPinned: false,
