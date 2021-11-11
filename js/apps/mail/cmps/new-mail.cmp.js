@@ -10,11 +10,11 @@ export default {
                     </div>
                 </header>
                 <form action="" class="flex column">
-                    <div class="flex">
+                    <div class="flex gap">
                         <label for="email">To</label>
                         <input type="email" v-model="to">
                     </div>
-                    <div class="flex">
+                    <div class="flex gap">
                         <label for="text">Subject</label>
                         <input type="text" v-model="subject">
                     </div>

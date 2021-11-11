@@ -11,7 +11,6 @@ export default {
 	},
 	methods: {
 		filter() {
-			console.log(this.str);
 			this.$emit('filter', this.str);
 		},
 	},
