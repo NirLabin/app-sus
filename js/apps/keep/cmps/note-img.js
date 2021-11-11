@@ -2,7 +2,7 @@ export default {
 	template: `
        <section>
       <input type="file" accept="image/jpeg" @change=uploadImage>
-        <img :src="previewImage" alt="">
+
       </section>
       `,
 	data() {
@@ -18,9 +18,9 @@ export default {
 				let img = new Image();
 				img.src = event.target.result;
 				this.previewImage = event.target.result;
+				this.$emit('addImg', this.previewImage);
 			};
 			reader.readAsDataURL(e.target.files[0]);
-			this.$emit('img', this.previewImage);
 		},
 	},
 };
