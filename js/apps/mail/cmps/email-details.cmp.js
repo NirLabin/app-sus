@@ -30,7 +30,6 @@ export default {
 		},
 		save() {
 			console.log('save email to notes');
-			// this.$emit('save', this.mail.id);
 		},
 	},
 	components: {},

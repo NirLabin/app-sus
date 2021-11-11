@@ -1,11 +1,8 @@
 .mail-app {
 	display: grid;
 	height: 100%;
-}
-
-.mail-app {
 	grid-template-areas:
-		'filter filter filter'
+		'nav filter filter'
 		'emails emails emails'
 		'emails emails emails';
 }
@@ -28,12 +25,13 @@
 	grid-area: nav;
 	gap: 10px;
 	width: 100%;
-
 	margin-right: 20px;
 }
+
 .btn-mail-nav {
 	font-size: 18px;
 }
+
 .btn-mail-nav.active {
 	color: #2391ff;
 	font-weight: 600;
@@ -43,6 +41,8 @@
 	width: 100%;
 	gap: 10px;
 }
+
+.mail-details,
 .mail-list {
 	grid-area: emails;
 }
@@ -78,20 +78,36 @@
 .mail-from {
 	grid-area: from;
 }
+
 .mail-date {
 	display: inline-block;
 	grid-area: date;
 	font-size: 12px;
 	color: #5f6368;
 }
+
 .mail-subject {
 	font-size: 14px;
 	grid-area: subject;
 }
+
 .mail-body-txt {
 	grid-area: body;
 	font-size: 12px;
 	color: #5f6368;
+}
+
+.email-details-header {
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+
+.email-details-header .btn {
+	opacity: 0.54;
+}
+
+.email-details-header .btn:hover {
+	opacity: 0.8;
 }
 
 .new-mail form {
@@ -124,11 +140,12 @@
 }
 
 .email-compose-header {
-	font-size: 14px;
 	font-weight: 400;
+	font-size: 14px;
 	padding: 10px 20px;
-	background-color: #333;
+
 	color: #fff;
+	background-color: #333;
 }
 .email-compose-header .btn {
 	background-color: transparent;
@@ -151,20 +168,36 @@
 	}
 	.mail-app {
 		grid-template-areas:
-			'filter emails emails'
-			'nav emails emails'
-			'nav emails emails';
+			'nav filter filter'
+			'emails emails emails'
+			'emails emails emails';
 	}
-}
-.btn-compose {
-	position: absolute;
-	bottom: 5%;
-	right: 5%;
-	background-color: #dadce0;
-	padding: 10px 20px;
-	border-radius: 20px;
-	color: #2391ff;
-	box-shadow: 0 8px 25px 0 rgba(0, 0, 0, 0.2);
+
+	.mail-nav-list {
+		position: fixed;
+		width: 376px;
+		top: 0;
+		left: 0;
+		height: 100vh;
+		background-color: #f9f7fc;
+		padding: 10px 20px;
+		align-items: flex-start;
+		z-index: 100;
+		box-shadow: rgb(0 0 0 / 7%) 2px 2px 3px;
+		transform: translate3d(calc(-100% - 10px), 0px, 0px);
+		transition: transform 0.48s cubic-bezier(0.19, 1, 0.22, 1) 0s;
+	}
+
+	.btn-compose {
+		position: absolute;
+		bottom: 5%;
+		right: 5%;
+		background-color: #dadce0;
+		padding: 10px 20px;
+		border-radius: 20px;
+		color: #2391ff;
+		box-shadow: 0 8px 25px 0 rgba(0, 0, 0, 0.2);
+	}
 }
 /* small */
 
@@ -176,6 +209,8 @@
 			'nav emails emails';
 	}
 
+	.btn-menu {
+	}
 	.main-layout {
 		margin-left: auto;
 		margin-right: auto;
@@ -213,6 +248,10 @@
 			'nav emails emails'
 			'nav emails emails';
 	}
+	.btn-menu {
+		display: none;
+	}
+
 	.main-layout {
 		min-width: 820px;
 		margin: 0 auto;

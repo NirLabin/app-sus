@@ -1,7 +1,7 @@
 export default {
 	props: ['activePage'],
 	template: `
-        <div class="mail-nav-container">
+        <div class="mail-nav">
 			<button class="btn btn-menu" @click="showMenu"><ion-icon name="menu"></ion-icon></button>
 			<div class="mail-nav-list flex column">
 				<button class="btn btn-compose" @click="compose"> +Compose</button>
@@ -20,7 +20,6 @@ export default {
 			this.$emit('send', email);
 		},
 		navClicked(page) {
-			console.log(page);
 			this.$emit('change', page);
 		},
 		navActive(btnName) {
@@ -29,9 +28,7 @@ export default {
 		compose() {
 			this.$emit('compose');
 		},
-		showMenu(e) {
-			console.log(e);
-		},
+		showMenu() {},
 	},
 	components: {},
 };
