@@ -1,6 +1,6 @@
 export default {
-	props: ['note'],
-	template: `
+  props: ['note'],
+  template: `
 		<div class="note-color">
 			<button  class="btn btn-palette"  @mouseover='togglePalette' @mouseleave='togglePalette'>
 				<ion-icon name="color-palette-outline"></ion-icon>
@@ -12,33 +12,32 @@ export default {
 			</ul>
 		</div>
 		`,
-	data() {
-		return {
-			colors: [
-				'#FFFFFC',
-				'#FFC6FF',
-				'#BDB2FF',
-				'#A0C4FF',
-				'#9BF6FF',
-				'#CAFFBF',
-				'#FDFFB6',
-				'#FFD6A5',
-				'#FFADAD',
-			],
-			showPalette: false,
-		};
-	},
-	created() {
-		this.curColor = this.note.style.bgc;
-	},
-	methods: {
-		togglePalette() {
-			console.log(this);
-			this.showPalette = !this.showPalette;
-		},
-		pick(color) {
-			const newData = { color, note: this.note };
-			this.$emit('color', newData);
-		},
-	},
+  data() {
+    return {
+      colors: [
+        '#FFFFFC',
+        '#FFC6FF',
+        '#BDB2FF',
+        '#A0C4FF',
+        '#9BF6FF',
+        '#CAFFBF',
+        '#FDFFB6',
+        '#FFD6A5',
+        '#FFADAD',
+      ],
+      showPalette: false,
+    };
+  },
+  created() {
+    this.curColor = this.note.style.bgc;
+  },
+  methods: {
+    togglePalette() {
+      this.showPalette = !this.showPalette;
+    },
+    pick(color) {
+      const newData = { color, note: this.note };
+      this.$emit('color', newData);
+    },
+  },
 };
