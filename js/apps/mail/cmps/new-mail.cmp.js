@@ -12,13 +12,13 @@ export default {
                 <form action="" class="flex column">
                     <div class="flex">
                         <label for="email">To</label>
-                        <input type="email" v-model="toEmail">
+                        <input type="email" v-model="to">
                     </div>
                     <div class="flex">
                         <label for="text">Subject</label>
                         <input type="text" v-model="subject">
                     </div>
-                    <textarea name="" id="" cols="30" rows="10" v-model="messageTxt"></textarea>
+                    <textarea name="" id="" cols="30" rows="10" v-model="body"></textarea>
                     <button class="btn btn-blue" @click.prevent="send">Send</button>
                 </form>
             </div>
@@ -27,24 +27,22 @@ export default {
 	data() {
 		return {
 			showNewMail: false,
-			toEmail: '',
-			subject: '',
-			messageTxt: '',
 		};
 	},
 	created() {
 		this.to = this.composeData.to;
-		this.to = this.composeData.to;
+		this.subject = this.composeData.subject;
+		this.body = this.composeData.body;
 	},
 	methods: {
 		send() {
-			const { toEmail, subject, messageTxt } = this;
-			this.$emit('send', { toEmail, subject, messageTxt });
+			const { to, subject, body } = this;
+			this.$emit('send', { to, subject, body });
 			this.toggleNewMsg();
 		},
 		toggleNewMsg() {
 			this.$emit('close');
-			this.toEmail = this.subject = this.messageTxt = '';
+			this.to = this.subject = this.body = '';
 		},
 	},
 };

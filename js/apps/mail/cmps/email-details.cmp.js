@@ -26,7 +26,7 @@ export default {
 			this.$emit('remove', mailId);
 		},
 		replay() {
-			this.$emit('replay', this.mail.id);
+			this.$emit('replay', this.mail.from);
 		},
 		save() {
 			console.log('save email to notes');

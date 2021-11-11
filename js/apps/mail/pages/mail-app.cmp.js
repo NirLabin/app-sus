@@ -9,14 +9,12 @@ import newMail from '../cmps/new-mail.cmp.js';
 
 export default {
 	template: `
-        <section class="mail-app app-main flex column space-between main-layout">
-            <mail-filter @filtered="setFilter" @sorted="setSort"/>
-			<div class="mail-app-body flex ">
+        <section class="mail-app app-main main-layout">
+				<mail-filter @filtered="setFilter" @sorted="setSort"/>
 				<mail-nav :activePage="page" @change="changePage" @compose="compose"/>
 				<mail-details v-if="curMail" :mail="curMail" @back="showList" @remove="deleteMail" @replay="replay"/>
 				<mail-list v-else :mails="mailsToShow2" @open="openMail" @remove="deleteMail" @starred="starredMail"/>
-			</div>
-            <new-mail v-if="showCompose" :composeData="composeData" @send="sendEmail" @close="showCompose=!showCompose"/>
+				<new-mail v-if="showCompose" :composeData="composeData" @send="sendEmail" @close="showCompose=!showCompose"/>
         </section>
     `,
 	data() {
@@ -60,9 +58,10 @@ export default {
 					mail.isStarred = !mail.isStarred;
 					return mailService.save(mail);
 				})
-				.then(() => {
-					eventBus.$emit(utilService.createMsg('Starred successfully'));
+				.then((mail) => {
+					console.log(mail);
 					this.loadMails();
+					eventBus.$emit(utilService.createMsg('Starred successfully'));
 				})
 				.catch((err) => {
 					eventBus.$emit(
@@ -71,7 +70,10 @@ export default {
 					);
 				});
 		},
-		replay(mailId) {},
+		replay(fromEmail) {
+			this.composeData.to = fromEmail;
+			this.showCompose = !this.showCompose;
+		},
 		deleteMail(id) {
 			this.curMail = null;
 			mailService
@@ -85,8 +87,8 @@ export default {
 						txt: 'Deleted successfully',
 						type: 'success',
 					};
-					eventBus.$emit('showMsg', msg);
 					this.loadMails();
+					eventBus.$emit('showMsg', msg);
 				})
 				.catch((err) => {
 					eventBus.$emit(
@@ -110,8 +112,8 @@ export default {
 			mailService
 				.sendEmail(email)
 				.then(() => {
-					eventBus.$emit(utilService.createMsg('Starred successfully'));
 					this.loadMails();
+					eventBus.$emit(utilService.createMsg('Starred successfully'));
 				})
 				.catch((err) => {
 					eventBus.$emit(
@@ -130,6 +132,7 @@ export default {
 		},
 
 		loadMails() {
+			console.log('got here');
 			mailService.query().then((mails) => (this.mails = mails));
 		},
 	},
