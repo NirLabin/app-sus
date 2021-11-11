@@ -2,19 +2,31 @@
 	display: grid;
 	height: 100%;
 	grid-template-areas:
-		'nav filter filter'
-		'emails emails emails '
-		'emails emails emails';
+		'nav filter filter filter'
+		'emails emails emails emails'
+		'emails emails emails emails';
 }
 
 .mail-filter {
-	width: 100%;
 	grid-area: filter;
+	width: 100%;
 	margin-bottom: 35px;
+}
+
+.search-box {
+	width: 100%;
+	padding: 10px;
+	transition: all 0.3s ease-out;
+}
+
+.search-box.focus {
+	box-shadow: 0 1px 1px 0 rgb(65 69 73 / 30%), 0 1px 3px 1px rgb(65 69 73 / 15%);
 }
 
 .input-search {
 	border: 1px solid rgba(0, 0, 0, 0.1);
+	border: none;
+	width: 100%;
 	padding: 10px 15px;
 }
 
@@ -24,10 +36,9 @@
 
 .mail-nav-container {
 	grid-area: nav;
-	gap: 10px;
-	width: 100%;
 	margin-right: 20px;
 }
+
 .mail-nav-list {
 	align-items: flex-start;
 	justify-content: center;
@@ -132,29 +143,38 @@
 }
 
 /* New email */
-
 .email-compose {
 	display: flex;
-	justify-content: space-between;
 	position: absolute;
+	gap: 10px;
 	font-size: 14px;
 	color: #202124;
-	gap: 10px;
-	border-radius: 10px;
 	background-color: #f9f7fc;
 	box-shadow: 0 16px 32px rgba(100, 82, 82, 0.3);
 	z-index: 100;
 }
+
 .email-compose input,
 .email-compose textarea {
 	border: none;
 }
+.email-compose form {
+	height: 100%;
+}
+.email-compose textarea {
+	flex-grow: 2;
+}
+
+.email-compose .btn {
+	/* align-self: flex-end; */
+}
 
 .email-compose-header {
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 	font-weight: 400;
 	font-size: 14px;
-	padding: 10px 20px;
-
+	padding: 15px 20px;
 	color: #fff;
 	background-color: #333;
 }
@@ -168,13 +188,6 @@
 
 /*  */
 
-.btn-compose {
-	background-color: #dadce0;
-	padding: 10px 20px;
-	border-radius: 20px;
-	color: #2391ff;
-	box-shadow: 0 8px 25px 0 rgba(0, 0, 0, 0.2);
-}
 /* Mobile Only */
 
 @media (max-width: 860px) {
@@ -206,14 +219,14 @@
 	}
 
 	.btn-compose {
-		position: absolute;
-		bottom: 5%;
-		right: 5%;
 		background-color: #dadce0;
 		padding: 10px 20px;
 		border-radius: 20px;
 		color: #2391ff;
 		box-shadow: 0 8px 25px 0 rgba(0, 0, 0, 0.2);
+		position: absolute;
+		bottom: 5%;
+		right: 5%;
 	}
 }
 /* small */
@@ -221,9 +234,9 @@
 @media (min-width: 640px) {
 	.mail-app {
 		grid-template-areas:
-			'nav filter filter'
-			'emails emails emails'
-			'emails emails emails';
+			'nav filter filter filter'
+			'emails emails emails emails'
+			'emails emails emails emails';
 	}
 
 	.main-layout {
@@ -262,9 +275,9 @@
 	}
 	.mail-app {
 		grid-template-areas:
-			'filter filter filter'
-			'nav emails emails'
-			'nav emails emails';
+			'filter filter filter filter filter filter'
+			'nav emails emails  emails emails emails'
+			'nav emails emails emails emails emails';
 	}
 	.btn-menu {
 		display: none;
@@ -291,6 +304,9 @@
 		max-height: 500px;
 		left: 5%;
 		bottom: 0%;
+	}
+	.btn-compose {
+		padding: 0;
 	}
 }
 

@@ -1,6 +1,6 @@
 import noteColors from '../cmps/note-colors.js';
 import noteTodo from './note-todos.js';
-// @mouseover='toggleAction' @mouseleave='toggleAction'
+
 export default {
 	props: ['note'],
 	template: `

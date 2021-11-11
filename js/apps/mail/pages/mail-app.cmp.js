@@ -14,7 +14,7 @@ export default {
 				<mail-filter @filtered="setFilter" @sorted="setSort"/>
 				<mail-nav :activePage="page" @change="changePage" @compose="compose"/>
 				<mail-details v-if="curMail" :mail="curMail" @back="showList" @remove="deleteMail" @replay="replay"/>
-				<mail-list v-else :mails="mailsToShow2" @open="openMail" @remove="deleteMail" @starred="starredMail"/>
+				<mail-list v-else :mails="mailsToShow" @open="openMail" @remove="deleteMail" @starred="starredMail"/>
 				<new-mail v-if="showCompose" :composeData="composeData" @send="sendEmail" @close="showCompose=!showCompose"/>
         </section>
     `,
@@ -133,12 +133,11 @@ export default {
 		},
 
 		loadMails() {
-			console.log('got here');
 			mailService.query().then((mails) => (this.mails = mails));
 		},
 	},
 	computed: {
-		mailsToShow2() {
+		mailsToShow() {
 			if (!this.mails || !this.mails.length) return this.mails;
 			let curEmailsPage;
 			const page = this.page;
@@ -148,7 +147,11 @@ export default {
 			if (this.sortBy === 'all' && !this.searchStr) return curEmailsPage;
 			const showUnread = this.sortBy === 'read' ? true : false;
 			return curEmailsPage.filter((email) => {
-				return email.isOpen === showUnread;
+				const subjectInclude = email.subject
+					.toLowerCase()
+					.includes(this.searchStr);
+				if (this.sortBy === 'all') return subjectInclude;
+				return subjectInclude && email.isOpen === showUnread;
 			});
 		},
 	},

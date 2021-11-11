@@ -1,7 +1,10 @@
 export default {
 	template: `
         <div class="mail-filter">
-            <input @input="filter" type="text" placeholder="Search mail" class="input-search" v-model="searchStr">
+			<div class="search-box flex align-center" :class="searchBoxClass">
+				<ion-icon name="search-outline"></ion-icon>
+				<input @input="filter" type="text" placeholder="Search mail" class="input-search" v-model="searchStr" @focus="setSearchClass" @blur="setSearchClass">
+			</div>
 			<div class="mail-filter-sort">
 				<span>Sort By</span>
 				<select name="mails" id="mails" v-model="selected" @change="sort">
@@ -16,16 +19,18 @@ export default {
 		return {
 			selected: 'all',
 			searchStr: '',
+			searchBoxClass: { focus: false },
 		};
 	},
 	methods: {
 		sort() {
-			console.log(this.selected);
 			this.$emit('sorted', this.selected);
 		},
 		filter() {
 			this.$emit('filtered', this.searchStr);
-			// this.$emit('filtered', this.freeTxt);
+		},
+		setSearchClass() {
+			this.searchBoxClass.focus = !this.searchBoxClass.focus;
 		},
 	},
 };
