@@ -6,6 +6,7 @@ import mailNav from '../cmps/mail-nav.cmp.js';
 import mailDetails from '../cmps/email-details.cmp.js';
 import mailFilter from '../cmps/mail-filter.cmp.js';
 import newMail from '../cmps/new-mail.cmp.js';
+// import mailSummery from '../cmps/mail-summery.cmp.js';
 
 export default {
 	template: `
@@ -14,6 +15,7 @@ export default {
 				<mail-nav :activePage="page" @change="changePage" @compose="compose"/>
 				<mail-details v-if="curMail" :mail="curMail" @back="showList" @remove="deleteMail" @replay="replay"/>
 				<mail-list v-else :mails="mailsToShow2" @open="openMail" @remove="deleteMail" @starred="starredMail"/>
+				<!-- <mail-summery :mails="mails"/> -->
 				<new-mail v-if="showCompose" :composeData="composeData" @send="sendEmail" @close="showCompose=!showCompose"/>
         </section>
     `,
@@ -157,5 +159,6 @@ export default {
 		mailNav,
 		mailDetails,
 		newMail,
+		// mailSummery,
 	},
 };
