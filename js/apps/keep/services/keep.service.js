@@ -2,7 +2,7 @@ import { utilService } from '../../../services/util.service.js';
 import { storageService } from '../../../services/async.storage.service.js';
 
 const NOTE_KEY = 'notes';
-const DIFF_CLR = '#A0C4FF';
+const DEAF_CLR = '#A0C4FF';
 export const noteService = {
   query,
   remove,
@@ -37,7 +37,7 @@ function getById(noteId) {
   return storageService.get(NOTE_KEY, noteId);
 }
 
-function addNote(txt, type, clr = DIFF_CLR) {
+function addNote(txt, type, clr = DEAF_CLR) {
   const newNote = _createNote(txt, type, clr);
   return storageService.post(NOTE_KEY, newNote);
 }

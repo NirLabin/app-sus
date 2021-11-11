@@ -6,10 +6,11 @@ import { noteService } from '../services/keep.service.js';
 export default {
   template: `
         <section class="keep-app">
-              <note-filter type="search" id="filter-keeps"></note-filter>
+              <note-filter @filter="setFilter" type="search" id="filter-keeps"></note-filter>
               <note-add type="text" @add="addNewNote"></note-add>
-              <note-list :notes="pinnedNotes" @remove="deleteNote" @pin="pinNote"></note-list>
-              <note-list :notes="unPinnedNotes" @remove="deleteNote" @pin="pinNote"></note-list>
+              <note-list :notes="filterdNotes"></note-list>
+              <note-list v-if="!filterdNotes.length" :notes="pinnedNotes" @remove="deleteNote" @pin="pinNote"></note-list>
+              <note-list v-if="!filterdNotes.length" :notes="unPinnedNotes" @remove="deleteNote" @pin="pinNote"></note-list>
         </section>
 
     `,
@@ -19,6 +20,8 @@ export default {
       notes: null,
       pinnedNotes: [],
       unPinnedNotes: [],
+      filterdNotes: [],
+      searchStr: '',
     };
   },
   created() {
@@ -37,7 +40,12 @@ export default {
       noteService.addNote(noteTxt, noteType).then(() => this.loadNotes());
     },
     deleteNote(id) {
-      noteService.remove(id);
+      noteService
+        .remove(id)
+        .then((note) => {
+          noteService.updateNote(note);
+        })
+        .then(() => this.loadNotes());
     },
 
     pinNote(note) {
@@ -60,11 +68,34 @@ export default {
         })
         .then(() => this.loadNotes());
     },
+
+    setFilter(str) {
+      this.filter = str;
+      this.filterdNotes = this.notesToShow();
+      if (!this.filter) this.filterdNotes = [];
+    },
+
+    notesToShow() {
+      const searchStr = this.filter;
+      const notes = this.notes.filter((note) => {
+        let str = note.txt.toLowerCase().includes(searchStr);
+        if (!str) return;
+        this.filterdNotes.push(note);
+        console.log(this.filterdNotes);
+      });
+
+      return notes;
+    },
   },
   computed: {
-    notesToShow() {
-      return this.notes;
-    },
+    // notesToShow() {
+    //   const searchStr = this.filter;
+    //   const notes = this.notes.filter((note) => {
+    //     let str = note.txt.toLowerCase().includes(searchStr);
+    //     if (note.txt.includes(str)) return note;
+    //   });
+    //   return notes;
+    // },
   },
   components: {
     noteFilter,
