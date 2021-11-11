@@ -100,8 +100,8 @@ a:active,
 /* Layout */
 
 .main-layout {
-	width: 1120px;
-	margin: 0 auto;
+	/* width: 1120px; */
+	/* margin: 0 auto; */
 }
 
 /* modal */
@@ -114,4 +114,10 @@ a:active,
 	transform: translate(-50%, -50%);
 	border-radius: 10px;
 	box-shadow: 0 16px 32px rgba(100, 82, 82, 0.3);
+}
+.home-body {
+}
+.home-body a img {
+	height: 200px;
+	width: 200px;
 }

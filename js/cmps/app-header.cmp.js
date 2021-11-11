@@ -1,7 +1,7 @@
 export default {
 	template: `
         <header class="app-header flex space-between align-center">
-            <router-link to="/" class="logo" @click="toggleApps"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjfaLY0UJaeRm2z6CIFoIoBXZWJf3DcCgfag&usqp=CAU" alt=""></router-link> 
+            <router-link to="/" class="logo" @click="toggleApps">App Sus</router-link> 
             <div class="main-app-menu-container flex align-center gap">
                 <button class="btn btn-main-menu" @click="toggleApps" :class="{active:menuOpen}"><ion-icon name="apps-outline"></ion-icon></button>
                 <nav class="main-app-menu flex align-center" @click="toggleApps" v-if="menuOpen">

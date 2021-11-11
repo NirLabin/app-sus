@@ -45,6 +45,7 @@ export default {
 			this.$emit('duplicate', this.note);
 		},
 		addTodo() {
+			this.$emit('addTodo', this.note);
 			console.log('add todo');
 		},
 	},

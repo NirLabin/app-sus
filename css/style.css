@@ -44,7 +44,5 @@ a.active {
 }
 
 .logo {
-	width: 75px;
-	height: 75px;
-	object-fit: cover;
+	font-size: 36px;
 }
