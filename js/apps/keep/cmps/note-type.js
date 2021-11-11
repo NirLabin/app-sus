@@ -1,8 +1,8 @@
 export default {
   template: `
          <section class="note-type">
-             <h3>Note type:</h3>
-        <select name="note-type" id="note-type" v-model="selected" @change="setNoteType">
+             <h3>Serach by type:</h3>
+        <select name="note-type" id="note-type" v-model="selected" @change="sortByType">
             <option value="text">Text</option>
             <option value="img">Image</option>
             <option value="video">video</option>
@@ -17,8 +17,7 @@ export default {
   },
 
   methods: {
-    setNoteType() {
-      console.log(this.selected);
+    sortByType() {
       this.$emit('type', this.selected);
     },
   },

@@ -25,6 +25,10 @@
   cursor: pointer;
 }
 
+.note-edit {
+  background-color: transparent;
+}
+
 .note {
   padding: 10px 15px;
   background-color: white;
@@ -50,7 +54,7 @@
 
 .note-add {
   margin-top: 15px;
-  width: 50%;
+  width: 35%;
   padding: 10px 15px;
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -81,6 +85,7 @@
   height: 120px;
   width: 100%;
 }
+
 /* note-colors */
 .pick-color {
   padding: 0.5rem;
