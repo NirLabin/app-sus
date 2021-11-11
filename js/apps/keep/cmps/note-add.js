@@ -4,11 +4,11 @@ import noteType from '../cmps/note-type.js';
 export default {
 	template: `
      <section>
-         <div class="box-note-add">
+         <div class="box-note-add"  @keyup.enter="addNewNote">
             <note-type @type="setTypeNote"></note-type>
             <input v-if="noteType !== 'todo' " class="note-add" v-model="noteTxt"  placeholder="Add note" >
             <textarea v-if="noteType === 'todo'"name="todo-note" id="note-todo" cols="50" rows="3" placeholder="Add todo list" v-model="noteTxt"></textarea>
-            <button class="btn" @click="addNewNote">➕</button>
+            <button class="btn" @click="addNewNote" >➕</button>
             <note-img v-if="noteType === 'img'" @addImg="addImg"></note-img>
         </div>
     </section>

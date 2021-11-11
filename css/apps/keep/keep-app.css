@@ -1,3 +1,7 @@
+:root {
+	--tmp-column: repeat(1, 1fr);
+}
+
 .keep-app {
 	text-align: center;
 }
@@ -6,7 +10,9 @@
 	padding: 20px;
 	position: relative;
 	display: grid;
-	grid-template-columns: repeat(auto-fill, 250px);
+	grid-template-columns: var(--tmp-column);
+	/* repeat(4, 1fr); */
+	/* grid-template-columns: repeat(auto-fill, 250px); */
 	gap: 21px;
 }
 
@@ -24,6 +30,7 @@
 	display: flex;
 	flex-direction: column;
 	height: 100px;
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 .note button {
@@ -36,12 +43,25 @@
 	border-radius: 8px;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+.note-color {
+	display: inline-block;
+	position: relative;
+}
+
+.pick-color {
+	position: absolute;
+	left: 0;
+}
 
 .btn-color {
 	display: inline-block;
 	height: 15px;
 	width: 15px;
 	border-radius: 50px;
+}
+
+.btn-color.active {
+	border: 2px solid rgba(0, 0, 0, 0.3);
 }
 
 .box-note-add {
@@ -112,4 +132,29 @@
 	display: flex;
 	gap: 10px;
 	margin-top: 15px;
+}
+
+/* Mobile Only */
+
+@media (max-width: 860px) {
+}
+/* small */
+
+@media (min-width: 640px) {
+}
+
+/* medium */
+
+@media (min-width: 860px) {
+	.note-list {
+		--tmp-column: repeat(3, 1fr);
+	}
+}
+
+/* large */
+
+@media (min-width: 1060px) {
+	.note-list {
+		--tmp-column: repeat(4, 1fr);
+	}
 }

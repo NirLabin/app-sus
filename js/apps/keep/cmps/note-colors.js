@@ -1,12 +1,17 @@
 export default {
 	props: ['note'],
 	template: `
-          <ul class="pick-color clean-list flex align-center">
-            <li v-for="(color,idx) in colors">
-              <button class="btn btn-color" :style="{backgroundColor:color}" @click="pick(color)"></button>
-            </li>
-          </ul>
-      `,
+		<div class="note-color">
+			<button  class="btn btn-palette"  @mouseover='togglePalette' @mouseleave='togglePalette'>
+				<ion-icon name="color-palette-outline"></ion-icon>
+			</button>
+			<ul v-if="showPalette" class="pick-color clean-list flex align-center">
+				<li v-for="(color,idx) in colors">
+					<button class="btn btn-color" :style="{backgroundColor:color}" @click="pick(color)"></button>
+				</li>
+			</ul>
+		</div>
+		`,
 	data() {
 		return {
 			colors: [
@@ -20,9 +25,17 @@ export default {
 				'#FFD6A5',
 				'#FFADAD',
 			],
+			showPalette: false,
 		};
 	},
+	created() {
+		this.curColor = this.note.style.bgc;
+	},
 	methods: {
+		togglePalette() {
+			console.log(this);
+			this.showPalette = !this.showPalette;
+		},
 		pick(color) {
 			const newData = { color, note: this.note };
 			this.$emit('color', newData);
