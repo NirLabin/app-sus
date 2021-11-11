@@ -1,108 +1,115 @@
 .keep-app {
-  text-align: center;
+	text-align: center;
 }
 
 .note-list {
-  padding: 20px;
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 250px);
-  gap: 21px;
+	padding: 20px;
+	position: relative;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 250px);
+	gap: 21px;
 }
 
 .note-filter {
-  border-radius: 8px;
-  width: 30%;
-  padding: 10px 15px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	border-radius: 8px;
+	width: 30%;
+	padding: 10px 15px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .note {
-  padding: 10px 15px;
-  background-color: white;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  height: 100px;
+	padding: 10px 15px;
+	background-color: white;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	height: 100px;
 }
 
 .note button {
-  background-color: transparent;
+	background-color: transparent;
 }
 .note-add {
-  margin-top: 15px;
-  width: 50%;
-  padding: 10px 15px;
-  border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	margin-top: 15px;
+	width: 50%;
+	padding: 10px 15px;
+	border-radius: 8px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.btn-color {
+	display: inline-block;
+	height: 15px;
+	width: 15px;
+	border-radius: 50px;
 }
 
 .box-note-add {
-  background: #fff;
-  height: 120px;
-  width: 100%;
+	background: #fff;
+	height: 120px;
+	width: 100%;
 }
 /* note-colors */
 .pick-color {
-  /* width: 440px; */
-  padding: 0.5rem;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3px;
-  justify-items: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.377);
-  position: absolute;
-  border-radius: 8px;
-  z-index: 1;
+	/* width: 440px; */
+	padding: 0.5rem;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 3px;
+	justify-items: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.377);
+	position: absolute;
+	border-radius: 8px;
+	z-index: 1;
 }
 
 .color {
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  cursor: pointer;
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+	cursor: pointer;
 }
 
 .color-1 {
-  background-color: #fffffc;
-  border: 1px solid #fffffc;
+	background-color: #fffffc;
+	border: 1px solid #fffffc;
 }
 .color-2 {
-  background-color: #ffc6ff;
-  border: 1px solid #ffc6ff;
+	background-color: #ffc6ff;
+	border: 1px solid #ffc6ff;
 }
 .color-3 {
-  background-color: #bdb2ff;
-  border: 1px solid #bdb2ff;
+	background-color: #bdb2ff;
+	border: 1px solid #bdb2ff;
 }
 .color-4 {
-  background-color: #a0c4ff;
-  border: 1px solid #a0c4ff;
+	background-color: #a0c4ff;
+	border: 1px solid #a0c4ff;
 }
 .color-5 {
-  background-color: #9bf6ff;
-  border: 1px solid #9bf6ff;
+	background-color: #9bf6ff;
+	border: 1px solid #9bf6ff;
 }
 .color-6 {
-  background-color: #caffbf;
-  border: 1px solid #caffbf;
+	background-color: #caffbf;
+	border: 1px solid #caffbf;
 }
 .color-7 {
-  background-color: #fdffb6;
-  border: 1px solid #fdffb6;
+	background-color: #fdffb6;
+	border: 1px solid #fdffb6;
 }
 .color-8 {
-  background-color: #ffd6a5;
-  border: 1px solid #ffd6a5;
+	background-color: #ffd6a5;
+	border: 1px solid #ffd6a5;
 }
 .color-9 {
-  background-color: #ffadad;
-  border: 1px solid #ffadad;
+	background-color: #ffadad;
+	border: 1px solid #ffadad;
 }
 
 .note-type {
-  display: flex;
-  gap: 10px;
-  margin-top: 15px;
+	display: flex;
+	gap: 10px;
+	margin-top: 15px;
 }
