@@ -3,7 +3,7 @@ import mailPreview from '../cmps/mail-preview.cmp.js';
 export default {
 	props: ['mails'],
 	template: `
-        <section class="mail-list-container main-layout">
+        <section class="mail-list-container ">
             <ul v-if="mails&&mails.length" class="mail-list clean-list flex column">
                 <li v-for="mail in mails" :key="mail.id" :class="{open:!mail.isOpen}"  class="mail-row flex gap">
                     <div class="actions">

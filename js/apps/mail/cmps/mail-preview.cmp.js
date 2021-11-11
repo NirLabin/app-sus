@@ -6,19 +6,15 @@ export default {
         <div class="mail-preview " @mouseover="" @mouseleave="">
 				<span class="mail-from">{{mail.from}}</span>
 				<span class="mail-date">{{getTimeForDisplay}}</span>
-				<span class="mail-subject">{{mail.subject}} - </span>
-				<p class="mail-body-txt">{{getBodyForDisplay}}</p>		
-			<!-- <div v-if="showHover">
-				<button @click="toggleShowState">
-						<ion-icon :name="envelopType"></ion-icon>
-				</button>
-			</div> -->
+				<div class="mail-body flex">
+					<span class="mail-subject">{{mail.subject}} - </span>
+					<p class="mail-body-txt">{{getBodyForDisplay}}</p>
+				</div>
         </div>
     `,
 	data() {
 		return {
 			wordLimit: 100,
-			// showHover: false,
 		};
 	},
 	created() {},

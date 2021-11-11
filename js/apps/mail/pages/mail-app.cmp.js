@@ -15,7 +15,6 @@ export default {
 				<mail-nav :activePage="page" @change="changePage" @compose="compose"/>
 				<mail-details v-if="curMail" :mail="curMail" @back="showList" @remove="deleteMail" @replay="replay"/>
 				<mail-list v-else :mails="mailsToShow2" @open="openMail" @remove="deleteMail" @starred="starredMail"/>
-				<!-- <mail-summery :mails="mails"/> -->
 				<new-mail v-if="showCompose" :composeData="composeData" @send="sendEmail" @close="showCompose=!showCompose"/>
         </section>
     `,

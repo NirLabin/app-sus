@@ -1,6 +1,6 @@
 export default {
 	template: `
-        <div class="mail-filter ">
+        <div class="mail-filter">
             <input @input="filter" type="text" placeholder="Search mail" class="input-search" v-model="searchStr">
 			<div class="mail-filter-sort">
 				<span>Sort By</span>
