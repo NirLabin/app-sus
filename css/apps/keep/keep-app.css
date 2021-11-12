@@ -44,6 +44,7 @@
   height: 100%;
   font-size: 16px;
 }
+
 .note-preview .actions {
   justify-content: center;
 }
@@ -168,6 +169,19 @@
 
 .note-type {
   margin-top: 15px;
+}
+
+.modal {
+  color: #111;
+  padding: 10px 20px;
+  border-radius: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1000;
+  transform: translate(-50%, -50%);
+  height: 200px;
+  min-width: 500px;
 }
 
 /* Mobile Only */
