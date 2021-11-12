@@ -3,7 +3,7 @@ import { utilService } from '../../../services/util.service.js';
 export default {
 	props: ['composeData'],
 	template: `
-        <div class="new-mail">
+        <div class="new-email">
             <div class='email-compose flex column'>
                 <header class="email-compose-header flex space-between">
                     <h4>New message</h4>

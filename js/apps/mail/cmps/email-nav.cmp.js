@@ -16,7 +16,6 @@ export default {
 	},
 	methods: {
 		sendMail(email) {
-			console.log(email);
 			this.$emit('send', email);
 		},
 		navClicked(page) {

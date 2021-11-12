@@ -47,7 +47,6 @@ function put(entityType, updatedEntity) {
 
 function add(entityType, newEntity) {
 	return query(entityType).then((entities) => {
-		// const idx = _isExists(entities,newEntity.id);
 		entities.push(newEntity);
 		_save(entityType, entities);
 		return entities;
@@ -78,8 +77,4 @@ function _makeId(length = 5) {
 		text += possible.charAt(Math.floor(Math.random() * possible.length));
 
 	return text;
-}
-
-function _isExists(entities, id) {
-	return entities.some((entity) => entity.id === id);
 }
