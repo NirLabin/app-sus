@@ -34,7 +34,7 @@ export default {
 			this.$emit('readState', email);
 		},
 		emailType(isOpen) {
-			return `email${isOpen ? '-open' : ''}`;
+			return `mail${isOpen ? '-open' : ''}`;
 		},
 	},
 	components: {
