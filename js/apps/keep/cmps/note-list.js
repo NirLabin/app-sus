@@ -47,21 +47,3 @@ export default {
     notePreview,
   },
 };
-
-{
-  /* <ul v-if="notes&&notes.length" class="note-list clean-list">
-<li v-for="note in notes" :key="note.id" class="flex column">
-	<ul v-if="note.isPinned" class="clean-list">
-		<li class="note" :style="{backgroundColor : note.style.bgc}">
-		<note-preview :note="note" @pin="pin" @color="changeColor" @duplicate="duplicate" @remove="remove" @todo="todo" @addTodo="addTodo" />
-		</li>
-	</ul>
-	<ul v-else class="clean-list">
-		<li class="note" :style="{backgroundColor : note.style.bgc}">
-		<note-preview :note="note" @pin="pin" @color="changeColor" @duplicate="duplicate" @remove="remove" @todo="todo" @addTodo="addTodo" />
-		</li>
-	</ul>
-</li>
-</ul>
- */
-}

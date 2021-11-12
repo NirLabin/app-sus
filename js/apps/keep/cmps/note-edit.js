@@ -5,9 +5,9 @@ export default {
   template: `
     <section class="note-edit">
         <div class ="modal" :style="{backgroundColor : note.style.bgc}" >
-            <form @submit.prevent flex align-center space-between gap>
+            <form @submit.stop="doThis" class="flex align-center column space-between gap">
                 <input type="text" v-model="txt">
-                <note-tools :note="note"/>
+                <note-tools :note="note" />
                 <button class="btn" @click="save">Save</button>
             </form>
         </div>
