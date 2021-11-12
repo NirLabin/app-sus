@@ -10,6 +10,9 @@ export default {
                 <button class="btn" @click="save"><ion-icon name="paper-plane"/></button>
                 <button class="btn" @click="remove"><ion-icon name="trash-outline"/></button>
             </div>
+			<div v-else class="email-details-header">
+				<button class="btn" @click="undelete">Undelete this Email</button>
+			</div>
 			<div class="details-body flex column gap">	
 				<h3>{{email.subject}}</h3>
 				<p>{{email.from.fullName}}</p>
@@ -19,12 +22,8 @@ export default {
         </div>
     `,
 	data() {
-		return {
-			showReplay: false,
-		};
+		return { showReplay: false };
 	},
-	created() {},
-	computed: {},
 	methods: {
 		back() {
 			this.$emit('back');
@@ -40,6 +39,9 @@ export default {
 		},
 		save() {
 			console.log('save email to notes');
+		},
+		undelete() {
+			this.$emit('undelete', this.email);
 		},
 	},
 	components: {

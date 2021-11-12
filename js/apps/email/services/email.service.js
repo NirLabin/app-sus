@@ -19,21 +19,24 @@ const loggedinUser = {
 // 				_createMail(
 // 					{ email: 'nir@appsus.com', fullName: 'Nir Labinski' },
 // 					'Sprint',
-// 					utilService.makeLorem(150)
+// 					utilService.makeLorem(150),
+// 					'inbox'
 // 				)
 // 			);
 // 			inbox.push(
 // 				_createMail(
 // 					{ email: 'daniel@appsus.com', fullName: 'Daniel Zuri' },
 // 					'Our trip',
-// 					utilService.makeLorem(150)
+// 					utilService.makeLorem(150),
+// 					'inbox'
 // 				)
 // 			);
 // 			inbox.push(
 // 				_createMail(
 // 					{ email: 'noa@appsus.com', fullName: 'Noa Cohen' },
 // 					'Studying',
-// 					utilService.makeLorem(150)
+// 					utilService.makeLorem(150),
+// 					'inbox'
 // 				)
 // 			);
 // 			storageService.postMany(keys.inbox, inbox).then((inbox) => {
@@ -61,7 +64,7 @@ export const emailService = (function () {
 		},
 
 		createSendEmail(email) {
-			return _createMail(loggedinUser, subject, body, to);
+			return _createMail(loggedinUser, subject, body, to, 'sent');
 		},
 
 		save(email, key = 'inbox') {
@@ -96,11 +99,16 @@ export const emailService = (function () {
 	};
 })();
 
+function _mailType() {
+	return {};
+}
+
 function _createMail(
 	from,
 	subject,
 	body = '',
 	to = loggedinUser.email,
+	type,
 	date = new Date()
 ) {
 	return {
@@ -109,6 +117,7 @@ function _createMail(
 		isStarred: false,
 		date,
 		from,
+		type,
 		subject,
 		replays: [],
 		body,

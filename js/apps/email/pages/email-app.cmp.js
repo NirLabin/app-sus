@@ -13,7 +13,7 @@ export default {
         <section class="email-app app-main main-layout">
 			<email-filter @filtered="setFilter" @sort="setSort"/>
 			<email-nav :activePage="page" @change="changePage" @compose="compose"/>
-			<email-details v-if="curEmail" :email="curEmail" @back="showList" @remove="deleteEmail" @replay="sendEmail"/>
+			<email-details v-if="curEmail" :email="curEmail" :page="page" @back="showList" @remove="deleteEmail" @replay="sendEmail" @undelete="undelete"/>
 			<email-list v-else :emails="emailsToShow" :page="page" @open="openEmail" @starred="starredEmail" @readState="changeReadingState"/>
 			<new-email v-if="showCompose" :composeData="composeData" @send="sendEmail" @close="showCompose=!showCompose"/>
         </section>`,
@@ -67,7 +67,21 @@ export default {
 		deleteEmail(email) {
 			this.curEmail = null;
 			emailService.add(email, 'deleted').then((emails) => {
+				email.prevState = this.page;
 				this.emails.deleted.push(email);
+			});
+			emailService.remove(email.id, this.page).then(() => {
+				this.loadEmails(this.page);
+				eventBus.$emit(
+					'showMsg',
+					utilService.createUserMsg('Note added', 'success')
+				);
+			});
+		},
+		undelete(email) {
+			this.curEmail = null;
+			emailService.add(email, 'inbox').then((emails) => {
+				this.emails.inbox.push(email);
 			});
 			emailService.remove(email.id, this.page).then(() => {
 				this.loadEmails(this.page);

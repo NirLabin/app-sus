@@ -19,7 +19,6 @@ export default {
 			this.$emit('send', email);
 		},
 		navClicked(page) {
-			console.log(page);
 			this.$emit('change', page);
 		},
 		navActive(btnName) {
