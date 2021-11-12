@@ -5,6 +5,7 @@ export const storageService = {
 	put,
 	remove,
 	postMany,
+	add,
 };
 
 function query(entityType) {
@@ -44,6 +45,15 @@ function put(entityType, updatedEntity) {
 	});
 }
 
+function add(entityType, newEntity) {
+	return query(entityType).then((entities) => {
+		// const idx = _isExists(entities,newEntity.id);
+		entities.push(newEntity);
+		_save(entityType, entities);
+		return entities;
+	});
+}
+
 function remove(entityType, entityId) {
 	return query(entityType).then((entities) => {
 		const idx = findIdxById(entities, entityId);
@@ -68,4 +78,8 @@ function _makeId(length = 5) {
 		text += possible.charAt(Math.floor(Math.random() * possible.length));
 
 	return text;
+}
+
+function _isExists(entities, id) {
+	return entities.some((entity) => entity.id === id);
 }

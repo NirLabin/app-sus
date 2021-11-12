@@ -9,38 +9,56 @@ const keys = {
 const INBOX_KEY = 'inbox';
 
 const loggedinUser = {
-	email: 'user@appsus.com',
+	email: 'efrat@appsus.com',
 	fullName: 'Efrat Zuri',
 };
-// (function () {
-// 	storageService.query(keys.inbox).then((inbox) => {
-// 		if (!inbox || !inbox.length) {
-// 			inbox.push(
-// 				_createMail('Nir Labinski', 'Sprint', utilService.makeLorem(150))
-// 			);
-// 			inbox.push(
-// 				_createMail('Daniel Zuri', 'Our trip', utilService.makeLorem(150))
-// 			);
-// 			inbox.push(
-// 				_createMail('Noa Cohen', 'Studying', utilService.makeLorem(150))
-// 			);
-// 			storageService.postMany(keys.inbox, inbox).then((inbox) => {
-// 				console.log(inbox);
-// 			});
-// 		}
-// 	});
-// })();
+(function () {
+	storageService.query(keys.inbox).then((inbox) => {
+		if (!inbox || !inbox.length) {
+			inbox.push(
+				_createMail(
+					{ email: 'nir@appsus.com', fullName: 'Nir Labinski' },
+					'Sprint',
+					utilService.makeLorem(150)
+				)
+			);
+			inbox.push(
+				_createMail(
+					{ email: 'daniel@appsus.com', fullName: 'Daniel Zuri' },
+					'Our trip',
+					utilService.makeLorem(150)
+				)
+			);
+			inbox.push(
+				_createMail(
+					{ email: 'noa@appsus.com', fullName: 'Noa Cohen' },
+					'Studying',
+					utilService.makeLorem(150)
+				)
+			);
+			storageService.postMany(keys.inbox, inbox).then((inbox) => {
+				console.log(inbox);
+			});
+		}
+	});
+})();
 
 export const mailService = (function () {
 	return {
+		add(email, key = 'inbox') {
+			return storageService.add(key, email);
+		},
 		query(keyName = 'inbox') {
 			return storageService.query(keys[keyName]);
 		},
 
 		sendEmail(email) {
+			return storageService.post(keys.sent, this.createSendEmail(email));
+		},
+
+		createSendEmail(email) {
 			const { subject, to, body } = email;
-			const newMail = _createMail(loggedinUser, subject, body, to);
-			return storageService.post(keys.sent, newMail);
+			return _createMail(loggedinUser, subject, body, to);
 		},
 
 		save(mail, key = 'inbox') {
@@ -49,6 +67,7 @@ export const mailService = (function () {
 		},
 
 		remove(mailId, key = 'inbox') {
+			console.log('mail service, key:', key, 'mail id', mailId);
 			return storageService.remove(keys[key], mailId);
 		},
 
@@ -88,7 +107,11 @@ function _createMail(
 		date,
 		from,
 		subject,
+		replays: [],
 		body,
 		to,
 	};
+}
+function _isExists(entities, id) {
+	return entities.some((entity) => entity.id === id);
 }

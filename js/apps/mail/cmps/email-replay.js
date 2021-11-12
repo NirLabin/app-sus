@@ -1,36 +1,22 @@
 export default {
-	props: ['mail', 'page'],
+	props: ['mail'],
 	template: `
-        <div class="email-details">
-            <div v-if="page!=='deleted'" class="email-details-header">
-                <button class="btn" @click="back"><ion-icon name="arrow-back-outline"/></button>
-                <button class="btn" @click="replay"><ion-icon name="arrow-undo-sharp"/></button>
-                <button class="btn" @click="save"><ion-icon name="paper-plane"/></button>
-                <button class="btn" @click="remove"><ion-icon name="trash-outline"/></button>
+        <div class="email-replay flex column">
+            <div class="flex-def"> 
+                <ion-icon name="arrow-undo-sharp"/>
+                <span> {{mail.from.email}}</span>
             </div>
-            <h3>{{mail.subject}}</h3>
-            <p>{{mail.from}}</p>
-            <p>{{mail.body}}</p>
+            <textarea name="" id="" cols="30" rows="10" v-model="body"></textarea>
+            <button class="btn btn-blue" @click="send">Send</button>
         </div>
     `,
 	data() {
-		return {};
+		return { body: '' };
 	},
-	created() {},
-	computed: {},
 	methods: {
-		back() {
-			this.$emit('back');
-		},
-		remove() {
-			this.$emit('remove', this.mail);
-		},
-		replay() {
-			this.$emit('replay', this.mail);
-		},
-		save() {
-			console.log('save email to notes');
+		send() {
+			if (!this.body) return;
+			this.$emit('send', this.body);
 		},
 	},
-	components: {},
 };

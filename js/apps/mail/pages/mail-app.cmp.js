@@ -1,4 +1,7 @@
 import { mailService } from '../services/mail.service.js';
+import { eventBus } from '../../../services/event-bus-service.js';
+import userMsg from '../../../cmps/user-msg.cmp.js';
+import { utilService } from '../../../services/util.service.js';
 import mailList from '../cmps/mail-list.cmp.js';
 import mailNav from '../cmps/mail-nav.cmp.js';
 import mailDetails from '../cmps/email-details.cmp.js';
@@ -10,7 +13,7 @@ export default {
         <section class="mail-app app-main main-layout">
 			<mail-filter @filtered="setFilter" @sort="setSort"/>
 			<mail-nav :activePage="page" @change="changePage" @compose="compose"/>
-			<mail-details v-if="curMail" :mail="curMail" @back="showList" @remove="deleteMail" @replay="replay"/>
+			<mail-details v-if="curMail" :mail="curMail" @back="showList" @remove="deleteMail" @replay="sendEmail"/>
 			<mail-list v-else :mails="mailsToShow" :page="page" @open="openMail" @starred="starredMail" @readState="changeReadingState"/>
 			<new-mail v-if="showCompose" :composeData="composeData" @send="sendEmail" @close="showCompose=!showCompose"/>
         </section>`,
@@ -36,10 +39,12 @@ export default {
 		compose() {
 			this.showCompose = !this.showCompose;
 		},
+
 		changeReadingState(mail) {
 			mail.isOpen = !mail.isOpen;
 			this.saveMail(mail);
 		},
+
 		showList() {
 			this.curMail = null;
 		},
@@ -54,7 +59,7 @@ export default {
 			this.saveMail(mail);
 		},
 
-		replay(email) {
+		replay(replayData) {
 			this.composeData.to = email.from.email;
 			this.showCompose = !this.showCompose;
 		},
@@ -62,9 +67,16 @@ export default {
 		deleteMail(mail) {
 			this.curMail = null;
 			this.mails.deleted.push(mail);
-			mailService.remove(mail.id).then(() => {
-				this.loadMails();
-				this.saveMail(mail, 'deleted');
+			this.saveMail(mail, 'deleted');
+			console.log(this.page);
+			mailService.remove(mail.id, this.page).then(() => {
+				console.log(this);
+				this.loadMails(this.page);
+
+				eventBus.$emit(
+					'showMsg',
+					utilService.createUserMsg('Note added', 'success')
+				);
 			});
 		},
 
