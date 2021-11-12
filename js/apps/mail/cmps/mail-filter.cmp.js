@@ -1,3 +1,5 @@
+// import selectCustom from '../cmps/select-custom.cmp.js';
+
 export default {
 	template: `
         <div class="mail-filter">
@@ -31,7 +33,8 @@ export default {
 			this.showSearchOption = !this.showSearchOption;
 		},
 		sort() {
-			this.$emit('sorted', this.selected);
+			this.showSearchOption = false;
+			this.$emit('sort', this.selected);
 		},
 		filter() {
 			this.$emit('filtered', this.searchStr);

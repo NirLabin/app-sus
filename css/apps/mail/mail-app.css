@@ -1,3 +1,8 @@
+:root {
+	--clr-sec-txt: #5f6368;
+	--clr-icon-dark: #5f6368;
+}
+
 .mail-app {
 	display: grid;
 	height: 100%;
@@ -32,8 +37,8 @@
 
 .search-option-box {
 	position: absolute;
-	width: 100%;
 	background-color: #f9f7fc;
+	width: 100%;
 	top: 100%;
 	left: 0;
 	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
@@ -65,14 +70,23 @@
 	font-weight: 600;
 }
 
-.mail-row .actions .btn {
-	background-color: transparent;
-}
+/* Mail Row */
 
 .mail-row {
 	width: 100%;
 	gap: 10px;
 }
+
+.mail-row .actions .btn {
+	opacity: 0.8;
+	background-color: transparent;
+}
+
+.mail-row .actions .btn:hover {
+	opacity: 1;
+}
+
+/* Mail Details */
 
 .mail-details,
 .mail-list-container {
@@ -103,7 +117,7 @@
 /* mail preview */
 
 .mail-preview {
-	color: #202124;
+	/* color: #5f6368; */
 	width: 100%;
 	font-size: 16px;
 	display: grid;
@@ -119,7 +133,6 @@
 .mail-date {
 	grid-area: date;
 	justify-self: end;
-	display: inline-block;
 	font-size: 12px;
 	color: #5f6368;
 }
@@ -134,7 +147,6 @@
 
 .mail-body-txt {
 	font-size: 12px;
-	color: #5f6368;
 }
 
 .email-details-header {
@@ -153,6 +165,14 @@
 
 .new-mail form {
 	gap: 10px;
+}
+
+.compose-row {
+	width: 100%;
+}
+.compose-row input {
+	flex-grow: 2;
+	padding: 10px 15px;
 }
 
 /*  */

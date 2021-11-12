@@ -7,30 +7,30 @@ const keys = {
 	deleted: 'deleted',
 };
 const INBOX_KEY = 'inbox';
-const SENT_KEY = 'sent';
-const DELETED_KEY = 'deleted';
+
 const loggedinUser = {
 	email: 'user@appsus.com',
 	fullName: 'Efrat Zuri',
 };
-(function () {
-	storageService.query(keys.inbox).then((inbox) => {
-		if (!inbox || !inbox.length) {
-			inbox.push(
-				_createMail('Nir Labinski', 'Sprint', utilService.makeLorem(150))
-			);
-			inbox.push(
-				_createMail('Daniel Zuri', 'Our trip', utilService.makeLorem(150))
-			);
-			inbox.push(
-				_createMail('Noa Cohen', 'Studying', utilService.makeLorem(150))
-			);
-			storageService.postMany(keys.inbox, inbox).then((inbox) => {
-				console.log(inbox);
-			});
-		}
-	});
-})();
+// (function () {
+// 	storageService.query(keys.inbox).then((inbox) => {
+// 		if (!inbox || !inbox.length) {
+// 			console.log('e');
+// 			inbox.push(
+// 				_createMail('Nir Labinski', 'Sprint', utilService.makeLorem(150))
+// 			);
+// 			inbox.push(
+// 				_createMail('Daniel Zuri', 'Our trip', utilService.makeLorem(150))
+// 			);
+// 			inbox.push(
+// 				_createMail('Noa Cohen', 'Studying', utilService.makeLorem(150))
+// 			);
+// 			storageService.postMany(keys.inbox, inbox).then((inbox) => {
+// 				console.log(inbox);
+// 			});
+// 		}
+// 	});
+// })();
 
 export const mailService = (function () {
 	return {
@@ -44,13 +44,13 @@ export const mailService = (function () {
 			return storageService.post(keys.sent, newMail);
 		},
 
-		save(mail) {
-			if (mail.id) return storageService.put(INBOX_KEY, mail);
-			else return storageService.post(INBOX_KEY, mail);
+		save(mail, key = 'inbox') {
+			if (mail.id) return storageService.put(keys[key], mail);
+			else return storageService.post(keys[key], mail);
 		},
 
-		remove(mailId) {
-			return storageService.remove(INBOX_KEY, mailId);
+		remove(mailId, key = 'inbox') {
+			return storageService.remove(keys[key], mailId);
 		},
 
 		getById(mailId) {
