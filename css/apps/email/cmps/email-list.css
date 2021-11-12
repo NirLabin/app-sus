@@ -1,0 +1,26 @@
+.email-list > * {
+  cursor: pointer;
+  font-size: 18px;
+  padding: 10px 15px;
+  border-radius: 3px;
+  transition: all 0.3s ease-out;
+}
+
+.email-list > *:hover {
+  box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0,
+    0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+}
+
+.email-row {
+  width: 100%;
+  gap: 10px;
+}
+
+.email-row .actions .btn {
+  opacity: 0.8;
+  background-color: transparent;
+}
+
+.email-row .actions .btn:hover {
+  opacity: 1;
+}

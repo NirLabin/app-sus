@@ -1,0 +1,20 @@
+.email-nav-container {
+  grid-area: nav;
+  margin-right: 20px;
+}
+
+.email-nav-list {
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btn-email-nav {
+  background-color: transparent;
+  font-size: 18px;
+}
+
+.btn-email-nav.active {
+  color: #2391ff;
+  font-weight: 600;
+}

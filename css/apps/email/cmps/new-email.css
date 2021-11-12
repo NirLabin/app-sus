@@ -1,0 +1,61 @@
+.new-email form {
+  gap: 10px;
+}
+
+.compose-row {
+  width: 100%;
+}
+.compose-row input {
+  flex-grow: 2;
+  padding: 10px 15px;
+}
+
+/*  */
+.open {
+  font-weight: 600;
+  color: #111;
+}
+
+/* New email */
+.email-compose {
+  display: flex;
+  position: absolute;
+  gap: 10px;
+  font-size: 14px;
+  color: #202124;
+  background-color: #f9f7fc;
+  box-shadow: 0 16px 32px rgba(100, 82, 82, 0.3);
+  z-index: 100;
+}
+
+.email-compose input,
+.email-compose textarea {
+  border: none;
+}
+.email-compose form {
+  height: 100%;
+}
+.email-compose textarea {
+  flex-grow: 2;
+}
+
+.email-compose .btn {
+  /* align-self: flex-end; */
+}
+
+.email-compose-header {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  font-weight: 400;
+  font-size: 14px;
+  padding: 15px 20px;
+  color: #fff;
+  background-color: #333;
+}
+.email-compose-header .btn {
+  background-color: transparent;
+  color: #fff;
+}
+.email-compose form {
+  padding: 10px 20px;
+}
