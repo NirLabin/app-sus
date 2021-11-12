@@ -7,7 +7,7 @@ export default {
 				<button class="btn btn-compose" @click="compose"> +Compose</button>
 				<button class="btn btn-mail-nav" :class="navActive('inbox')" @click="navClicked('inbox')">Inbox</button> 
 				<button class="btn btn-mail-nav" :class="navActive('sent')" @click="navClicked('sent')">Sent</button> 
-				<button class="btn btn-mail-nav" :class="navActive('trash')" @click="navClicked('trash')">Trash</button>
+				<button class="btn btn-mail-nav" :class="navActive('deleted')" @click="navClicked('deleted')">Trash</button>
 			</div>
         </div>
     `,

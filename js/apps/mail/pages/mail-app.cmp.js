@@ -1,6 +1,4 @@
 import { mailService } from '../services/mail.service.js';
-import { eventBus } from '../../../services/event-bus-service.js';
-import { utilService } from '../../../services/util.service.js';
 import mailList from '../cmps/mail-list.cmp.js';
 import mailNav from '../cmps/mail-nav.cmp.js';
 import mailDetails from '../cmps/email-details.cmp.js';
@@ -10,10 +8,10 @@ import newMail from '../cmps/new-mail.cmp.js';
 export default {
 	template: `
         <section class="mail-app app-main main-layout">
-			<mail-filter @filtered="setFilter" @sorted="setSort"/>
+			<mail-filter @filtered="setFilter" @sort="setSort"/>
 			<mail-nav :activePage="page" @change="changePage" @compose="compose"/>
 			<mail-details v-if="curMail" :mail="curMail" @back="showList" @remove="deleteMail" @replay="replay"/>
-			<mail-list v-else :mails="mailsToShow" @open="openMail" @remove="deleteMail" @starred="starredMail"/>
+			<mail-list v-else :mails="mailsToShow" :page="page" @open="openMail" @starred="starredMail" @readState="changeReadingState"/>
 			<new-mail v-if="showCompose" :composeData="composeData" @send="sendEmail" @close="showCompose=!showCompose"/>
         </section>`,
 	data() {
@@ -34,15 +32,14 @@ export default {
 	created() {
 		Object.keys(this.mails).forEach((key) => this.loadMails(key));
 	},
-	watch: {
-		// page(newPage) {},
-	},
-
 	methods: {
 		compose() {
 			this.showCompose = !this.showCompose;
 		},
-
+		changeReadingState(mail) {
+			mail.isOpen = !mail.isOpen;
+			this.saveMail(mail);
+		},
 		showList() {
 			this.curMail = null;
 		},
@@ -62,34 +59,18 @@ export default {
 			this.showCompose = !this.showCompose;
 		},
 
-		deleteMail(id) {
+		deleteMail(mail) {
 			this.curMail = null;
-			mailService
-				.getById(id)
-				.then((mail) => {
-					mail.isDeleted = true;
-					return mailService.save(mail);
-				})
-				.then(() => {
-					const msg = {
-						txt: 'Deleted successfully',
-						type: 'success',
-					};
-					this.loadMails();
-					eventBus.$emit('showMsg', msg);
-				})
-				.catch((err) => {
-					eventBus.$emit(
-						'showMsg',
-						utilService.createMsg('Error. Please try later', 'error')
-					);
-				});
+			this.mails.deleted.push(mail);
+			mailService.remove(mail.id).then(() => {
+				this.loadMails();
+				this.saveMail(mail, 'deleted');
+			});
 		},
-		openMail(mail, toggle = false) {
-			if (!toggle) {
-				mail.isOpen = true;
-				this.curMail = mail;
-			} else mail.isOpen = !mail.isOpen;
+
+		openMail(mail) {
+			mail.isOpen = true;
+			this.curMail = mail;
 			this.saveMail(mail);
 		},
 
@@ -106,10 +87,10 @@ export default {
 			this.sortBy = sortBy;
 		},
 
-		saveMail(mail) {
+		saveMail(mail, key = 'inbox') {
 			mailService
-				.save(mail)
-				.then((mails) => this.loadMails())
+				.save(mail, key)
+				.then((mails) => this.loadMails(key))
 				.catch((err) => console.log(err));
 		},
 
@@ -119,17 +100,18 @@ export default {
 	},
 	computed: {
 		mailsToShow() {
-			if (!this.searchStr) return this.mails[this.page];
-			let curEmailsPage;
-			const page = this.page;
-			if (this.sortBy === 'all' && !this.searchStr) return curEmailsPage;
-			const showUnread = this.sortBy === 'read' ? true : false;
-			return curEmailsPage.filter((email) => {
-				const subjectInclude = email.subject
-					.toLowerCase()
-					.includes(this.searchStr);
-				if (this.sortBy === 'all') return subjectInclude;
-				return subjectInclude && email.isOpen === showUnread;
+			let curEmails = this.mails[this.page];
+			const { page, searchStr, sortBy } = this;
+			if (
+				(!searchStr && sortBy === 'all') ||
+				(sortBy !== 'all' && page !== 'inbox')
+			)
+				return curEmails;
+			const showUnread = sortBy === 'read' ? true : false;
+			return curEmails.filter(({ subject, isOpen }) => {
+				const subjectInclude = subject.toLowerCase().includes(searchStr);
+				if (sortBy === 'all' || page !== 'inbox') return subjectInclude;
+				return subjectInclude && isOpen === showUnread;
 			});
 		},
 	},

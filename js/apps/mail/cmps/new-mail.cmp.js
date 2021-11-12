@@ -1,3 +1,5 @@
+import { utilService } from '../../../services/util.service.js';
+
 export default {
 	props: ['composeData'],
 	template: `
@@ -10,13 +12,13 @@ export default {
                     </div>
                 </header>
                 <form action="" class="flex column">
-                    <div class="flex gap">
+                    <div class="compose-row flex-def">
                         <label for="email">To</label>
-                        <input type="email" v-model="to">
+                        <input type="email" v-model="to" :blur="checkValidation">
                     </div>
-                    <div class="flex gap">
-                        <label for="text">Subject</label>
-                        <input type="text" v-model="subject">
+                    <div class="compose-row flex-def">
+                        <!-- <label for="text">Subject</label> -->
+                        <input type="text" v-model="subject" placeholder="Subject">
                     </div>
                     <textarea name="" id="" cols="30" rows="10" v-model="body"></textarea>
                     <button class="btn btn-blue" @click.prevent="send">Send</button>
@@ -27,6 +29,7 @@ export default {
 	data() {
 		return {
 			showNewMail: false,
+			isValid: false,
 		};
 	},
 	created() {
@@ -36,6 +39,7 @@ export default {
 	},
 	methods: {
 		send() {
+			// if (!this.isValid) return;
 			const { to, subject, body } = this;
 			this.$emit('send', { to, subject, body });
 			this.toggleNewMsg();
@@ -43,6 +47,10 @@ export default {
 		toggleNewMsg() {
 			this.$emit('close');
 			this.to = this.subject = this.body = '';
+		},
+		checkValidation() {
+			console.log('check email validation');
+			// this.isValid = utilService.isValid(this.to);
 		},
 	},
 };

@@ -1,5 +1,11 @@
 export const utilService = (function () {
 	return {
+		validateEmail(email) {
+			const re =
+				/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			return re.test(String(email).toLowerCase());
+		},
+
 		// Get JSON
 		getJSON(url, errorMsg = 'Something went wrong') {
 			return fetch(url).then((response) => {
@@ -51,7 +57,6 @@ export const utilService = (function () {
 		},
 
 		limitedText(txt, wordLimit = 100) {
-			console.log(txt);
 			if (txt.length <= wordLimit) return txt;
 			let txtLimited = txt.slice(0, wordLimit);
 			if (txt.charAt(wordLimit) === ' ') return txt.slice(0, wordLimit);
