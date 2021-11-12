@@ -114,6 +114,27 @@
   margin-bottom: 10px;
 }
 
+.note-type {
+  margin-bottom: 10px;
+}
+
+.user-msg {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  padding: 10px;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter, .fade-leave-to
+/* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
 /* note-colors */
 .pick-color {
   padding: 0.5rem;
@@ -170,10 +191,6 @@
 .color-9 {
   background-color: #ffadad;
   border: 1px solid #ffadad;
-}
-
-.note-type {
-  margin-top: 15px;
 }
 
 .modal {
