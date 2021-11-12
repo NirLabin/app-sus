@@ -18,7 +18,7 @@ export default {
         </section>`,
 	data() {
 		return {
-			mails: null,
+			mails: { inbox: null, sent: null, deleted: null },
 			curMail: null,
 			searchStr: '',
 			sortBy: 'all',
@@ -32,7 +32,7 @@ export default {
 		};
 	},
 	created() {
-		this.loadMails();
+		Object.keys(this.mails).forEach((key) => this.loadMails(key));
 	},
 	watch: {
 		// page(newPage) {},
@@ -96,16 +96,8 @@ export default {
 		sendEmail(email) {
 			mailService
 				.sendEmail(email)
-				.then(() => {
-					this.loadMails();
-					eventBus.$emit(utilService.createMsg('Starred successfully'));
-				})
-				.catch((err) => {
-					eventBus.$emit(
-						'showMsg',
-						utilService.createMsg('Error. Please try later', 'error')
-					);
-				});
+				.then(() => this.loadMails('sent'))
+				.catch((err) => console.log(err));
 		},
 		setFilter(searchStr) {
 			this.searchStr = searchStr;
@@ -113,24 +105,23 @@ export default {
 		setSort(sortBy) {
 			this.sortBy = sortBy;
 		},
+
 		saveMail(mail) {
 			mailService
 				.save(mail)
 				.then((mails) => this.loadMails())
 				.catch((err) => console.log(err));
 		},
-		loadMails() {
-			mailService.query().then((mails) => (this.mails = mails));
+
+		loadMails(key = 'inbox') {
+			mailService.query(key).then((mails) => (this.mails[key] = mails));
 		},
 	},
 	computed: {
 		mailsToShow() {
-			if (!this.mails || !this.mails.length) return this.mails;
+			if (!this.searchStr) return this.mails[this.page];
 			let curEmailsPage;
 			const page = this.page;
-			if (page === 'trash') return mailService.getDeleted(this.mails);
-			if (page === 'inbox') curEmailsPage = mailService.getInbox(this.mails);
-			else if (page === 'sent') curEmailsPage = mailService.getSent(this.mails);
 			if (this.sortBy === 'all' && !this.searchStr) return curEmailsPage;
 			const showUnread = this.sortBy === 'read' ? true : false;
 			return curEmailsPage.filter((email) => {
