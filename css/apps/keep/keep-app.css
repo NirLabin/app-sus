@@ -4,9 +4,8 @@
 @import url('../keep/cmps/note-filter.css');
 @import url('../keep/cmps/note-img.css');
 @import url('../keep/cmps/note-list.css');
-@import url('../keep/cmps/note-tools.css');
 @import url('../keep/cmps/note-preview.css');
 
 .keep-app {
-  text-align: center;
+	text-align: center;
 }
