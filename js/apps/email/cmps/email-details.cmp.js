@@ -1,7 +1,7 @@
-import emailReplay from '../cmps/email-replay.js';
+import emailReplay from './email-replay.js';
 
 export default {
-	props: ['mail', 'page'],
+	props: ['email', 'page'],
 	template: `
         <div class="email-details">
             <div v-if="page!=='deleted'" class="email-details-header">
@@ -11,11 +11,11 @@ export default {
                 <button class="btn" @click="remove"><ion-icon name="trash-outline"/></button>
             </div>
 			<div class="details-body flex column gap">	
-				<h3>{{mail.subject}}</h3>
-				<p>{{mail.from.fullName}}</p>
-				<p>{{mail.body}}</p>
+				<h3>{{email.subject}}</h3>
+				<p>{{email.from.fullName}}</p>
+				<p>{{email.body}}</p>
 			</div>
-			<email-replay v-if="showReplay" :mail="mail" @send="replay"/>
+			<email-replay v-if="showReplay" :email="email" @send="replay"/>
         </div>
     `,
 	data() {
@@ -30,13 +30,13 @@ export default {
 			this.$emit('back');
 		},
 		remove() {
-			this.$emit('remove', this.mail);
+			this.$emit('remove', this.email);
 		},
 		replay(body) {
 			this.showReplay = !this.showReplay;
-			const email = { body, subject: this.mail.subject, to: this.mail.from };
+			const email = { body, subject: this.email.subject, to: this.email.from };
 			this.$emit('replay', email);
-			// this.$emit('replay', this.mail);
+			// this.$emit('replay', this.email);
 		},
 		save() {
 			console.log('save email to notes');

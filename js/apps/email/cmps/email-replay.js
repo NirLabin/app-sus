@@ -1,10 +1,10 @@
 export default {
-	props: ['mail'],
+	props: ['email'],
 	template: `
         <div class="email-replay flex column">
             <div class="flex-def"> 
                 <ion-icon name="arrow-undo-sharp"/>
-                <span> {{mail.from.email}}</span>
+                <span> {{email.from.email}}</span>
             </div>
             <textarea name="" id="" cols="30" rows="10" v-model="body"></textarea>
             <button class="btn btn-blue" @click="send">Send</button>

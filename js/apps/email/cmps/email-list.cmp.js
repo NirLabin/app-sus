@@ -10,7 +10,7 @@ export default {
                         <button class='btn' @click="starred(email)" :class="{starred:email.isStarred}"><ion-icon :name="starType(email.isStarred)" /></button>
                         <button class='btn' @click="changeReadState(email)"><ion-icon :name="emailType(email.isOpen)"/></button>
                     </div>
-                    <email-preview :email='email' :page="page" @click.native="openEmail(email)"/>
+                    <email-preview :mail='email' :page="page" @click.native="openEmail(email)"/>
                 </li>
             </ul>
             <div v-else><p>There is no emails to show</p></div>   
