@@ -8,7 +8,7 @@ export default {
 		<span class="email-from">{{fromForDisplay}}</span>
 		<span class="email-date">{{getTimeForDisplay}}</span>
 		<div class="email-body flex">
-			<span class="email-subject">{{email.subject}} - </span>
+			<span class="email-subject">{{mail.subject}} - </span>
 			<p class="email-body-txt">{{getBodyForDisplay}}</p>
 		</div>
 	</div>`,
@@ -19,17 +19,17 @@ export default {
 	},
 	computed: {
 		getTimeForDisplay() {
-			const date = new Date(this.email.date);
+			const date = new Date(this.mail.date);
 			const dayPassed = utilService.calcDaysPassed(date, new Date());
 			if (!dayPassed) return utilService.getTime(date);
 			return `${utilService.months[date.getMonth()]} ${date.getDate()}`;
 		},
 		getBodyForDisplay() {
-			return utilService.limitedText(this.email.body, this.wordLimit);
+			return utilService.limitedText(this.mail.body, this.wordLimit);
 		},
 		fromForDisplay() {
-			if (emailService.iSent(this.email)) return `To:${this.email.to}`;
-			return this.email.from.fullName;
+			if (emailService.iSent(this.mail)) return `To:${this.mail.to}`;
+			return this.mail.from.fullName;
 		},
 	},
 };

@@ -14,12 +14,12 @@ export default {
 			<email-filter @filtered="setFilter" @sort="setSort"/>
 			<email-nav :activePage="page" @change="changePage" @compose="compose"/>
 			<email-details v-if="curEmail" :email="curEmail" @back="showList" @remove="deleteEmail" @replay="sendEmail"/>
-			<email-list v-else :mails="mailsToShow" :page="page" @open="openEmail" @starred="starredEmail" @readState="changeReadingState"/>
+			<email-list v-else :emails="emailsToShow" :page="page" @open="openEmail" @starred="starredEmail" @readState="changeReadingState"/>
 			<new-email v-if="showCompose" :composeData="composeData" @send="sendEmail" @close="showCompose=!showCompose"/>
         </section>`,
 	data() {
 		return {
-			mails: { inbox: null, sent: null, deleted: null },
+			emails: { inbox: null, sent: null, deleted: null },
 			curEmail: null,
 			searchStr: '',
 			sortBy: 'all',
@@ -33,7 +33,7 @@ export default {
 		};
 	},
 	created() {
-		Object.keys(this.mails).forEach((key) => this.loadEmails(key));
+		Object.keys(this.emails).forEach((key) => this.loadEmails(key));
 	},
 	methods: {
 		compose() {
@@ -66,8 +66,8 @@ export default {
 
 		deleteEmail(email) {
 			this.curEmail = null;
-			emailService.add(email, 'deleted').then((mails) => {
-				this.mails.deleted.push(email);
+			emailService.add(email, 'deleted').then((emails) => {
+				this.emails.deleted.push(email);
 			});
 			emailService.remove(email.id, this.page).then(() => {
 				this.loadEmails(this.page);
@@ -93,6 +93,7 @@ export default {
 		setFilter(searchStr) {
 			this.searchStr = searchStr;
 		},
+
 		setSort(sortBy) {
 			this.sortBy = sortBy;
 		},
@@ -100,17 +101,17 @@ export default {
 		saveEmail(email, key = 'inbox') {
 			emailService
 				.save(email, key)
-				.then((mails) => this.loadEmails(key))
+				.then((emails) => this.loadEmails(key))
 				.catch((err) => console.log(err));
 		},
 
 		loadEmails(key = 'inbox') {
-			emailService.query(key).then((mails) => (this.mails[key] = mails));
+			emailService.query(key).then((emails) => (this.emails[key] = emails));
 		},
 	},
 	computed: {
-		mailsToShow() {
-			let curEmails = this.mails[this.page];
+		emailsToShow() {
+			let curEmails = this.emails[this.page];
 			const { page, searchStr, sortBy } = this;
 			if (
 				(!searchStr && sortBy === 'all') ||

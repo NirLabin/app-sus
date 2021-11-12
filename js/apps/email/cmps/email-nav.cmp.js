@@ -1,13 +1,13 @@
 export default {
 	props: ['activePage'],
 	template: `
-        <div class="mail-nav-container">
+        <div class="email-nav-container">
 			<button class="btn btn-menu" @click="showMenu"><ion-icon name="menu"></ion-icon></button>
-			<div class="mail-nav-list flex column">
+			<div class="email-nav-list flex column">
 				<button class="btn btn-compose" @click="compose"> +Compose</button>
-				<button class="btn btn-mail-nav" :class="navActive('inbox')" @click="navClicked('inbox')">Inbox</button> 
-				<button class="btn btn-mail-nav" :class="navActive('sent')" @click="navClicked('sent')">Sent</button> 
-				<button class="btn btn-mail-nav" :class="navActive('deleted')" @click="navClicked('deleted')">Trash</button>
+				<button class="btn btn-email-nav" :class="navActive('inbox')" @click="navClicked('inbox')">Inbox</button> 
+				<button class="btn btn-email-nav" :class="navActive('sent')" @click="navClicked('sent')">Sent</button> 
+				<button class="btn btn-email-nav" :class="navActive('deleted')" @click="navClicked('deleted')">Trash</button>
 			</div>
         </div>
     `,
