@@ -16,6 +16,12 @@
 	flex-direction: column;
 }
 
+.flex-def {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
 .flex.gap {
 	gap: 10px;
 }
