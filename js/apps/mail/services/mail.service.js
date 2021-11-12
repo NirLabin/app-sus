@@ -15,7 +15,6 @@ const loggedinUser = {
 // (function () {
 // 	storageService.query(keys.inbox).then((inbox) => {
 // 		if (!inbox || !inbox.length) {
-// 			console.log('e');
 // 			inbox.push(
 // 				_createMail('Nir Labinski', 'Sprint', utilService.makeLorem(150))
 // 			);
@@ -40,7 +39,7 @@ export const mailService = (function () {
 
 		sendEmail(email) {
 			const { subject, to, body } = email;
-			const newMail = _createMail(loggedinUser.email, subject, body, to);
+			const newMail = _createMail(loggedinUser, subject, body, to);
 			return storageService.post(keys.sent, newMail);
 		},
 
@@ -93,73 +92,3 @@ function _createMail(
 		to,
 	};
 }
-
-// (function () {
-// 	let mails = [];
-// 	// let mails = {sent:[],inbox:[]};
-// 	mails.push(
-// 		_createMail({
-// 			from: 'Efrat',
-// 			subject: 'How Are You?',
-// 			body: 'ashd jajdsan asjda',
-// 		})
-// 	);
-// 	mails.push(
-// 		_createMail({
-// 			from: 'Nir',
-// 			subject: 'How Are You?',
-// 			body: 'ashd jajdsan asjda',
-// 		})
-// 	);
-
-// 	mails.push(
-// 		_createMail({
-// 			from: 'Daniel Zuri',
-// 			subject: 'Trip',
-// 			body: 'ashd jajdsan asjda',
-// 			date: new Date(+new Date() - 1000 * 60 * 60 * 24),
-// 		})
-// 	);
-// 	mails = storageService.postMany(INBOX_KEY, mails);
-// })();
-
-// _createMails();
-
-// export const mailService = { query, getById, save, remove,sendEmail };
-// async function _createMails() {
-// 	let mails = await storageService.query(INBOX_KEY);
-// 	if (
-// 		!mails ||
-// 		!mails.length ||
-// 		mails === {} ||
-// 		!mails?.inbox ||
-// 		!mails.inbox.length
-// 	) {
-// 		mails.push(
-// 			_createMail({
-// 				from: 'Efrat',
-// 				subject: 'How Are You?',
-// 				body: 'ashd jajdsan asjda',
-// 			})
-// 		);
-// 		mails.push(
-// 			_createMail({
-// 				from: 'Nir',
-// 				subject: 'How Are You?',
-// 				body: 'ashd jajdsan asjda',
-// 			})
-// 		);
-
-// 		mails.push(
-// 			_createMail({
-// 				from: 'Daniel Zuri',
-// 				subject: 'Trip',
-// 				body: 'ashd jajdsan asjda',
-// 				date: new Date(+new Date() - 1000 * 60 * 60 * 24),
-// 			})
-// 		);
-// 		mails = await storageService.postMany(INBOX_KEY, mails);
-// 	}
-
-// 	return mails;
-// }

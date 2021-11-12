@@ -1,5 +1,3 @@
-import emailReplay from '../cmps/email-replay.js';
-
 export default {
 	props: ['mail', 'page'],
 	template: `
@@ -13,7 +11,6 @@ export default {
             <h3>{{mail.subject}}</h3>
             <p>{{mail.from}}</p>
             <p>{{mail.body}}</p>
-			<email-replay :mail="mail"/>
         </div>
     `,
 	data() {
@@ -35,7 +32,5 @@ export default {
 			console.log('save email to notes');
 		},
 	},
-	components: {
-		emailReplay,
-	},
+	components: {},
 };

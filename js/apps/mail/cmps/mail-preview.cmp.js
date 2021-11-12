@@ -4,7 +4,7 @@ export default {
 	props: ['mail'],
 	template: `
 	<div class="mail-preview">
-		<span class="mail-from">{{mail.from}}</span>
+		<span class="mail-from">{{mail.from.fullName}}</span>
 		<span class="mail-date">{{getTimeForDisplay}}</span>
 		<div class="mail-body flex">
 			<span class="mail-subject">{{mail.subject}} - </span>

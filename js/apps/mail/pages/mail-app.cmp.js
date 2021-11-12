@@ -54,8 +54,8 @@ export default {
 			this.saveMail(mail);
 		},
 
-		replay(fromEmail) {
-			this.composeData.to = fromEmail;
+		replay(email) {
+			this.composeData.to = email.from.email;
 			this.showCompose = !this.showCompose;
 		},
 
