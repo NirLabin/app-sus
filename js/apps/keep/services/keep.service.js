@@ -18,7 +18,6 @@ export const noteService = {
   pin,
   updateNote,
   getEmptyNote,
-  createUserMsg,
 };
 _createNotes();
 
@@ -73,10 +72,6 @@ function getEmptyNote() {
       bgc,
     },
   };
-}
-
-function createUserMsg(txt, type) {
-  return { txt, type };
 }
 
 async function _createNotes() {

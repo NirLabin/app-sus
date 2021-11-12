@@ -4,6 +4,7 @@ import noteAdd from '../cmps/note-add.js';
 import userMsg from '../../../cmps/user-msg.cmp.js';
 import { noteService } from '../services/keep.service.js';
 import { eventBus } from '../../../services/event-bus-service.js';
+import { utilService } from '../../../services/util.service.js';
 
 export default {
   template: `
@@ -48,7 +49,7 @@ export default {
       noteService.addNote(noteTxt, noteType).then(() => this.loadNotes());
       eventBus.$emit(
         'showMsg',
-        noteService.createUserMsg('Note added', 'success')
+        utilService.createUserMsg('Note added', 'success')
       );
     },
 
@@ -61,7 +62,7 @@ export default {
         .then(() => this.loadNotes());
       eventBus.$emit(
         'showMsg',
-        noteService.createUserMsg('Note deleted', 'success')
+        utilService.createUserMsg('Note deleted', 'success')
       );
     },
 
@@ -88,7 +89,10 @@ export default {
       const newNote = { ...note };
       newNote.id = null;
       this.saveNote(newNote);
-      eventBus.$emit('showMsg', { txt: 'Note duplicated', type: 'success' });
+      eventBus.$emit(
+        'showMsg',
+        utilService.createUserMsg('Note duplicated', 'success')
+      );
     },
 
     saveNote(note) {
