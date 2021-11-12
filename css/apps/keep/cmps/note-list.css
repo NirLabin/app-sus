@@ -1,0 +1,16 @@
+:root {
+  --tmp-column: repeat(1, 1fr);
+}
+
+.note-list {
+  padding: 20px;
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--tmp-column);
+  grid-auto-flow: dense;
+  gap: 21px;
+}
+.note-list > * {
+  height: 100%;
+  cursor: pointer;
+}

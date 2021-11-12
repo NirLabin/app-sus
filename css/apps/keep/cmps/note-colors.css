@@ -1,0 +1,29 @@
+.note-color {
+  display: inline-block;
+  position: relative;
+}
+
+.btn-color {
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+  border-radius: 50px;
+}
+
+.btn-color.active {
+  border: 2px solid rgba(0, 0, 0, 0.3);
+}
+
+.pick-color {
+  padding: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  justify-items: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.377);
+  position: absolute;
+  left: 0;
+  border-radius: 8px;
+  z-index: 1;
+}
