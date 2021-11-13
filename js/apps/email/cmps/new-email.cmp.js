@@ -18,7 +18,6 @@ export default {
                         <input type="email" v-model="to" >
                     </div>
                     <div class="compose-row flex-def">
-                        <!-- <label for="text">Subject</label> -->
                         <input type="text" v-model="subject" placeholder="Subject">
                     </div>
                     <textarea name="" id="" cols="30" rows="10" v-model="body"></textarea>
@@ -40,11 +39,6 @@ export default {
 	},
 	methods: {
 		send() {
-			if (!utilService.validateEmail(this.to)) {
-				this.showError = true;
-				return;
-			}
-			console.log(this);
 			const { to, subject, body } = this;
 			this.$emit('send', { to, subject, body });
 			this.toggleNewMsg();
