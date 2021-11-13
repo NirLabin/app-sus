@@ -10,12 +10,12 @@ export default {
           <button  @click="addNewNote" class="btn flex align-center" ><ion-icon name="add-outline" /></button>
           <input class="input-note-add" v-model="noteTxt" ref="noteTxt" :placeholder="placeHolderVal"  >
         </div>
-      <div class="note-types-box flex gap align-center">
-        <note-img v-if="noteType === 'img'" @addImg="addImg" class="btn"/>
-        <button @click="setTypeNote('text')"  class="btn"><ion-icon name="text-outline"/></button>
-        <button  @click="todo" class="btn"><ion-icon name="list-outline" /></button>
-        <button  @click="setTypeNote('img')" class="btn"><ion-icon name="image-outline"/></button>
-      </div>
+        <div class="note-types-box flex gap align-center">
+          <note-img v-if="noteType === 'img'" @addImg="addImg" class="btn"/>
+          <button @click="setTypeNote('text')"  class="btn"><ion-icon name="text-outline"/></button>
+          <button  @click="todo" class="btn"><ion-icon name="list-outline" /></button>
+          <button  @click="setTypeNote('img')" class="btn"><ion-icon name="image-outline"/></button>
+        </div>
     </div>
   </section>`,
 	data() {
