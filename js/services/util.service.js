@@ -57,6 +57,7 @@ export const utilService = (function () {
 		},
 		efrat(e) {
 			console.log(e);
+			console.log(e);
 		},
 
 		limitedText(txt, wordLimit = 100) {
