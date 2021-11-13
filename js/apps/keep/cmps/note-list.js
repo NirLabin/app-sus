@@ -6,13 +6,13 @@ export default {
 	template: `
     <section v-if="notes" class="note-list-container" >
         <h3 v-if="notes.pinned.length && notes.unPinned.length">Pinned:</h3>
-		<ul v-if="notes && notes.pinned.length" class="note-list">
+		<ul v-if="notes && notes.pinned.length" class="note-list clean-list">
 			<li class="note vivify fadeInLeft" v-for="note in notes.pinned" :key="note.id" :style="{backgroundColor : note?.style?.bgc}"  >
 				<note-preview :note="note" @edit="edit" @pin="pin" @color="changeColor" @duplicate="duplicate" @remove="remove" @todo="todo"  @addTodo="addTodo"  @save="save" @send="send"/>
 			</li> 
 		</ul>
 		<h3 v-if="notes.pinned.length && notes.unPinned.length">Unpinned:</h3>
-		<ul v-if="notes && notes.unPinned.length" class="note-list">
+		<ul v-if="notes && notes.unPinned.length" class="note-list clean-list">
 			<li class="note vivify fadeInTop" v-for="note in notes.unPinned" :key="note.id" :style="{backgroundColor : note?.style?.bgc}" >
 				<note-preview :note="note" @edit="edit" @pin="pin" @color="changeColor" @duplicate="duplicate" @remove="remove" @todo="todo" @addTodo="addTodo"  @save="save" @send="send"/>
 			</li> 
