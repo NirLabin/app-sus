@@ -17,7 +17,7 @@ export default {
 				<note-preview :note="note" @edit="edit" @pin="pin" @color="changeColor" @duplicate="duplicate" @remove="remove" @todo="todo" @addTodo="addTodo"  @save="save" @send="send"/>
 			</li> 
 		</ul>
-		<note-edit v-if="editNote" :note="editNote" @save="save"/>
+		<note-edit v-if="editNote" :note="editNote" @save="save" @remove="remove" @pin="pin" @duplicate="duplicate" @addTodo="addTodo" @send="send" @color="changeColor"/>
     </section>`,
 
 	data() {
