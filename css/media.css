@@ -44,15 +44,16 @@
 	}
 
 	.email-nav-list {
-		width: 376px;
 		position: fixed;
 		top: 0;
 		left: 0;
+		width: 376px;
 		height: 100vh;
-		background-color: #f9f7fc;
+		background-color: #fff;
 		padding: 10px 20px;
-		align-items: flex-start;
-		z-index: 100;
+		justify-content: start;
+		/* align-items: flex-start; */
+		z-index: 1000;
 		box-shadow: rgb(0 0 0 / 7%) 2px 2px 3px;
 		transform: translate3d(calc(-100% - 10px), 0px, 0px);
 		transition: transform 0.48s cubic-bezier(0.19, 1, 0.22, 1) 0s;
@@ -63,12 +64,12 @@
 	}
 
 	.btn-compose {
+		position: fixed;
 		background-color: #dadce0;
 		padding: 10px 20px;
 		border-radius: 20px;
 		color: #2391ff;
 		box-shadow: 0 8px 25px 0 rgba(0, 0, 0, 0.2);
-		position: absolute;
 		bottom: 5%;
 		right: 5%;
 	}

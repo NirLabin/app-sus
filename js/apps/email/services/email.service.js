@@ -6,12 +6,12 @@ const keys = {
 	sent: 'sent',
 	deleted: 'deleted',
 };
-const INBOX_KEY = 'inbox';
 
 const loggedinUser = {
 	email: 'efrat@appsus.com',
 	fullName: 'Efrat Zuri',
 };
+
 (function () {
 	storageService.query(keys.inbox).then((inbox) => {
 		if (!inbox || !inbox.length) {
@@ -81,7 +81,7 @@ export const emailService = (function () {
 		},
 
 		getById(mailId) {
-			return storageService.get(INBOX_KEY, mailId);
+			return storageService.get(keys.inbox, mailId);
 		},
 
 		getInbox(emails) {
@@ -106,15 +106,19 @@ function _mailType(category = 'inbox', isReplay = false) {
 	return { isReplay, category };
 }
 
-function _fromAndTo(
-	email = loggedinUser.email,
-	fullName = loggedinUser.fullName
-) {
+function _fromAndTo(email = loggedinUser.email, fullName = '') {
+	if (!fullName) fullName = _trimEmail(email);
 	return { fullName, email };
 }
 
 function _createSent(subject, body, to) {
-	return _createMail(loggedinUser, subject, _mailType('sent'), to, body);
+	return _createMail(
+		loggedinUser,
+		subject,
+		_mailType('sent'),
+		_fromAndTo(to),
+		body
+	);
 }
 
 function _createMail(
@@ -142,6 +146,13 @@ function _createMail(
 function _createEmail(name) {
 	return `${name}@appsus.com`;
 }
+
 function _isExists(entities, id) {
 	return entities.some((entity) => entity.id === id);
+}
+
+function _trimEmail(email) {
+	console.log(email);
+	const [idx, len] = [email.indexOf('@'), email.length];
+	return email.slice(0, idx === -1 ? Math.min(len, 5) : idx);
 }

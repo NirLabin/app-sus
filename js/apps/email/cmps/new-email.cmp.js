@@ -1,4 +1,5 @@
 import { utilService } from '../../../services/util.service.js';
+import emailError from './email-error.cmp.js';
 
 export default {
 	props: ['composeData'],
@@ -11,7 +12,7 @@ export default {
                         <button class="btn" @click="toggleNewMsg">X</button>
                     </div>
                 </header>
-                <form action="" class="flex column">
+                <form class="flex column">
                     <div class="compose-row flex-def">
                         <label for="email">To</label>
                         <input type="email" v-model="to" :blur="checkValidation">
@@ -23,13 +24,13 @@ export default {
                     <textarea name="" id="" cols="30" rows="10" v-model="body"></textarea>
                     <button class="btn btn-blue" @click.prevent="send">Send</button>
                 </form>
+				<email-error v-if="showError" :email="to" @close="toggleError"/>
             </div>
         </div>
     `,
 	data() {
 		return {
-			showNewMail: false,
-			isValid: false,
+			showError: false,
 		};
 	},
 	created() {
@@ -39,10 +40,11 @@ export default {
 	},
 	methods: {
 		send() {
-			console.log(this);
-			// if (!this.isValid) return;
+			if (!utilService.validateEmail(this.to)) {
+				this.showError = true;
+				return;
+			}
 			const { to, subject, body } = this;
-			console.log(this);
 			this.$emit('send', { to, subject, body });
 			this.toggleNewMsg();
 		},
@@ -52,7 +54,12 @@ export default {
 		},
 		checkValidation() {
 			console.log('check email validation');
-			// this.isValid = utilService.isValid(this.to);
 		},
+		toggleError() {
+			this.showError = !this.showError;
+		},
+	},
+	components: {
+		emailError,
 	},
 };
