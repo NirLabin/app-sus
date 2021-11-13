@@ -2,9 +2,9 @@
 
 export default {
 	template: `
-        <div class="email-filter">
+        <div class="email-filter flex align-center">
 			<div class="search-box flex-def" :class="searchBoxClass">
-				<ion-icon name="search-outline"></ion-icon>
+				<ion-icon name="search-outline"/>
 				<input @input="filter" type="text" placeholder="Search email" class="input-search" v-model="searchStr" @focus="setSearchClass" @blur="setSearchClass">
 			</div>
 			<button class="btn" @click="openSearchOptions"><ion-icon name="options-outline"></ion-icon></button>

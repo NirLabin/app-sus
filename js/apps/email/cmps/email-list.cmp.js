@@ -17,8 +17,12 @@ export default {
         </section>
     `,
 	created() {
-		console.log(this.page);
 		this.isDeleted = this.page === 'deleted';
+	},
+	watch: {
+		page() {
+			this.isDeleted = this.page === 'deleted';
+		},
 	},
 	methods: {
 		starType(isStarred) {

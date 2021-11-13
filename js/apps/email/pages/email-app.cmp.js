@@ -67,7 +67,6 @@ export default {
 		deleteEmail(email) {
 			this.curEmail = null;
 			emailService.add(email, 'deleted').then((emails) => {
-				email.prevState = this.page;
 				this.emails.deleted.push(email);
 			});
 			emailService.remove(email.id, this.page).then(() => {
@@ -80,8 +79,9 @@ export default {
 		},
 		undelete(email) {
 			this.curEmail = null;
-			emailService.add(email, 'inbox').then((emails) => {
-				this.emails.inbox.push(email);
+			console.log(email.type.category);
+			emailService.add(email, email.type.category).then((emails) => {
+				this.emails[email.type.category].push(email);
 			});
 			emailService.remove(email.id, this.page).then(() => {
 				this.loadEmails(this.page);

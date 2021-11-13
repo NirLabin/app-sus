@@ -55,14 +55,9 @@ export const utilService = (function () {
 			let data = localStorage.getItem(key);
 			return data ? JSON.parse(data) : undefined;
 		},
-		efrat(e) {
-			console.log(e);
-			console.log(e);
-		},
 
 		limitedText(txt, wordLimit = 100) {
 			if (txt.length <= wordLimit) return txt;
-			console.log(txt);
 			let txtLimited = txt.slice(0, wordLimit);
 			if (txt.charAt(wordLimit) === ' ') return txt.slice(0, wordLimit);
 			txtLimited = txtLimited.slice(0, txtLimited.lastIndexOf(' '));

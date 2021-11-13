@@ -25,7 +25,6 @@ export default {
 			return `${utilService.months[date.getMonth()]} ${date.getDate()}`;
 		},
 		getBodyForDisplay() {
-			console.log(this.mail.body);
 			return utilService.limitedText(this.mail.body, this.wordLimit);
 		},
 		fromForDisplay() {

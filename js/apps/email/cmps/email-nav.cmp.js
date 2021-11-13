@@ -31,8 +31,8 @@ export default {
 			return { active: btnName === this.activePage };
 		},
 		compose() {
+			if (this.navClass.open) this.navClass.open = false;
 			this.$emit('compose');
-			this.menuOpen = !this.menuOpen;
 		},
 		toggleMenu() {
 			this.navClass.open = !this.navClass.open;

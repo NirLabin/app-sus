@@ -114,3 +114,7 @@ a:active,
 	height: 200px;
 	width: 200px;
 }
+
+textarea {
+	padding: 10px;
+}

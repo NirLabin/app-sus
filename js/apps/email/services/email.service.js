@@ -58,6 +58,8 @@ export const emailService = (function () {
 			return email.from.email === loggedinUser.email;
 		},
 		add(email, key = 'inbox') {
+			console.log(key);
+			console.log(keys[key]);
 			return storageService.add(keys[key], email);
 		},
 

@@ -24,7 +24,6 @@
 .email-body {
 	grid-area: body;
 	flex-direction: column;
-	align-items: center;
 	max-width: 100%;
 	max-height: 100%;
 
@@ -43,8 +42,4 @@
 	word-wrap: break-word;
 	white-space: inherit;
 	font-size: 12px;
-}
-
-.starred {
-	color: yellow;
 }
