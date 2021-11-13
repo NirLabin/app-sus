@@ -11,7 +11,7 @@ export default {
         <section class="keep-app main-layout">
           <note-filter @filter="setFilter" type="search" @sortBy="sort" id="filter-keeps"/>
           <note-add type="text" @add="addNewNote" :noteActive="noteActive" @update="update"/>
-          <note-list :notes="notesToShow" @remove="deleteNote" @pin="pinNote" @color="changeColor" @duplicate="onDuplicateNote"  @todo="changeTodo" @addTodo="setTodo"/>
+          <note-list :notes="notesToShow" @remove="deleteNote" @pin="pinNote" @color="changeColor" @duplicate="onDuplicateNote"  @todo="changeTodo" @addTodo="setTodo" @save="saveChanges"/>
         </section>
         `,
 	data() {
@@ -26,6 +26,11 @@ export default {
 		this.loadNotes();
 	},
 	methods: {
+		saveChanges(data) {
+			const { note, newTxt } = data;
+			note.txt = newTxt;
+			this.saveNote(note);
+		},
 		update(data) {
 			const { note, txt } = data;
 			if (note.type === 'todo') {

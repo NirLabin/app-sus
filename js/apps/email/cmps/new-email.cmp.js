@@ -39,8 +39,10 @@ export default {
 	},
 	methods: {
 		send() {
+			console.log(this);
 			// if (!this.isValid) return;
 			const { to, subject, body } = this;
+			console.log(this);
 			this.$emit('send', { to, subject, body });
 			this.toggleNewMsg();
 		},

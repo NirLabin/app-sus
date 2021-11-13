@@ -1,24 +1,17 @@
-@import url('../email/cmps/email-details.css');
-@import url('../email/cmps/email-filter.css');
-@import url('../email/cmps/email-list.css');
-@import url('../email/cmps/email-nav.css');
-@import url('../email/cmps/email-preview.css');
-@import url('../email/cmps/new-email.css');
-
 :root {
-  --clr-sec-txt: #5f6368;
-  --clr-icon-dark: #5f6368;
+	--clr-sec-txt: #5f6368;
+	--clr-icon-dark: #5f6368;
 }
 
 .email-app {
-  display: grid;
-  height: 100%;
-  grid-template-areas:
-    'nav filter filter filter'
-    'emails emails emails emails'
-    'emails emails emails emails';
+	display: grid;
+	height: 100%;
+	grid-template-areas:
+		'nav filter filter filter'
+		'emails emails emails emails'
+		'emails emails emails emails';
 }
 
 .email-app-body {
-  gap: 25px;
+	gap: 25px;
 }

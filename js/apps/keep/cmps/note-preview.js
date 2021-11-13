@@ -5,12 +5,12 @@ import noteEdit from '../cmps/note-edit.js';
 export default {
 	props: ['note'],
 	template: `
-    <div class="note-preview flex column space-between" @click="edit" >
+    <div class="note-preview flex column space-between gap" @click="edit" >
         <note-todo v-if="note.type==='todo'" :note="note" @change="changeTodo"/>
         <img v-else-if="note.type==='img'" :src="getSrc(note)">
         <p v-else>{{note.txt}}</p>
 		<note-tools  :note="note" @remove="remove" @pin="pin" @duplicate="duplicate" @addTodo="addTodo"/>
-		<note-edit v-if="editNote" :note="note"/>
+		<note-edit v-if="editNote" :note="note" @save="save"/>
     </div>
     `,
 	data() {
@@ -18,6 +18,11 @@ export default {
 			isHover: true,
 			editNote: false,
 		};
+	},
+	watch: {
+		editNote(newVal) {
+			console.log(this);
+		},
 	},
 	methods: {
 		getSrc(note) {
@@ -43,11 +48,15 @@ export default {
 		},
 		addTodo() {
 			this.$emit('addTodo', this.note);
-			console.log('add todo');
 		},
 		edit() {
 			if (this.editNote) return;
 			this.editNote = !this.editNote;
+		},
+		save(data) {
+			console.log(data);
+			this.editNote = false;
+			this.$emit('save', data);
 		},
 	},
 	components: {

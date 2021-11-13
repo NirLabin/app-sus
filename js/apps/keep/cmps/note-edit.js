@@ -1,31 +1,29 @@
 import noteTools from './note-tools.js';
 
 export default {
-  props: ['note'],
-  template: `
+	props: ['note'],
+	template: `
     <section class="note-edit">
         <div class ="modal" :style="{backgroundColor : note.style.bgc}" >
-            <form @submit.prevent="onSubmit" class="flex align-center column space-between gap">
-                <input type="text" v-model="txt">
-                <note-tools :note="note" />
-                <button class="btn" @click="save">Save</button>
+            <form class="flex align-center column space-between gap">
+                <textarea type="text" v-model="txt"></textarea>
+                <div class="form-row flex-def">
+                  <note-tools :note="note" />
+                  <button class="btn" @click.prevent="save">Save</button>
+                </div>
             </form>
         </div>
     </section>
   `,
-  data() {
-    return {};
-  },
-  created() {
-    this.txt = this.note.txt;
-  },
-  methods: {
-    save() {
-      console.log('save changes');
-      this.$emit();
-    },
-  },
-  components: {
-    noteTools,
-  },
+	created() {
+		this.txt = this.note.txt;
+	},
+	methods: {
+		save() {
+			this.$emit('save', { note: this.note, newTxt: this.txt });
+		},
+	},
+	components: {
+		noteTools,
+	},
 };

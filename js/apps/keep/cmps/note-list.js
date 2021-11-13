@@ -5,14 +5,14 @@ export default {
     <section class="">
 		<ul v-if="notes&&notes.pinned.length" class="note-list">
 			<li class="note" v-for="note in notes.pinned" :key="note.id" :style="{backgroundColor : note.style.bgc}"  >
-			<note-preview :note="note" @pin="pin" @color="changeColor" @duplicate="duplicate" @remove="remove" @todo="todo" @addTodo="addTodo" />
+			<note-preview :note="note" @pin="pin" @color="changeColor" @duplicate="duplicate" @remove="remove" @todo="todo" @addTodo="addTodo"  @save="save"/>
 			</li> 
 		</ul>
 		<ul v-if="notes && notes.unPinned.length" class="note-list">
 			<li class="note" v-for="note in notes.unPinned" :key="note.id" :style="{backgroundColor : note.style.bgc}" >
-			<note-preview :note="note" @pin="pin" @color="changeColor" @duplicate="duplicate" @remove="remove" @todo="todo" @addTodo="addTodo" />
+			<note-preview :note="note" @pin="pin" @color="changeColor" @duplicate="duplicate" @remove="remove" @todo="todo" @addTodo="addTodo"  @save="save"/>
 			</li> 
-     	 </ul>
+		</ul>
     </section>
   `,
 	data() {
@@ -39,6 +39,9 @@ export default {
 		},
 		todo(data) {
 			this.$emit('todo', data);
+		},
+		save(data) {
+			this.$emit('save', data);
 		},
 	},
 

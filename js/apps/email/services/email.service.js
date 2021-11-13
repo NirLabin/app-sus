@@ -64,6 +64,7 @@ export const emailService = (function () {
 		},
 
 		createSendEmail(email) {
+			const { subject, body, to } = email;
 			return _createMail(loggedinUser, subject, body, to, 'sent');
 		},
 
