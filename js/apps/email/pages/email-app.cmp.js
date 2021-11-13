@@ -7,6 +7,7 @@ import emailNav from '../cmps/email-nav.cmp.js';
 import emailDetails from '../cmps/email-details.cmp.js';
 import emailFilter from '../cmps/email-filter.cmp.js';
 import newEmail from '../cmps/new-email.cmp.js';
+import emailSummery from '../cmps/email-summery.cmp.js';
 
 export default {
 	template: `
@@ -16,6 +17,7 @@ export default {
 			<email-details v-if="curEmail" :email="curEmail" :page="page" @back="showList" @remove="deleteEmail" @replay="sendEmail" @undelete="undelete"/>
 			<email-list v-else :emails="emailsToShow" :page="page" @open="openEmail" @starred="starredEmail" @readState="changeReadingState"/>
 			<new-email v-if="showCompose" :composeData="composeData" @send="sendEmail" @close="showCompose=!showCompose"/>
+			<email-summery v-if="showSummery" :emails="emails.inbox"/>
 		</section>`,
 	data() {
 		return {
@@ -144,6 +146,9 @@ export default {
 				return subjectInclude && isOpen === showUnread;
 			});
 		},
+		showSummery() {
+			return this.page === 'inbox' && this.emails.inbox && !this.curEmail;
+		},
 	},
 	components: {
 		emailList,
@@ -151,5 +156,6 @@ export default {
 		emailNav,
 		emailDetails,
 		newEmail,
+		emailSummery,
 	},
 };

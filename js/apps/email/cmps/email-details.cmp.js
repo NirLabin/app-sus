@@ -4,10 +4,10 @@ export default {
 	props: ['email', 'page'],
 	template: `
         <div class="email-details">
-            <div v-if="page!=='deleted'" class="email-details-header">
-                <button class="btn" @click="back"><ion-icon name="arrow-back-outline"/></button>
+            <div v-if="page!=='deleted'" class="email-details-header flex-def">
+                <button class="btn btn-icon" @click="back"><ion-icon name="arrow-back-outline"/></button>
                 <button class="btn btn-icon" @click="showReplay=!showReplay"><ion-icon name="arrow-undo-sharp"/></button>
-                <button class="btn btn-icon" @click="save"><ion-icon name="paper-plane"/></button>
+                <button class="btn btn-icon" @click=""><ion-icon name="paper-plane"/></button>
                 <button class="btn btn-icon" @click="remove"><ion-icon name="trash-outline"/></button>
             </div>
 			<div v-else class="email-details-header">
@@ -33,12 +33,8 @@ export default {
 		},
 		replay(body) {
 			this.showReplay = !this.showReplay;
-			console.log(this);
 			const email = { body, subject: this.email.subject, to: this.email.from };
 			this.$emit('replay', email);
-		},
-		save() {
-			console.log('save email to notes');
 		},
 		undelete() {
 			this.$emit('undelete', this.email);

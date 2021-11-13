@@ -20,7 +20,7 @@ export default {
                     <div class="compose-row flex-def">
                         <input type="text" v-model="subject" placeholder="Subject">
                     </div>
-                    <textarea name="" id="" cols="30" rows="10" v-model="body"></textarea>
+                    <textarea cols="30" rows="10" v-model="body"></textarea>
                     <button class="btn btn-blue" @click.prevent="send">Send</button>
                 </form>
 				<email-error v-if="showError" :email="to" @close="toggleError"/>

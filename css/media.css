@@ -40,7 +40,8 @@
 		grid-template-areas:
 			'nav filter filter'
 			'emails emails emails'
-			'emails emails emails';
+			'emails emails emails'
+			'summery summery summery';
 	}
 
 	.email-nav-list {
@@ -52,7 +53,6 @@
 		background-color: #fff;
 		padding: 10px 20px;
 		justify-content: start;
-		/* align-items: flex-start; */
 		z-index: 1000;
 		box-shadow: rgb(0 0 0 / 7%) 2px 2px 3px;
 		transform: translate3d(calc(-100% - 10px), 0px, 0px);
@@ -97,10 +97,7 @@
 			'from from date'
 			'body body body';
 	}
-	.email-filter {
-		display: flex;
-		flex-direction: column;
-	}
+
 	.email-compose {
 		left: 0;
 		height: 100vh;
@@ -122,7 +119,8 @@
 		grid-template-areas:
 			'filter filter filter filter filter filter'
 			'nav emails emails  emails emails emails'
-			'nav emails emails emails emails emails';
+			'nav emails emails emails emails emails'
+			'nav summery summery summery summery summery';
 	}
 	.btn-menu {
 		display: none;
@@ -152,7 +150,6 @@
 	}
 	.btn-compose {
 		background-color: transparent;
-
 		padding: 0;
 	}
 }

@@ -1,0 +1,10 @@
+.email-summery {
+	grid-area: summery;
+	background-color: #f7f7f7;
+	margin-top: 20px;
+	justify-content: center;
+	/* align-self: center; */
+	/* width: 100%; */
+}
+.email-summery p {
+}

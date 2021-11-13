@@ -13,7 +13,6 @@
 
 .note-list {
 	display: grid;
-	position: relative;
 	padding: 20px;
 	margin-bottom: 15px;
 	grid-template-columns: var(--tmp-column);
