@@ -9,7 +9,7 @@ import emailFilter from '../cmps/email-filter.cmp.js';
 import newEmail from '../cmps/new-email.cmp.js';
 
 export default {
-	template: `
+  template: `
         <section class="email-app app-main main-layout">
 			<email-filter @filtered="setFilter" @sort="setSort"/>
 			<email-nav :activePage="page" @change="changePage" @compose="compose"/>
@@ -17,138 +17,144 @@ export default {
 			<email-list v-else :emails="emailsToShow" :page="page" @open="openEmail" @starred="starredEmail" @readState="changeReadingState"/>
 			<new-email v-if="showCompose" :composeData="composeData" @send="sendEmail" @close="showCompose=!showCompose"/>
         </section>`,
-	data() {
-		return {
-			emails: { inbox: null, sent: null, deleted: null },
-			curEmail: null,
-			searchStr: '',
-			sortBy: 'all',
-			page: 'inbox',
-			showCompose: false,
-			composeData: {
-				to: '',
-				subject: '',
-				body: '',
-			},
-		};
-	},
-	created() {
-		Object.keys(this.emails).forEach((key) => this.loadEmails(key));
-	},
-	methods: {
-		compose() {
-			this.showCompose = !this.showCompose;
-		},
+  data() {
+    return {
+      emails: { inbox: null, sent: null, deleted: null },
+      curEmail: null,
+      searchStr: '',
+      sortBy: 'all',
+      page: 'inbox',
+      showCompose: false,
+      composeData: {
+        to: '',
+        subject: '',
+        body: '',
+      },
+    };
+  },
+  created() {
+    Object.keys(this.emails).forEach((key) => this.loadEmails(key));
+  },
+  methods: {
+    compose() {
+      this.showCompose = !this.showCompose;
+    },
 
-		changeReadingState(email) {
-			email.isOpen = !email.isOpen;
-			this.saveEmail(email);
-		},
+    changeReadingState(email) {
+      email.isOpen = !email.isOpen;
+      this.saveEmail(email);
+    },
 
-		showList() {
-			this.curEmail = null;
-		},
+    showList() {
+      this.curEmail = null;
+    },
 
-		changePage(page) {
-			this.curEmail = null;
-			this.page = page;
-		},
+    changePage(page) {
+      this.curEmail = null;
+      this.page = page;
+    },
 
-		starredEmail(email) {
-			email.isStarred = !email.isStarred;
-			this.saveEmail(email);
-		},
+    starredEmail(email) {
+      email.isStarred = !email.isStarred;
+      this.saveEmail(email);
+    },
 
-		replay(replayData) {
-			this.composeData.to = email.from.email;
-			this.showCompose = !this.showCompose;
-		},
+    replay(replayData) {
+      this.composeData.to = email.from.email;
+      this.showCompose = !this.showCompose;
+    },
 
-		deleteEmail(email) {
-			this.curEmail = null;
-			emailService.add(email, 'deleted').then((emails) => {
-				email.prevState = this.page;
-				this.emails.deleted.push(email);
-			});
-			emailService.remove(email.id, this.page).then(() => {
-				this.loadEmails(this.page);
-				eventBus.$emit(
-					'showMsg',
-					utilService.createUserMsg('Note added', 'success')
-				);
-			});
-		},
-		undelete(email) {
-			this.curEmail = null;
-			emailService.add(email, 'inbox').then((emails) => {
-				this.emails.inbox.push(email);
-			});
-			emailService.remove(email.id, this.page).then(() => {
-				this.loadEmails(this.page);
-				eventBus.$emit(
-					'showMsg',
-					utilService.createUserMsg('Note added', 'success')
-				);
-			});
-		},
+    deleteEmail(email) {
+      this.curEmail = null;
+      emailService.add(email, 'deleted').then((emails) => {
+        email.prevState = this.page;
+        this.emails.deleted.push(email);
+      });
+      emailService.remove(email.id, this.page).then(() => {
+        this.loadEmails(this.page);
+        eventBus.$emit(
+          'showMsg',
+          utilService.createUserMsg('Email deleted', 'success')
+        );
+      });
+    },
+    undelete(email) {
+      this.curEmail = null;
+      emailService.add(email, 'inbox').then((emails) => {
+        this.emails.inbox.push(email);
+      });
+      emailService.remove(email.id, this.page).then(() => {
+        this.loadEmails(this.page);
+        eventBus.$emit(
+          'showMsg',
+          utilService.createUserMsg('Email restored', 'success')
+        );
+      });
+    },
 
-		openEmail(email) {
-			email.isOpen = true;
-			this.curEmail = email;
-			this.saveEmail(email);
-		},
+    openEmail(email) {
+      email.isOpen = true;
+      this.curEmail = email;
+      this.saveEmail(email);
+    },
 
-		sendEmail(email) {
-			emailService
-				.sendEmail(email)
-				.then(() => this.loadEmails('sent'))
-				.catch((err) => console.log(err));
-		},
-		setFilter(searchStr) {
-			this.searchStr = searchStr;
-		},
+    sendEmail(email) {
+      emailService
+        .sendEmail(email)
+        .then(() => {
+          this.loadEmails('sent');
+          eventBus.$emit(
+            'showMsg',
+            utilService.createUserMsg('Email sent', 'success')
+          );
+        })
+        .catch((err) => console.log(err));
+    },
+    setFilter(searchStr) {
+      this.searchStr = searchStr;
+    },
 
-		setSort(sortBy) {
-			this.sortBy = sortBy;
-		},
+    setSort(sortBy) {
+      this.sortBy = sortBy;
+    },
 
-		saveEmail(email, key = 'inbox') {
-			emailService
-				.save(email, key)
-				.then((emails) => this.loadEmails(key))
-				.catch((err) => console.log(err));
-		},
+    saveEmail(email, key = 'inbox') {
+      emailService
+        .save(email, key)
+        .then((emails) => this.loadEmails(key))
+        .catch((err) => console.log(err));
+    },
 
-		loadEmails(key = 'inbox') {
-			emailService.query(key).then((emails) => (this.emails[key] = emails));
-		},
-	},
-	computed: {
-		emailsToShow() {
-			// if (this.page === 'starred') return this.starredToShow();
-			let curEmails = this.emails[this.page];
-			const { page, searchStr, sortBy } = this;
-			if (
-				(!searchStr && sortBy === 'all') ||
-				(sortBy !== 'all' && page !== 'inbox')
-			)
-				return curEmails;
-			const showUnread = sortBy === 'read' ? true : false;
-			return curEmails.filter(({ subject, isOpen }) => {
-				const subjectInclude = subject.toLowerCase().includes(searchStr);
-				if (sortBy === 'all' || page !== 'inbox') return subjectInclude;
-				return subjectInclude && isOpen === showUnread;
-			});
-		},
-		starredToShow() {
-			// const emails=[...this.emails.inbox,...this.emails.]
-		},
-	},
-	components: {
-		emailList,
-		emailFilter,
-		emailNav,
-		emailDetails,
-		newEmail,
-	},
+    loadEmails(key = 'inbox') {
+      emailService.query(key).then((emails) => (this.emails[key] = emails));
+    },
+  },
+  computed: {
+    emailsToShow() {
+      // if (this.page === 'starred') return this.starredToShow();
+      let curEmails = this.emails[this.page];
+      const { page, searchStr, sortBy } = this;
+      if (
+        (!searchStr && sortBy === 'all') ||
+        (sortBy !== 'all' && page !== 'inbox')
+      )
+        return curEmails;
+      const showUnread = sortBy === 'read' ? true : false;
+      return curEmails.filter(({ subject, isOpen }) => {
+        const subjectInclude = subject.toLowerCase().includes(searchStr);
+        if (sortBy === 'all' || page !== 'inbox') return subjectInclude;
+        return subjectInclude && isOpen === showUnread;
+      });
+    },
+    starredToShow() {
+      // const emails=[...this.emails.inbox,...this.emails.]
+    },
+  },
+  components: {
+    emailList,
+    emailFilter,
+    emailNav,
+    emailDetails,
+    newEmail,
+  },
 };
