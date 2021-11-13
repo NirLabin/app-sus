@@ -8,6 +8,7 @@ export default {
 				<button class="btn btn-email-nav" :class="navActive('inbox')" @click="navClicked('inbox')">Inbox</button> 
 				<button class="btn btn-email-nav" :class="navActive('sent')" @click="navClicked('sent')">Sent</button> 
 				<button class="btn btn-email-nav" :class="navActive('deleted')" @click="navClicked('deleted')">Trash</button>
+				<!-- <button class="btn btn-email-nav" :class="navActive('starred')" @click="navClicked('starred')">Starred</button> -->
 			</div>
         </div>
     `,

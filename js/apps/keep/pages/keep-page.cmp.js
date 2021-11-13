@@ -1,19 +1,19 @@
+import { noteService } from '../services/keep.service.js';
+import { eventBus } from '../../../services/event-bus-service.js';
+import { utilService } from '../../../services/util.service.js';
 import noteFilter from '../cmps/note-filter.js';
 import noteList from '../cmps/note-list.js';
 import noteAdd from '../cmps/note-add.js';
 import userMsg from '../../../cmps/user-msg.cmp.js';
-import { noteService } from '../services/keep.service.js';
-import { eventBus } from '../../../services/event-bus-service.js';
-import { utilService } from '../../../services/util.service.js';
 
 export default {
   template: `
-        <section class="keep-app main-layout">
-          <note-filter @filter="setFilter" type="search" @sortBy="sort" id="filter-keeps"/>
-          <note-add type="text" @add="addNewNote" :noteActive="noteActive" @update="update"/>
-          <note-list :notes="notesToShow" @remove="deleteNote" @pin="pinNote" @color="changeColor" @duplicate="onDuplicateNote"  @todo="changeTodo" @addTodo="setTodo" @save="saveChanges" @send="sendEmail"/>
-        </section>
-        `,
+  <section class="keep-app main-layout">
+    <note-filter @filter="setFilter" type="search" @sortBy="sort" id="filter-keeps"/>
+    <note-add type="text" @add="addNewNote" :noteActive="noteActive" @update="update"/>
+    <note-list :notes="notesToShow" @remove="deleteNote" @pin="pinNote" @color="changeColor" @duplicate="onDuplicateNote"  @todo="changeTodo" @addTodo="setTodo" @save="saveChanges" @send="sendEmail"/>
+  </section>
+    `,
   data() {
     return {
       notes: null,

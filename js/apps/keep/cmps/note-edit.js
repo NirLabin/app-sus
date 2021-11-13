@@ -8,13 +8,13 @@ export default {
             <form class="flex align-center column space-between gap">
                 <textarea type="text" v-model="txt"></textarea>
                 <div class="form-row flex-def">
-                  <note-tools :note="note" />
-                  <button class="btn" @click.prevent="save">Save</button>
+					<note-tools :note="note" />
+					<button class="btn" @click.prevent="save">Save</button>
                 </div>
             </form>
         </div>
     </section>
-  `,
+	`,
 	created() {
 		this.txt = this.note.txt;
 	},
