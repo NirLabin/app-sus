@@ -4,12 +4,12 @@ export default {
   props: ['note'],
   template: `
       <div class="note-tools flex align-center space-between gap"  >
-        <button class="btn flex align-center" @click="remove"><ion-icon name="trash-outline"/></button>
-        <button class="btn flex align-center" @click="pin"><ion-icon name="pin-outline"/></button>
-        <button class="btn flex align-center" @click="duplicate"><ion-icon name="duplicate-outline"/></button>
+        <button class="btn btn-tool flex align-center" @click="remove"><ion-icon name="trash-outline"/></button>
+        <button class="btn btn-tool flex align-center" @click="pin"><ion-icon name="pin-outline"/></button>
+        <button class="btn btn-tool flex align-center" @click="duplicate"><ion-icon name="duplicate-outline"/></button>
         <note-colors @color="changeColor" :note="note"/>
-        <button v-if="note.type==='todo'" @click="addTodo" class="btn flex align-center"><ion-icon name="add-outline"/></button> 
-        <button v-if="note.type === 'text'" @click="share" class="btn flex align-center"><ion-icon name="navigate-outline"/></button>
+        <button v-if="note.type==='todo'" @click="addTodo" class="btn flex align-center btn-tool"><ion-icon name="add-outline"/></button> 
+        <button v-if="note.type === 'text'" @click="share" class="btn flex align-center btn-tool"><ion-icon name="navigate-outline"/></button>
       </div>
     `,
   data() {
