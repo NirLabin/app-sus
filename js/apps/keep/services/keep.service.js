@@ -1,11 +1,6 @@
 import { utilService } from '../../../services/util.service.js';
 import { storageService } from '../../../services/async.storage.service.js';
-// {
-/* <ion-icon name="image-outline"></ion-icon> */
-// {
-/* <ion-icon name="image-outline"></ion-icon> */
-// }
-// }
+
 const NOTE_KEY = 'notes';
 const DEAF_CLR = '#A0C4FF';
 export const noteService = {

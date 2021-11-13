@@ -5,7 +5,7 @@ export default {
 			<button  class="btn btn-palette flex align-center"  @mouseover='paletteStay' >
 				<ion-icon name="color-palette-outline"></ion-icon>
 			</button>
-			<ul v-if="showPalette" class="pick-color clean-list flex align-center" @mouseover="paletteStay" @mouseleave="paletteMove">
+			<ul v-if="showPalette" class="pick-color clean-list flex align-center"  @mouseover="paletteStay" @mouseleave="paletteMove">
 				<li v-for="(color,idx) in colors">
 					<button class="btn btn-color " :style="{backgroundColor:color}" @click="pick(color)"></button>
 				</li>
@@ -29,7 +29,7 @@ export default {
     };
   },
   created() {
-    this.curColor = this.note.style.bgc;
+    this.curColor = this.note?.style?.bgc || '#a0c4ff';
   },
   methods: {
     paletteMove() {
