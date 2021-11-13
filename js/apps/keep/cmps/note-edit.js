@@ -3,7 +3,7 @@ import noteTools from './note-tools.js';
 export default {
   props: ['note'],
   template: `
-    <section class="note-edit">
+    <section class="note-edit vivify unfold">
         <div class ="modal flex-column gap" :style="{backgroundColor : note.style.bgc}" >
 			<header class="">
 				<button class="btn flex align-center" @click="close"><ion-icon name="close-outline"/></button>
@@ -18,6 +18,9 @@ export default {
         </div>
     </section>
 	`,
+  data() {
+    return {};
+  },
   created() {
     this.txt = this.note.txt;
   },
