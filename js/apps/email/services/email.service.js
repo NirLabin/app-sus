@@ -70,6 +70,7 @@ export const emailService = (function () {
 		},
 
 		createSendEmail(email) {
+			console.log(email);
 			const { subject, body, to } = email;
 			return _createSent(subject, body, to);
 		},
@@ -119,8 +120,8 @@ function _createSent(subject, body, to) {
 		loggedinUser,
 		subject,
 		_mailType('sent'),
-		_fromAndTo(to),
-		body
+		body,
+		_fromAndTo(to)
 	);
 }
 

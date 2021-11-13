@@ -4,7 +4,10 @@ export default {
 	props: ['note'],
 	template: `
     <section class="note-edit">
-        <div class ="modal" :style="{backgroundColor : note.style.bgc}" >
+        <div class ="modal flex-column gap" :style="{backgroundColor : note.style.bgc}" >
+			<header class="">
+				<button class="btn flex align-center" @click="close"><ion-icon name="close-outline"/></button>
+			</header>
             <form class="flex align-center column space-between gap">
                 <textarea type="text" v-model="txt"></textarea>
                 <div class="form-row flex-def">
@@ -39,6 +42,9 @@ export default {
 		},
 		changeColor(color) {
 			this.$emit('color', color);
+		},
+		close() {
+			this.$emit('close');
 		},
 	},
 	components: {
