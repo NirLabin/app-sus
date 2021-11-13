@@ -1,48 +1,48 @@
 .email-preview {
-  display: grid;
-  grid-template-areas:
-    'from from date'
-    'body body body';
-  align-items: center;
-  width: 100%;
-  gap: 10px;
-  font-size: 16px;
-  transition: all 0s ease;
+	display: grid;
+	grid-template-areas:
+		'from from date'
+		'body body body';
+	align-items: center;
+	width: 100%;
+	gap: 10px;
+	font-size: 16px;
+	transition: all 0s ease;
 }
 .email-preview.open {
-  font-weight: 500;
-  color: #111;
+	font-weight: 650;
+	color: #000000;
 }
 
 .email-from {
-  grid-area: from;
+	grid-area: from;
 }
 
 .email-date {
-  grid-area: date;
-  justify-self: end;
-  font-size: 12px;
-  color: #5f6368;
+	grid-area: date;
+	justify-self: end;
+	font-size: 12px;
+	color: #5f6368;
 }
 
 .email-body {
-  grid-area: body;
-  align-self: start;
-  flex-direction: column;
-  max-width: 100%;
-  max-height: 100%;
-  text-indent: initial;
-  word-wrap: break-word;
+	grid-area: body;
+	align-self: start;
+	flex-direction: column;
+	max-width: 100%;
+	max-height: 100%;
+	text-indent: initial;
+	word-wrap: break-word;
 }
 
 .email-subject {
-  font-size: 14px;
+	font-size: 14px;
 }
 
 .email-body-txt {
-  max-width: 100%;
-  max-height: 100%;
-  word-wrap: break-word;
-  white-space: inherit;
-  font-size: 12px;
+	max-width: 100%;
+	max-height: 100%;
+	word-wrap: break-word;
+	white-space: inherit;
+	font-size: 12px;
 }
