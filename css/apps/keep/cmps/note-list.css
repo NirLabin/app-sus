@@ -1,16 +1,29 @@
 :root {
-  --tmp-column: repeat(1, 1fr);
+	--tmp-column: repeat(1, 1fr);
+}
+
+.note-list-container {
+}
+.note-list-container h3 {
+	text-align: left;
+	color: #71757a;
+	opacity: 0.9;
+	font-size: 14px;
+	text-transform: uppercase;
+	letter-spacing: -0.6px;
 }
 
 .note-list {
-  padding: 20px;
-  position: relative;
-  display: grid;
-  grid-template-columns: var(--tmp-column);
-  grid-auto-flow: dense;
-  gap: 21px;
+	padding: 20px;
+	position: relative;
+	display: grid;
+	grid-template-columns: var(--tmp-column);
+	grid-auto-flow: dense;
+	gap: 21px;
+	margin-bottom: 15px;
 }
+
 .note-list > * {
-  height: 100%;
-  cursor: pointer;
+	height: 100%;
+	cursor: pointer;
 }
