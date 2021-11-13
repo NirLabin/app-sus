@@ -32,6 +32,7 @@ export default {
     },
     remove(noteId) {
       this.$emit('remove', noteId);
+      this.editNote = null;
     },
     pin(note) {
       this.$emit('pin', note);
