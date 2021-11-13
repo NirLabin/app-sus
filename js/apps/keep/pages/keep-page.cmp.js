@@ -108,7 +108,7 @@ export default {
     },
 
     sendEmail(note) {
-      this.$router.push('/email');
+      this.$router.push('/fromKeep/From keep/' + note.txt);
     },
 
     loadNotes() {
