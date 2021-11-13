@@ -109,7 +109,7 @@ export default {
 
     sendEmail(note) {
       console.log(note);
-      this.$router.push('/email/From keep/' + note.txt);
+      this.$router.push('/email');
     },
 
     loadNotes() {
