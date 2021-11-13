@@ -14,7 +14,7 @@ export default {
 	</div>`,
 	data() {
 		return {
-			wordLimit: 100,
+			wordLimit: 50,
 		};
 	},
 	computed: {
