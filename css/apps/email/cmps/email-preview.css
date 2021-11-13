@@ -1,45 +1,45 @@
 .email-preview {
-	/* color: #5f6368; */
-	width: 100%;
-	font-size: 16px;
-	display: grid;
-	grid-template-areas:
-		'from from date'
-		'body body body';
-	gap: 10px;
-	align-items: center;
+  /* color: #5f6368; */
+  width: 100%;
+  font-size: 16px;
+  display: grid;
+  grid-template-areas:
+    'from from date'
+    'body body body';
+  gap: 10px;
+  align-items: center;
 }
 
 .email-from {
-	grid-area: from;
+  grid-area: from;
 }
 
 .email-date {
-	grid-area: date;
-	justify-self: end;
-	font-size: 12px;
-	color: #5f6368;
+  grid-area: date;
+  justify-self: end;
+  font-size: 12px;
+  color: #5f6368;
 }
 
 .email-body {
-	grid-area: body;
-	flex-direction: column;
-	max-width: 100%;
-	max-height: 100%;
+  grid-area: body;
+  flex-direction: column;
+  max-width: 100%;
+  max-height: 100%;
 
-	word-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .email-body > * {
 }
 .email-subject {
-	font-size: 14px;
+  font-size: 14px;
 }
 
 .email-body-txt {
-	max-width: 100%;
-	max-height: 100%;
-	word-wrap: break-word;
-	white-space: inherit;
-	font-size: 12px;
+  max-width: 100%;
+  max-height: 100%;
+  word-wrap: break-word;
+  white-space: inherit;
+  font-size: 12px;
 }

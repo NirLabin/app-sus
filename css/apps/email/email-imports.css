@@ -4,5 +4,6 @@
 @import url('../email/cmps/email-nav.css');
 @import url('../email/cmps/email-preview.css');
 @import url('../email/cmps/new-email.css');
+@import url('../email/cmps/email-from-keep.css');
 @import url('../email/email-app.css');
 @import url('../../media.css');

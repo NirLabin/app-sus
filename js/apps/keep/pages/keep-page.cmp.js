@@ -130,6 +130,7 @@ export default {
     notesToShow() {
       const { type, filter } = this;
 
+      console.log(this.notes);
       if (type === 'all' && !filter) return this.notes;
       return {
         unPinned: this.notes.unPinned.filter((note) => {
