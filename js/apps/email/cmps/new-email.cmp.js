@@ -2,10 +2,10 @@ import { utilService } from '../../../services/util.service.js';
 import emailError from './email-error.cmp.js';
 
 export default {
-	props: ['composeData'],
-	template: `
+  props: ['composeData'],
+  template: `
         <div class="new-email">
-            <div class='email-compose flex column'>
+            <div class='email-compose flex column vivify unfold'>
                 <header class="email-compose-header flex space-between">
                     <h4>New message</h4>
                     <div class="control-btns">
@@ -27,31 +27,31 @@ export default {
             </div>
         </div>
     `,
-	data() {
-		return {
-			showError: false,
-		};
-	},
-	created() {
-		this.to = this.composeData.to;
-		this.subject = this.composeData.subject;
-		this.body = this.composeData.body;
-	},
-	methods: {
-		send() {
-			const { to, subject, body } = this;
-			this.$emit('send', { to, subject, body });
-			this.toggleNewMsg();
-		},
-		toggleNewMsg() {
-			this.$emit('close');
-			this.to = this.subject = this.body = '';
-		},
-		toggleError() {
-			this.showError = !this.showError;
-		},
-	},
-	components: {
-		emailError,
-	},
+  data() {
+    return {
+      showError: false,
+    };
+  },
+  created() {
+    this.to = this.composeData.to;
+    this.subject = this.composeData.subject;
+    this.body = this.composeData.body;
+  },
+  methods: {
+    send() {
+      const { to, subject, body } = this;
+      this.$emit('send', { to, subject, body });
+      this.toggleNewMsg();
+    },
+    toggleNewMsg() {
+      this.$emit('close');
+      this.to = this.subject = this.body = '';
+    },
+    toggleError() {
+      this.showError = !this.showError;
+    },
+  },
+  components: {
+    emailError,
+  },
 };
