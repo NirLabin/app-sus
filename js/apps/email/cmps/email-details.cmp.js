@@ -1,8 +1,8 @@
 import emailReplay from './email-replay.js';
 
 export default {
-  props: ['email', 'page'],
-  template: `
+	props: ['email', 'page'],
+	template: `
         <div class="email-details">
             <div v-if="page!=='deleted'" class="email-details-header">
                 <button class="btn" @click="back"><ion-icon name="arrow-back-outline"/></button>
@@ -21,29 +21,30 @@ export default {
 			<email-replay v-if="showReplay" :email="email" @send="replay"/>
         </div>
     `,
-  data() {
-    return { showReplay: false };
-  },
-  methods: {
-    back() {
-      this.$emit('back');
-    },
-    remove() {
-      this.$emit('remove', this.email);
-    },
-    replay(body) {
-      this.showReplay = !this.showReplay;
-      const email = { body, subject: this.email.subject, to: this.email.from };
-      this.$emit('replay', email);
-    },
-    save() {
-      console.log('save email to notes');
-    },
-    undelete() {
-      this.$emit('undelete', this.email);
-    },
-  },
-  components: {
-    emailReplay,
-  },
+	data() {
+		return { showReplay: false };
+	},
+	methods: {
+		back() {
+			this.$emit('back');
+		},
+		remove() {
+			this.$emit('remove', this.email);
+		},
+		replay(body) {
+			this.showReplay = !this.showReplay;
+			console.log(this);
+			const email = { body, subject: this.email.subject, to: this.email.from };
+			this.$emit('replay', email);
+		},
+		save() {
+			console.log('save email to notes');
+		},
+		undelete() {
+			this.$emit('undelete', this.email);
+		},
+	},
+	components: {
+		emailReplay,
+	},
 };

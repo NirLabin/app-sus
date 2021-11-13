@@ -11,10 +11,10 @@ export default {
           <input class="input-note-add" v-model="noteTxt" ref="noteTxt" :placeholder="placeHolderVal"  >
         </div>
         <div class="note-types-box flex gap align-center">
-          <note-img v-if="noteType === 'img'" @addImg="addImg" class="btn"/>
-          <button @click="setTypeNote('text')"  class="btn"><ion-icon name="text-outline"/></button>
-          <button  @click="todo" class="btn"><ion-icon name="list-outline" /></button>
-          <button  @click="setTypeNote('img')" class="btn"><ion-icon name="image-outline"/></button>
+			<note-img v-if="noteType === 'img'" @addImg="addImg" class="btn"/>
+			<button @click="setTypeNote('text')"  class="btn"><ion-icon name="text-outline"/></button>
+			<button  @click="todo" class="btn"><ion-icon name="list-outline" /></button>
+			<button  @click="setTypeNote('img')" class="btn"><ion-icon name="image-outline"/></button>
         </div>
     </div>
   </section>`,
@@ -48,6 +48,7 @@ export default {
 		},
 
 		setTypeNote(type) {
+			this.$refs.noteTxt.focus();
 			this.noteActive = null;
 			this.noteType = type;
 			this.placeHolderVal = `Add ${this.noteType}`;
@@ -57,6 +58,8 @@ export default {
 		},
 
 		todo() {
+			this.$refs.noteTxt.focus();
+
 			this.noteActive = null;
 			this.noteType = 'todo';
 			this.placeHolderVal = `Add ${this.noteType}`;

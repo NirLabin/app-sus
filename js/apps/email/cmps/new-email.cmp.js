@@ -15,7 +15,7 @@ export default {
                 <form class="flex column">
                     <div class="compose-row flex-def">
                         <label for="email">To</label>
-                        <input type="email" v-model="to" :blur="checkValidation">
+                        <input type="email" v-model="to" >
                     </div>
                     <div class="compose-row flex-def">
                         <!-- <label for="text">Subject</label> -->
@@ -44,6 +44,7 @@ export default {
 				this.showError = true;
 				return;
 			}
+			console.log(this);
 			const { to, subject, body } = this;
 			this.$emit('send', { to, subject, body });
 			this.toggleNewMsg();
@@ -51,9 +52,6 @@ export default {
 		toggleNewMsg() {
 			this.$emit('close');
 			this.to = this.subject = this.body = '';
-		},
-		checkValidation() {
-			console.log('check email validation');
 		},
 		toggleError() {
 			this.showError = !this.showError;

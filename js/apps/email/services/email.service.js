@@ -17,17 +17,18 @@ const loggedinUser = {
 		if (!inbox || !inbox.length) {
 			inbox.push(
 				_createMail(
-					_fromAndTo(_createEmail('nir'), 'Nir Labinski'),
+					_fromAndTo({ email: _createEmail('nir'), fullName: 'Nir Labinski' }),
 					'Sprint',
 					_mailType('inbox'),
-
-					utilService.makeLorem(150),
-					'inbox'
+					utilService.makeLorem(150)
 				)
 			);
 			inbox.push(
 				_createMail(
-					_fromAndTo(_createEmail('daniel'), 'Daniel Zuri'),
+					_fromAndTo({
+						email: _createEmail('daniel'),
+						fullName: 'Daniel Zuri',
+					}),
 					'Our trip',
 					_mailType('inbox'),
 					utilService.makeLorem(150)
@@ -35,7 +36,10 @@ const loggedinUser = {
 			);
 			inbox.push(
 				_createMail(
-					{ email: 'noa@appsus.com', fullName: 'Noa Cohen' },
+					_fromAndTo({
+						email: _createEmail('noa'),
+						fullName: 'Noa Cohen',
+					}),
 					'Studying',
 					_mailType('inbox'),
 					utilService.makeLorem(150)
@@ -76,7 +80,6 @@ export const emailService = (function () {
 		},
 
 		remove(mailId, key = 'inbox') {
-			console.log('email service, key:', key, 'email id', mailId);
 			return storageService.remove(keys[key], mailId);
 		},
 
@@ -106,7 +109,7 @@ function _mailType(category = 'inbox', isReplay = false) {
 	return { isReplay, category };
 }
 
-function _fromAndTo(email = loggedinUser.email, fullName = '') {
+function _fromAndTo({ email = loggedinUser.email, fullName = '' }) {
 	if (!fullName) fullName = _trimEmail(email);
 	return { fullName, email };
 }
@@ -125,8 +128,8 @@ function _createMail(
 	from,
 	subject,
 	type,
-	to = loggedinUser,
 	body = '',
+	to = loggedinUser,
 	date = new Date()
 ) {
 	return {
@@ -152,7 +155,6 @@ function _isExists(entities, id) {
 }
 
 function _trimEmail(email) {
-	console.log(email);
 	const [idx, len] = [email.indexOf('@'), email.length];
 	return email.slice(0, idx === -1 ? Math.min(len, 5) : idx);
 }
