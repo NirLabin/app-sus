@@ -3,7 +3,7 @@
 export default {
 	template: `
         <div class="email-filter">
-			<div class="search-box flex align-center" :class="searchBoxClass">
+			<div class="search-box flex-def" :class="searchBoxClass">
 				<ion-icon name="search-outline"></ion-icon>
 				<input @input="filter" type="text" placeholder="Search email" class="input-search" v-model="searchStr" @focus="setSearchClass" @blur="setSearchClass">
 			</div>

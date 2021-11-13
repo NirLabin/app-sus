@@ -1,31 +1,26 @@
 import noteTodo from './note-todos.js';
 import noteTools from './note-tools.js';
-import noteEdit from '../cmps/note-edit.js';
 
 export default {
 	props: ['note'],
 	template: `
     <div class="note-preview flex column space-between gap" @click="edit" >
-      <note-todo v-if="note.type==='todo'" :note="note" @change="changeTodo"/>
-      <img v-else-if="note.type==='img'" :src="getSrc(note)">
-      <p v-else>{{note.txt}}</p>
-      <note-tools  :note="note" @remove="remove" @pin="pin" @duplicate="duplicate" @addTodo="addTodo" @sendAsEmail="sendAsEmail"/>
-      <note-edit v-if="editNote" :note="note" @save="save"/>
+		<note-todo v-if="note.type==='todo'" :note="note" @change="changeTodo"/>
+		<img v-else-if="note.type==='img'" :src="getSrc(note)">
+		<p v-else>{{note.txt}}</p>
+		<note-tools  :note="note" @remove="remove" @pin="pin" @duplicate="duplicate" @addTodo="addTodo" @sendAsEmail="sendAsEmail"/>
     </div>
     `,
 	data() {
 		return {
 			isHover: true,
-			editNote: false,
 		};
 	},
-	watch: {
-		editNote(newVal) {
-			console.log(newVal);
-			console.log('watch');
-		},
-	},
 	methods: {
+		edit(e) {
+			if (e.target.closest('note-tools')) return;
+			this.$emit('edit', this.note);
+		},
 		getSrc(note) {
 			return note.txt;
 		},
@@ -50,10 +45,6 @@ export default {
 		addTodo() {
 			this.$emit('addTodo', this.note);
 		},
-		edit() {
-			if (this.editNote) return;
-			this.editNote = !this.editNote;
-		},
 		save(data) {
 			console.log(data);
 			this.editNote = false;
@@ -66,6 +57,5 @@ export default {
 	components: {
 		noteTodo,
 		noteTools,
-		noteEdit,
 	},
 };
