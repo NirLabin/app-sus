@@ -1,32 +1,55 @@
 .note-filter {
-  border: none;
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 10px 15px;
-}
-
-.search-icon {
-  margin-bottom: 10px;
-}
-
-.note-type {
-  margin-bottom: 10px;
+	margin-bottom: 20px;
 }
 
 .search-box {
-  color: #5f6368;
-  width: 100%;
-  padding: 10px;
-  transition: all 0.3s ease-out;
-}
-.search-box .btn {
-  background-color: transparent;
-}
-
-.search-box ion-icon {
-  color: #5f6368;
+	border: 1px solid transparent;
+	border-radius: 8px;
+	background-color: #fff;
+	width: 100%;
+	padding: 10px;
+	transition: all 0.3s ease-out;
 }
 
 .search-box.focus {
-  box-shadow: 0 1px 1px 0 rgb(65 69 73 / 30%), 0 1px 3px 1px rgb(65 69 73 / 15%);
+	box-shadow: 0 1px 1px 0 rgb(65 69 73 / 30%), 0 1px 3px 1px rgb(65 69 73 / 15%);
+}
+
+.input-search {
+	border: none;
+	width: 100%;
+	padding: 10px 15px;
+}
+
+.input-note-filter {
+	border: none;
+	width: 100%;
+	margin-bottom: 10px;
+	padding: 10px 15px;
+}
+
+.search-icon {
+	margin-bottom: 10px;
+}
+
+.note-type {
+	margin-bottom: 10px;
+}
+
+.search-box {
+	color: #5f6368;
+	width: 100%;
+	padding: 10px;
+	transition: all 0.3s ease-out;
+}
+.search-box .btn {
+	background-color: transparent;
+}
+
+.search-box ion-icon {
+	color: #5f6368;
+}
+
+.search-box.focus {
+	box-shadow: 0 1px 1px 0 rgb(65 69 73 / 30%), 0 1px 3px 1px rgb(65 69 73 / 15%);
 }

@@ -28,6 +28,7 @@ export default {
 			return utilService.limitedText(this.mail.body, this.wordLimit);
 		},
 		fromForDisplay() {
+			console.log(this.mail);
 			if (emailService.iSent(this.mail)) return `To: ${this.mail.to.fullName}`;
 			return this.mail.from.fullName;
 		},

@@ -3,7 +3,7 @@ export default {
 	template: `
         <div class="email-nav-container">
 			<button class="btn btn-menu" @click="showMenu"><ion-icon name="menu"></ion-icon></button>
-			<div class="email-nav-list flex column">
+			<div class="email-nav-list flex column" :class="navClass">
 				<button class="btn btn-compose" @click="compose"> +Compose</button>
 				<button class="btn btn-email-nav" :class="navActive('inbox')" @click="navClicked('inbox')">Inbox</button> 
 				<button class="btn btn-email-nav" :class="navActive('sent')" @click="navClicked('sent')">Sent</button> 
@@ -32,5 +32,7 @@ export default {
 			console.log(e);
 		},
 	},
-	components: {},
+	components: {
+		navClass() {},
+	},
 };

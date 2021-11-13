@@ -1,32 +1,35 @@
 .email-filter {
-  position: relative;
-  grid-area: filter;
-  width: 100%;
-  margin-bottom: 35px;
+	position: relative;
+	grid-area: filter;
+	width: 100%;
+	margin-bottom: 35px;
 }
 
 .search-box {
-  width: 100%;
-  padding: 10px;
-  transition: all 0.3s ease-out;
+	border: 1px solid transparent;
+	border-radius: 8px;
+	background-color: #fff;
+	width: 100%;
+	padding: 10px;
+	transition: all 0.3s ease-out;
 }
 
 .search-box.focus {
-  box-shadow: 0 1px 1px 0 rgb(65 69 73 / 30%), 0 1px 3px 1px rgb(65 69 73 / 15%);
+	box-shadow: 0 1px 1px 0 rgb(65 69 73 / 30%), 0 1px 3px 1px rgb(65 69 73 / 15%);
 }
 
 .input-search {
-  border: none;
-  width: 100%;
-  padding: 10px 15px;
+	border: none;
+	width: 100%;
+	padding: 10px 15px;
 }
 
 .search-option-box {
-  position: absolute;
-  background-color: #f9f7fc;
-  width: 100%;
-  top: 100%;
-  left: 0;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  padding: 10px 20px;
+	position: absolute;
+	background-color: #f9f7fc;
+	width: 100%;
+	top: 100%;
+	left: 0;
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+	padding: 10px 20px;
 }

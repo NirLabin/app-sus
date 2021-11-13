@@ -1,6 +1,12 @@
 .note-edit {
+	position: fixed;
+	left: 50%;
+	bottom: 50%;
+	transform: translate(-50%, -50%);
 	justify-content: center;
 	background-color: transparent;
+	z-index: 1001;
+	box-shadow: 0 1px 3px 0 rgb(60 64 67 / 30%), 0 4px 8px 3px rgb(60 64 67 / 15%);
 }
 
 .note-edit form {

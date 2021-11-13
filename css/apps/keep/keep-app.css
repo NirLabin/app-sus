@@ -7,5 +7,6 @@
 @import url('../keep/cmps/note-preview.css');
 
 .keep-app {
+	height: 100%;
 	text-align: center;
 }
