@@ -55,6 +55,10 @@ export const utilService = (function () {
 			let data = localStorage.getItem(key);
 			return data ? JSON.parse(data) : undefined;
 		},
+		efrat(e) {
+			console.log(e);
+			console.log(e);
+		},
 
 		limitedText(txt, wordLimit = 100) {
 			if (txt.length <= wordLimit) return txt;
