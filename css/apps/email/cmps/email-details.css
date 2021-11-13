@@ -1,23 +1,27 @@
 .email-details,
 .email-list-container {
-  width: 100%;
-  grid-area: emails;
+	width: 100%;
+	grid-area: emails;
 }
 
 .email-details {
-  padding: 10px 20px;
+	padding: 10px 20px;
 }
 
 .email-details-header {
-  font-size: 24px;
-  margin-bottom: 20px;
+	font-size: 24px;
+	margin-bottom: 20px;
 }
 
 .email-details-header .btn {
-  background-color: transparent;
-  opacity: 0.54;
+	background-color: transparent;
+	opacity: 0.54;
 }
 
 .email-details-header .btn:hover {
-  opacity: 0.8;
+	opacity: 0.8;
+}
+
+.details-body {
+	margin-bottom: 30px;
 }

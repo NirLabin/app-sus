@@ -1,7 +1,7 @@
 export default {
 	props: ['email'],
 	template: `
-        <div class="email-replay flex column">
+        <div class="email-replay flex column gap">
             <div class="flex-def"> 
                 <ion-icon name="arrow-undo-sharp"/>
                 <span> {{email.from.email}}</span>

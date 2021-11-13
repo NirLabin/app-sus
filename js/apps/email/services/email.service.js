@@ -12,39 +12,41 @@ const loggedinUser = {
 	email: 'efrat@appsus.com',
 	fullName: 'Efrat Zuri',
 };
-// (function () {
-// 	storageService.query(keys.inbox).then((inbox) => {
-// 		if (!inbox || !inbox.length) {
-// 			inbox.push(
-// 				_createMail(
-// 					{ email: 'nir@appsus.com', fullName: 'Nir Labinski' },
-// 					'Sprint',
-// 					utilService.makeLorem(150),
-// 					'inbox'
-// 				)
-// 			);
-// 			inbox.push(
-// 				_createMail(
-// 					{ email: 'daniel@appsus.com', fullName: 'Daniel Zuri' },
-// 					'Our trip',
-// 					utilService.makeLorem(150),
-// 					'inbox'
-// 				)
-// 			);
-// 			inbox.push(
-// 				_createMail(
-// 					{ email: 'noa@appsus.com', fullName: 'Noa Cohen' },
-// 					'Studying',
-// 					utilService.makeLorem(150),
-// 					'inbox'
-// 				)
-// 			);
-// 			storageService.postMany(keys.inbox, inbox).then((inbox) => {
-// 				console.log(inbox);
-// 			});
-// 		}
-// 	});
-// })();
+(function () {
+	storageService.query(keys.inbox).then((inbox) => {
+		if (!inbox || !inbox.length) {
+			inbox.push(
+				_createMail(
+					_fromAndTo(_createEmail('nir'), 'Nir Labinski'),
+					'Sprint',
+					_mailType('inbox'),
+
+					utilService.makeLorem(150),
+					'inbox'
+				)
+			);
+			inbox.push(
+				_createMail(
+					_fromAndTo(_createEmail('daniel'), 'Daniel Zuri'),
+					'Our trip',
+					_mailType('inbox'),
+					utilService.makeLorem(150)
+				)
+			);
+			inbox.push(
+				_createMail(
+					{ email: 'noa@appsus.com', fullName: 'Noa Cohen' },
+					'Studying',
+					_mailType('inbox'),
+					utilService.makeLorem(150)
+				)
+			);
+			storageService.postMany(keys.inbox, inbox).then((inbox) => {
+				console.log(inbox);
+			});
+		}
+	});
+})();
 
 export const emailService = (function () {
 	return {
@@ -65,7 +67,7 @@ export const emailService = (function () {
 
 		createSendEmail(email) {
 			const { subject, body, to } = email;
-			return _createMail(loggedinUser, subject, body, to, 'sent');
+			return _createSent(subject, body, to);
 		},
 
 		save(email, key = 'inbox') {
@@ -100,30 +102,45 @@ export const emailService = (function () {
 	};
 })();
 
-function _mailType() {
-	return {};
+function _mailType(category = 'inbox', isReplay = false) {
+	return { isReplay, category };
+}
+
+function _fromAndTo(
+	email = loggedinUser.email,
+	fullName = loggedinUser.fullName
+) {
+	return { fullName, email };
+}
+
+function _createSent(subject, body, to) {
+	return _createMail(loggedinUser, subject, _mailType('sent'), to, body);
 }
 
 function _createMail(
 	from,
 	subject,
-	body = '',
-	to = loggedinUser.email,
 	type,
+	to = loggedinUser,
+	body = '',
 	date = new Date()
 ) {
 	return {
 		id: utilService.makeId(),
 		isOpen: false,
 		isStarred: false,
-		date,
-		from,
-		type,
-		subject,
 		replays: [],
+		from,
+		subject,
 		body,
 		to,
+		type,
+		date,
 	};
+}
+
+function _createEmail(name) {
+	return `${name}@appsus.com`;
 }
 function _isExists(entities, id) {
 	return entities.some((entity) => entity.id === id);

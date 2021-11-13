@@ -125,6 +125,7 @@ export default {
 	},
 	computed: {
 		emailsToShow() {
+			// if (this.page === 'starred') return this.starredToShow();
 			let curEmails = this.emails[this.page];
 			const { page, searchStr, sortBy } = this;
 			if (
@@ -138,6 +139,9 @@ export default {
 				if (sortBy === 'all' || page !== 'inbox') return subjectInclude;
 				return subjectInclude && isOpen === showUnread;
 			});
+		},
+		starredToShow() {
+			// const emails=[...this.emails.inbox,...this.emails.]
 		},
 	},
 	components: {
