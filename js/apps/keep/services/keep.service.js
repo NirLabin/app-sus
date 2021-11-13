@@ -87,6 +87,12 @@ async function _createNotes() {
         'img'
       ),
       _createNote('#FFC6FF', 'DATA IS A FUNCTION THAT RETURNS AN OBJECT!'),
+      _createNote('#FFD6A5', 'Im the bus form the event 🚌'),
+      _createNote(
+        '#FFADAD',
+        'https://media.istockphoto.com/photos/blank-note-picture-id471399483?k=20&m=471399483&s=170667a&w=0&h=vS3kte5V4RONVPWesMJMKB9EXx6FAam9gsmEl7lpuEA=',
+        'img'
+      ),
     ];
     notes = await storageService.postMany(NOTE_KEY, notes);
   }
