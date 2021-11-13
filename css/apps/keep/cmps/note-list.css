@@ -1,28 +1,39 @@
 :root {
-  --tmp-column: repeat(1, 1fr);
+	--tmp-column: repeat(1, 1fr);
 }
 
 .note-list-container h3 {
-  text-align: left;
-  color: #71757a;
-  color: #8a9199;
-  opacity: 0.9;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: -0.6px;
+	font-size: 14px;
+	text-align: left;
+	letter-spacing: -0.6px;
+	text-transform: uppercase;
+	color: #8a9199;
+	opacity: 0.9;
 }
 
 .note-list {
-  padding: 20px;
-  position: relative;
-  display: grid;
-  grid-template-columns: var(--tmp-column);
-  grid-auto-flow: dense;
-  gap: 21px;
-  margin-bottom: 15px;
+	display: grid;
+	position: relative;
+	padding: 20px;
+	margin-bottom: 15px;
+	grid-template-columns: var(--tmp-column);
+	grid-auto-flow: dense;
+	gap: 21px;
 }
 
 .note-list > * {
-  height: 100%;
-  cursor: pointer;
+	height: 100%;
+	cursor: pointer;
+}
+
+.note {
+	display: flex;
+	flex-direction: column;
+	padding: 10px 15px;
+	border-radius: 5px;
+	max-width: 100%;
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+	white-space: pre-line;
+	text-overflow: ellipsis;
+	word-wrap: break-word;
 }

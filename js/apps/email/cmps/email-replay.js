@@ -6,7 +6,7 @@ export default {
                 <ion-icon name="arrow-undo-sharp"/>
                 <span> {{email.from.email}}</span>
             </div>
-            <textarea name="" id="" cols="30" rows="10" v-model="body" ref="body"></textarea>
+            <textarea cols="30" rows="10" v-model="body" ref="body"></textarea>
             <button class="btn btn-blue" @click="send">Send</button>
         </div>
     `,

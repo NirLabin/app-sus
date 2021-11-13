@@ -2,15 +2,13 @@ export default {
 	props: ['note'],
 	template: `
 		<div class="note-color">
-			<button  class="btn btn-palette flex align-center"  @mouseover='paletteStay' >
-				<ion-icon name="color-palette-outline"></ion-icon>
-			</button>
+			<button class="btn btn-palette btn-icon"  @mouseover='paletteStay' ><ion-icon name="color-palette-outline"/></button>
 			<ul v-if="showPalette" class="pick-color clean-list flex align-center"  @mouseover="paletteStay" @mouseleave="paletteMove">
-				<li v-for="(color,idx) in colors">
-					<button class="btn btn-color " :style="{backgroundColor:color}" @click="pick(color)"></button>
+				<li v-for="color in colors" :key="color">
+					<button class="btn btn-color" :style="{backgroundColor:color}" @click="pick(color)"></button>
 				</li>
-      </ul>
-    </div>
+			</ul>
+		</div>
 		`,
 	data() {
 		return {
