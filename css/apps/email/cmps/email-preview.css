@@ -1,13 +1,17 @@
 .email-preview {
-  /* color: #5f6368; */
-  width: 100%;
-  font-size: 16px;
   display: grid;
   grid-template-areas:
     'from from date'
     'body body body';
-  gap: 10px;
   align-items: center;
+  width: 100%;
+  gap: 10px;
+  font-size: 16px;
+  transition: all 0s ease;
+}
+.email-preview.open {
+  font-weight: 500;
+  color: #111;
 }
 
 .email-from {
@@ -23,15 +27,14 @@
 
 .email-body {
   grid-area: body;
+  align-self: start;
   flex-direction: column;
   max-width: 100%;
   max-height: 100%;
-
+  text-indent: initial;
   word-wrap: break-word;
 }
 
-.email-body > * {
-}
 .email-subject {
   font-size: 14px;
 }

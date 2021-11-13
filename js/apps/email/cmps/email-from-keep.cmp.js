@@ -6,7 +6,7 @@ import emailError from './email-error.cmp.js';
 export default {
   props: ['composeData'],
   template: `
-        <div class="new-email-">
+        <div class="new-email">
             <div class='email-compose flex column'>
                 <header class="email-compose-header flex space-between">
                     <h4>New message</h4>
@@ -20,7 +20,6 @@ export default {
                         <input type="email" v-model="to" :blur="checkValidation">
                     </div>
                     <div class="compose-row flex-def">
-                        <!-- <label for="text">Subject</label> -->
                         <input type="text" v-model="email.subject" placeholder="Subject">
                     </div>
                     <textarea name="" id="" cols="30" rows="10" v-model="email.body"></textarea>
@@ -33,8 +32,8 @@ export default {
     return {
       to: '',
       email: {
-        body: '\n' + this.$route.params.emailBody,
         subject: this.$route.params.emailSubject,
+        body: '\n' + this.$route.params.emailBody,
       },
     };
   },

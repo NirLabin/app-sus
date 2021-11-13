@@ -6,9 +6,9 @@ export default {
         <div class="email-details">
             <div v-if="page!=='deleted'" class="email-details-header">
                 <button class="btn" @click="back"><ion-icon name="arrow-back-outline"/></button>
-                <button class="btn" @click="showReplay=!showReplay"><ion-icon name="arrow-undo-sharp"/></button>
-                <button class="btn" @click="save"><ion-icon name="paper-plane"/></button>
-                <button class="btn" @click="remove"><ion-icon name="trash-outline"/></button>
+                <button class="btn btn-icon" @click="showReplay=!showReplay"><ion-icon name="arrow-undo-sharp"/></button>
+                <button class="btn btn-icon" @click="save"><ion-icon name="paper-plane"/></button>
+                <button class="btn btn-icon" @click="remove"><ion-icon name="trash-outline"/></button>
             </div>
 			<div v-else class="email-details-header">
 				<button class="btn" @click="undelete">Undelete this Email</button>

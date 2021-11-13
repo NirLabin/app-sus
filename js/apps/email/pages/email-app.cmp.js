@@ -79,7 +79,6 @@ export default {
 		},
 		undelete(email) {
 			this.curEmail = null;
-			console.log(email.type.category);
 			emailService.add(email, email.type.category).then((emails) => {
 				this.emails[email.type.category].push(email);
 			});
@@ -119,7 +118,6 @@ export default {
 		},
 
 		saveEmail(email, key = 'inbox') {
-			console.log(key);
 			emailService
 				.save(email, key)
 				.then((emails) => this.loadEmails(key))

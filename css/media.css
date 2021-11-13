@@ -129,7 +129,7 @@
 	}
 
 	.email-preview {
-		grid-template-areas: 'from  body  date';
+		grid-template-areas: 'from  body body body body body body date';
 	}
 	.email-body {
 		flex-direction: row;
