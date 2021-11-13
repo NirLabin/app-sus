@@ -7,8 +7,8 @@ export default {
     <div class="note-preview flex column space-between gap" @click="edit" >
         <note-todo v-if="note.type==='todo'" :note="note" @change="changeTodo"/>
         <img v-else-if="note.type==='img'" :src="getSrc(note)">
-        <p v-else>{{note.txt}}</p>
-         <note-tools  :note="note" @remove="remove" @pin="pin" @duplicate="duplicate" @addTodo="addTodo" @sendAsEmail="sendAsEmail" @color="changeColor"/>
+        <p v-else>{{note.txt}}</p>
+        <note-tools  :note="note" @remove="remove" @pin="pin" @duplicate="duplicate" @addTodo="addTodo" @sendAsEmail="sendAsEmail" @color="changeColor"/>
     </div>`,
 	data() {
 		return {

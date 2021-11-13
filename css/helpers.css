@@ -21,6 +21,10 @@
 	align-items: center;
 	gap: 10px;
 }
+.flex-column {
+	display: flex;
+	flex-direction: column;
+}
 
 .flex.gap {
 	gap: 10px;

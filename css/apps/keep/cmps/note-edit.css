@@ -9,6 +9,10 @@
 	box-shadow: 0 1px 3px 0 rgb(60 64 67 / 30%), 0 4px 8px 3px rgb(60 64 67 / 15%);
 }
 
+.note-edit .modal {
+	/* justify-content: space-between; */
+}
+
 .note-edit form {
 	height: 100%;
 }
@@ -19,6 +23,7 @@
 	padding: 5px 10px;
 	box-shadow: inset 0px 0px 32px 3px rgba(0, 0, 0, 0.15);
 	width: 100%;
+	height: 100%;
 	flex-grow: 2;
 }
 

@@ -17,7 +17,7 @@ export default {
 				<note-preview :note="note" @edit="edit" @pin="pin" @color="changeColor" @duplicate="duplicate" @remove="remove" @todo="todo" @addTodo="addTodo"  @save="save" @send="send"/>
 			</li> 
 		</ul>
-		<note-edit v-if="editNote" :note="editNote" @save="save" @remove="remove" @pin="pin" @duplicate="duplicate" @addTodo="addTodo" @send="send" @color="changeColor"/>
+		<note-edit v-if="editNote" :note="editNote" @close="closeEdit" @save="save" @remove="remove" @pin="pin" @duplicate="duplicate" @addTodo="addTodo" @send="send" @color="changeColor"/>
     </section>`,
 
 	data() {
@@ -52,12 +52,14 @@ export default {
 		send(note) {
 			this.$emit('send', note);
 		},
+		closeEdit() {
+			this.editNote = null;
+		},
 		edit(note) {
 			if (this.editNote || note.type === 'img') return;
 			this.editNote = note;
 		},
 	},
-	computed: {},
 	components: {
 		notePreview,
 		noteEdit,
